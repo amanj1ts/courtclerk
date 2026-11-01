@@ -65,7 +65,7 @@ window.SSSC_GUIDES = [
     id: 'gs-02', section: 'History', code: 'GS-02',
     nav: 'Ancient India',
     title: 'Ancient India',
-    file: 'guides/gs-02-ancient-india.html', ready: false,
+    file: 'guides/gs-02-ancient-india.html', ready: true,
     tag: 'History',
     search: 'history ancient india indus valley vedic mahajanapadas mauryas guptas sangam'
   },
@@ -73,7 +73,7 @@ window.SSSC_GUIDES = [
     id: 'gs-03', section: 'History', code: 'GS-03',
     nav: 'Medieval India',
     title: 'Medieval India',
-    file: 'guides/gs-03-medieval-india.html', ready: false,
+    file: 'guides/gs-03-medieval-india.html', ready: true,
     tag: 'History',
     search: 'history medieval india delhi sultanate mughals vijayanagara bhakti sufi'
   },
