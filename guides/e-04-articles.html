@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>E-04 Articles &amp; Determiners – SSSC Clerk</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config={darkMode:'class'}</script>
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:#4338ca}
+td,th{padding:.4rem .5rem;vertical-align:top;border-bottom:1px solid rgba(128,128,128,.25);font-size:.85rem}
+th{text-align:left;background:rgba(99,102,241,.15)}
+.ans{display:none}.open .ans{display:block}
+@media print{.noprint{display:none!important}.ans{display:block!important}body{background:#fff!important;color:#000!important}.dark body{background:#fff}}
+</style></head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+<header class="noprint sticky top-0 z-50 bg-indigo-700 text-white shadow" style="top:env(safe-area-inset-top,0px)">
+<div class="max-w-4xl mx-auto px-3 py-2 flex flex-wrap items-center gap-2">
+<b class="text-sm flex-1">E-04 · Articles &amp; Determiners</b>
+<button id="tocb" class="px-2 py-1 bg-indigo-900 rounded text-xs">Contents</button>
+<span class="flex text-xs rounded overflow-hidden"><button data-f="1" class="fb px-2 py-1 bg-white text-indigo-800">All</button><button data-f="2" class="fb px-2 py-1 bg-indigo-900">🔥</button><button data-f="3" class="fb px-2 py-1 bg-indigo-900">🔥+⭐</button></span>
+<button id="dk" class="px-2 py-1 bg-indigo-900 rounded text-xs">🌓</button></div>
+<nav id="toc" class="hidden max-w-4xl mx-auto px-3 pb-2 text-xs flex-wrap gap-x-3 gap-y-1"></nav></header>
+<main id="m" class="max-w-4xl mx-auto px-3 py-4 space-y-6 text-sm leading-relaxed"></main>
+<script>
+var P={f:"🔥",s:"⭐",o:"◻"};
+function esc(s){return s}
+function T(h,rows,pc){var x='<div class="overflow-x-auto"><table class="w-full min-w-[480px]"><tr>'+(pc?'<th>P</th>':'')+h.map(function(a){return'<th>'+a+'</th>'}).join('')+'</tr>';
+rows.forEach(function(r){var p=pc?r[0]:'';x+='<tr class="pr" data-p="'+(p||'f')+'">'+(pc?'<td>'+P[p]+'</td>':'')+r.slice(pc?1:0).map(function(c){return'<td>'+c+'</td>'}).join('')+'</tr>'});return x+'</table></div>'}
+function S(id,t,b){return'<section id="'+id+'"><h2 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-2 border-b border-indigo-300">'+t+'</h2>'+b+'</section>'}
+var seen=[
+["f","Silent h → ‘an’ (hour-long)","an ___ hour-long discussion / lecture / warranty","an (3 times)","S1, S6, S16","—","Spelling says h = consonant, sound says vowel. Rule follows SOUND."],
+["f","Pronounced h → ‘a’","a historian; a hypothesis","a","S1, S8","—","Don’t over-apply ‘an’ to every h-word."],
+["f","Yoo-sound → ‘a’","a unique perspective; a European consultant","a","S8, S15","—","Vowel letter, consonant /j/ sound."],
+["f","First mention → a","a new computer","a","S16","—","Second mention would be ‘the’."],
+["f","the + landmark / unique / era","the Eiffel Tower; the equator; the Renaissance; the 18th century","the","S4, S9, S10, S5","—","Landmark vs person-name monument; era needs the."],
+["f","the + superlative","one of the greatest challenges; the best handwriting; the lot","the","S5, S19, S18","—","Superlative always the (even after ‘one of’)."],
+["f","Zero article: abstract / uncountable","Education imparted through…; silence between nations","No article","S9, S11","—","General sense = zero. S11 key looks debatable [VERIFY]."],
+["f","the with defining clause / specific","The athlete who lives next door; the church in the village","the","S13, S17","—","‘who lives next door’ makes it definite."],
+["o","Vocabulary item (not grammar)","formal speech → allocution","allocution","S17","—","Mis-tagged as article question by keyword rule."]];
+var rules=[
+["f","an before VOWEL SOUND","an hour, an honest man, an heir, an honour, an MBA, an M.Phil., an FIR, an X-ray, an ML-based method, an SOS, an MP","Letters A E F H L M N O R S X are said with a vowel sound (ay, ef, el, em, en, ar, es, eks)"],
+["f","a before CONSONANT SOUND","a university, a unique idea, a European, a year, a one-rupee note, a humble person, a useful tool, a historian, a one-eyed man","u/eu/o can start with /y/ or /w/ sound; h pronounced"],
+["f","Hour-long type compounds","an hour-long talk; a two-hour talk; a one-day trip; a five-year plan","Compound adjective stays singular: ‘a two-hour talk’ NOT ‘two-hours’"],
+["f","the: unique things","the sun, the moon, the sky, the equator, the earth, the Prime Minister","Only one of its kind"],
+["f","the: rivers, ranges, oceans, seas, gulfs, deserts","the Ganga, the Himalayas, the Alps, the Pacific, the Bay of Bengal, the Thar","Single mountain / lake / continent / country: no the (Mount Everest, Asia, India, Lake Superior)"],
+["f","the: historical periods, events, ages","the Renaissance, the Reformation, the French Revolution, the 18th century, the Mughal period","Centuries and decades take the (the 1990s)"],
+["f","the: famous buildings, monuments, ships","the Eiffel Tower, the Taj Mahal, the Red Fort, the Titanic","Exception: Buckingham Palace, Westminster Abbey"],
+["s","the: newspapers, scriptures, books of religion","the Hindu, the Times of India, the Gita, the Bible, the Quran","Magazines usually no the (Time, Outlook)"],
+["f","the: superlatives and ordinals","the best, the cleverest, the first, the second time","One of the + plural superlative"],
+["s","the: musical instruments","plays the guitar / the violin","Games: no article (plays cricket)"],
+["f","the + adjective = a class (plural)","the rich, the poor, the old, the blind, the young","Takes PLURAL verb: The poor are…"],
+["f","the: specific / second mention / defining clause","I saw a boy. The boy was crying. The man who called is here.","Both speaker and listener know which one"],
+["f","Zero article: abstract &amp; uncountable (general)","Honesty is the best policy; Knowledge is power; Education shapes values; Gold is a metal; Milk is healthy","Becomes ‘the’ when specified: the honesty of Ram; the milk in the fridge"],
+["f","Zero article: languages, meals, games, subjects","speaks French; had lunch; plays chess; studies Maths","‘the French’ = the people of France"],
+["f","Zero article: most proper nouns","Delhi, India, Ram, Mount Everest, Asia","the United States, the UK, the Netherlands are exceptions (union/plural)"],
+["f","Institutions: PURPOSE = no article","go to school/college/church/bed/prison/hospital/court","Purpose = study, worship, sleep, punishment, treatment"],
+["f","Institutions: BUILDING/visit = the","went to the school to meet the teacher; walked to the church","He went to prison (convict) vs to the prison (visitor)"],
+["s","many a + SINGULAR noun + singular verb","Many a student has failed.","Not ‘many a students’"],
+["s","such a / what a / quite a / rather a / half an hour","such an idea; what a view; quite a surprise; rather a long day; half an hour","Article AFTER such, what, quite, rather, half"],
+["s","a few = some; few = hardly any (countable)","I have a few friends (positive); I have few friends (lonely)","the few = all the small number there are"],
+["s","a little = some; little = hardly any (uncountable)","a little water (positive); little hope (negative)","the little = all there is (the little money he had)"],
+["s","some vs any","some: affirmative &amp; offers (Would you like some tea?); any: negative &amp; questions","I don’t have any money"],
+["s","each vs every","each = individual, 2 or more; every = all, 3 or more. Both + singular verb","Each of + plural noun; every of is WRONG"],
+["s","either / neither","either = one of two; neither = none of two; singular verb","Neither of the two is…; for 3+, use any/none"],
+["s","this/that/these/those","this/these = near; that/those = far. Match number","these books NOT this books; those kind of → that kind of"]];
+var det=[["Articles","a, an, the"],["Demonstratives","this, that, these, those"],["Possessives","my, your, his, her, its, our, their"],["Quantifiers (countable)","many, few, a few, several, fewer, a number of"],["Quantifiers (uncountable)","much, little, a little, less, a great deal of"],["Both types","some, any, no, all, a lot of, plenty of, enough"],["Distributives","each, every, either, neither"],["Numbers","one, two, first, second"]];
+var traps=[
+"Spelling trap: ‘an university’, ‘an European’ are wrong; ‘a hour’, ‘a honest’ are wrong.",
+"Abbreviations: judge by how the first LETTER is spoken: an FIR, an MBA, an X-ray, but a UPSC, a UN, a PhD? (P = pee → a PhD).",
+"‘Many a’ looks plural: verb and noun stay singular.",
+"Few vs a few: ‘He has few friends, so he is happy’ is a wrong pair.",
+"Institutions: prison/school/college/bed/church change with purpose.",
+"the + single mountain/country: ‘the Mount Everest’, ‘the India’ are wrong.",
+"Zero article with abstract nouns used generally: ‘The honesty is best policy’ wrong.",
+"Fillers: ‘one of ___ best’; answer is always the.",
+"‘Such a’ vs ‘a such’; ‘half an hour’ vs ‘an half hour’.",
+"Compound adjective plural: ‘a ten-years plan’ wrong, ‘a ten-year plan’ right."];
+var errs=[
+["an university","a university","/ju:/ sound"],["a hour","an hour","silent h"],["the Mount Everest","Mount Everest","single peak"],["The honesty is best","Honesty is the best policy","abstract general"],["a few water","a little water","uncountable"],["He plays the cricket","He plays cricket","games"],["many a boys","many a boy","singular"],["an half hour","half an hour","order"],["She is a honest girl","an honest girl","silent h"],["Each of the boy","Each of the boys","plural after of"],["a ten-years plan","a ten-year plan","compound adj"],["the poor is","the poor are","class = plural"]];
+var Q=[
+["f","E","He waited for ___ hour.","an|a|the|No article",0,"Silent h, vowel sound. | ‘a’ follows spelling, not sound."],
+["f","E","She is ___ honest girl.","a|an|the|No article",1,"Silent h. | ‘a’ ignores the vowel sound."],
+["f","E","He is ___ MBA from Delhi.","a|an|the|No article",1,"M says ‘em’ (vowel sound). | ‘a’ would need a consonant sound."],
+["f","E","Ravi studies at ___ university.","an|a|the|No article",1,"u says /yoo/. | ‘an’ follows the letter u."],
+["f","E","___ Himalayas are in the north of India.","A|An|The|No article",2,"Ranges take the. | No article is used for single peaks only."],
+["f","E","___ Ganga is considered sacred.","A|The|An|No article",1,"Rivers take the. | ‘A’ is for general singular."],
+["s","E","Sheela plays ___ guitar.","a|the|an|No article",1,"Instruments take the. | No article is for games."],
+["s","E","Ram plays ___ cricket every evening.","the|a|an|No article",3,"Games: zero article. | ‘the’ is for instruments."],
+["s","E","___ gold is a precious metal.","The|A|No article|An",2,"Material noun, general. | ‘The’ needs specification."],
+["f","E","He is ___ European student.","an|a|the|No article",1,"Eu = /yoo/. | ‘an’ follows the vowel letter."],
+["s","E","We had ___ lunch at noon.","a|an|No article|the",2,"Meals: zero article. | ‘a’ only when modified (a heavy lunch)."],
+["f","E","I gave him ___ one-rupee note.","an|a|the|No article",1,"‘one’ starts with /w/. | ‘an’ follows the vowel letter o."],
+["f","E","___ Equator divides the earth into two hemispheres.","A|The|An|No article",1,"Unique geographic line. | ‘A’ is for non-unique things."],
+["s","E","I read ___ Hindu every morning.","the|a|an|No article",0,"Newspapers take the. | No article is for magazines/Time."],
+["f","M","She filed ___ FIR at the police station.","a|an|the|No article",1,"F = ‘ef’. | ‘a’ ignores sound."],
+["f","M","The doctor took ___ X-ray of the chest.","a|an|the|No article",1,"X = ‘eks’. | ‘a’ ignores sound."],
+["s","M","___ rich should help ___ poor.","The, the|A, the|The, a|No article, the",0,"the + adjective = class. | ‘A poor’ is singular."],
+["s","M","Many ___ student has made this mistake.","a|an|the|No article",0,"many a + singular. | ‘an’: student is a consonant sound."],
+["s","M","She is such ___ intelligent girl.","a|an|the|No article",1,"Vowel sound after such. | ‘a’ fails before intelligent."],
+["s","M","What ___ beautiful view!","an|a|the|No article",1,"beautiful starts with /b/. | ‘an’ needs a vowel sound."],
+["s","M","I will be back in half ___ hour.","a|an|the|No article",1,"half an hour. | ‘a’ ignores the silent h."],
+["s","M","It was quite ___ surprise.","an|a|the|none",1,"quite a + consonant sound. | ‘an’: surprise starts with s sound."],
+["s","M","He has ___ money, so he cannot buy the car.","a little|few|little|a few",2,"Negative, uncountable → little. | ‘a little’ is positive."],
+["s","M","I have ___ friends here, so I am not lonely.","few|a few|little|a little",1,"Positive, countable. | ‘few’ means hardly any."],
+["s","M","Would you like ___ tea?","any|some|a|the",1,"some in offers. | ‘any’ is for negatives/questions."],
+["s","M","Which is correct?","Each of the boys has a bat.|Every of the boys has a bat.|Each of boys have a bat.|Every boys has a bat.",0,"each of + plural noun, singular verb. | ‘every of’ is never used."],
+["s","M","Neither of the two answers ___ correct.","are|is|were|be",1,"neither + singular verb. | ‘are’ treats it as plural."],
+["f","H","She went to ___ school to meet her son’s teacher.","a|the|No article|an",1,"Visiting the building, not studying. | No article = purpose of study."],
+["f","H","The thief was sent to ___ prison for five years.","the|a|an|No article",3,"Purpose (punishment) → zero. | ‘the’ is for visiting the building."],
+["f","H","In ___ 19th century, ___ Industrial Revolution reshaped ___ Europe.","the, the, —|a, the, the|the, an, —|the, the, the",0,"Centuries and events take the; continents don’t. | ‘the Europe’ is wrong."],
+["f","H","Honesty is ___ best policy.","a|an|the|No article",2,"Superlative. | Honesty alone is abstract, but ‘best’ needs the."],
+["f","H","Choose the correct sentence.","He gave an ML-based method.|He gave a ML-based method.|He is an university man.|He gave a hour-long talk.",0,"ML = ‘em-el’. | ‘a hour-long’ ignores silent h."],
+["f","H","She is ___ heir to ___ throne.","an, the|a, the|an, a|the, the",0,"Silent h; one throne. | ‘a heir’ ignores sound."],
+["s","H","Choose the INCORRECT sentence.","She is a European.|He is an useful man.|It is a one-way street.|An hour passed.",1,"‘a useful man’ (/yoo/). | ‘a one-way’ is correct (/w/)."],
+["s","H","I. Mount Everest is the highest peak. II. The Alps are in Europe.","I only|II only|Both I and II|Neither",2,"Single peak no the; ranges the. | Both follow the rules."],
+["f","H","A: ‘an hour’ is correct. R: Articles depend on sound, not spelling.","Both true, R explains A|Both true, R doesn’t explain A|A true, R false|A false, R true",0,"Silent h gives a vowel sound. | R is the rule behind A."],
+["s","H","He speaks ___ French fluently.","the|a|No article|an",2,"Languages: zero article. | ‘the French’ means people."],
+["f","H","This is ___ second time I have visited Shimla.","a|an|the|No article",2,"Ordinal → the. | ‘a’ fits only as ‘a second time’ (another)."],
+["s","H","Which sentence means he has almost no friends?","He has a few friends.|He has few friends.|He has the few friends.|He has a little friends.",1,"few = hardly any. | ‘a few’ means some."],
+["s","H","Rather ___ difficult question was asked.","an|a|the|No article",1,"rather a + consonant sound. | ‘an’: difficult starts with d."]];
+var card=["an/a follows SOUND: an hour, an honest, an heir, a historian","an MBA, FIR, X-ray, ML-based, M.Phil.; a UN, a PhD","a university, unique, European, one-rupee, year, useful","hour-long compound: an hour-long talk; a two-hour talk (singular)","the: Himalayas, Ganga, Equator, Pacific, Renaissance, 18th century","the: Eiffel Tower, Taj Mahal, newspapers, scriptures","the: superlatives, ordinals, instruments, the + adj class (plural)","No the: single mountain, country, language, meals, games","Abstract / material nouns general → zero","Institutions: purpose zero; building the","many a + singular noun + verb","such a / what a / quite a / rather a / half an hour","few/little = hardly any; a few/a little = some","the few/the little = all that exist","some in affirmative/offers; any in negative/questions","each = individual; every = all; both singular","either/neither = of two, singular verb","this/these near; that/those far","First mention a; second mention the","Defining clause → the (the athlete who lives next door)"];
+var tt=[["seen","Seen in shifts"],["snap","Snapshot"],["notes","Concepts"],["facts","Fact tables"],["aids","Memory aids"],["trap","Traps"],["mcq","40 MCQs"],["card","Revision card"],["ver","Verify"]];
+var h="";
+h+=S("snap","1. Snapshot",'<div class="p-3 rounded bg-indigo-100 dark:bg-indigo-950"><b>Weight:</b> about 0.8 Q per shift (18 Qs in 22 shifts; fillers hide extras). <b>Priority ⭐.</b> <b>Style:</b> single fill-in-the-blank, 2-blank pairs, and an option “No article required”. Mix: 35% easy / 34% moderate / 31% hard.</div><div class="mt-2"><b>Legend:</b> 🔥 seen/must cover · ⭐ neighbour · ◻ possible. Use the top filter.</div><ol class="list-decimal ml-5 mt-2 space-y-1"><li>Read the noun AFTER the blank (and its adjective).</li><li>Check the SOUND of the next word: vowel → an, consonant → a.</li><li>Is it unique, a river, range, ocean, era, superlative, ordinal? → the.</li><li>Is it abstract/uncountable/material used generally? → no article.</li><li>Is there a defining clause or earlier mention? → the.</li><li>Language, meal, game, single peak, country? → no article.</li><li>Institution (school, prison)? purpose → none; building → the.</li><li>See many/such/what/quite/half/rather? → a/an AFTER them.</li><li>Choose few/a few, little/a little by meaning.</li><li>Eliminate by sound and number; do not guess if two are left.</li></ol>');
+h+=S("seen","2. Seen in the shifts",'<p class="text-xs mb-1">% correct is not in the source file. Source file: 18 Qs, S1–S19.</p>'+T(["Concept","Asked","Answer","Shifts","% correct","Trap"],seen,true));
+h+=S("notes","3. Concept notes",'<div class="space-y-2"><p><b>Why sound?</b> a/an exist so speech flows: “an” prevents two vowel sounds meeting. So the rule follows pronunciation: hour (our) → an; unique (yoo-neek) → a.</p><p><b>Why the?</b> “the” signals that speaker and listener both know which one: unique (the sun), shared by clause (the athlete who…), previous mention, superlative or ordinal (only one can be best/first).</p><p><b>Why zero?</b> Abstract and material nouns used generally have no count, so “a” is impossible and “the” is unneeded (Honesty is best).</p><p><b>Institutions:</b> “school” as purpose (study) is an idea → zero; as a place you visit, a building → the.</p></div>');
+h+=S("facts","4. Fact tables / rules",T(["Rule","Examples","Note"],rules,true)+'<h3 class="font-bold mt-3">Determiners &amp; quantifiers</h3>'+T(["Type","Words"],det,false)+'<details class="mt-3 p-2 rounded bg-amber-100 dark:bg-amber-950"><summary class="cursor-pointer font-semibold">Skip unless time is left</summary><ul class="list-disc ml-5 mt-1"><li>the … the comparatives (the more, the merrier)</li><li>Articles with ships, hotels, theatres, and titles (the Rev.)</li><li>Fine contrasts: a Mr Sharma vs the Mr Sharma.</li></ul></details>');
+h+=S("aids","5. Memory aids",'<ul class="list-disc ml-5 space-y-1"><li><b>“A E F H L M N O R S X”</b> = letters that start with a vowel sound → an.</li><li><b>U.E.O.</b> words with /y/ or /w/ sound (university, European, one) take “a”.</li><li><b>“RMOD”</b> the with Rivers, Mountain ranges, Oceans, Deserts.</li><li><b>“Few = flop, a few = fine”</b>: few is negative, a few positive. Same for little.</li><li><b>Each = 1 by 1, Every = everyone.</b></li></ul><h3 class="font-bold mt-3">Confusable pairs</h3>'+T(["Pair","Difference"],[["a few / few","some / hardly any"],["a little / little","some / hardly any"],["each / every","individual / all"],["either / neither","one of two / none of two"],["some / any","affirmative / negative-question"],["this / that","near / far"],["to school / to the school","study / visit"]],false));
+h+=S("trap","6. Trap alerts",'<ol class="list-decimal ml-5 space-y-1">'+traps.map(function(t){return'<li>'+t+'</li>'}).join('')+'</ol><h3 class="font-bold mt-3">10+ common error patterns</h3>'+T(["Wrong","Right","Why"],errs,false));
+var q="";Q.forEach(function(a,i){var o=a[3].split("|"),r=a[5].split("|");
+q+='<div class="pr p-3 mb-2 rounded border border-slate-300 dark:border-slate-600" data-p="'+a[0]+'"><div class="font-semibold">Q'+(i+1)+' '+P[a[0]]+' <span class="text-xs">['+a[1]+']</span> '+a[2]+'</div><div class="mt-1 space-y-0.5">'+o.map(function(x,j){return'<div>'+"ABCD"[j]+') '+x+'</div>'}).join('')+'</div><button class="noprint mt-1 text-xs px-2 py-1 bg-indigo-600 text-white rounded rv">Show answer</button><div class="ans mt-1 p-2 rounded bg-emerald-100 dark:bg-emerald-950"><b>Ans: '+"ABCD"[a[4]]+'.</b> '+r[0]+'<br><span class="text-xs">Closest wrong: '+r[1]+'</span></div></div>'});
+h+=S("mcq","7. Practice set (40 MCQs)",'<p class="text-xs mb-2">Mix: E = Q1–14, M = Q15–29, H = Q30–40; 24 factual, 12 conceptual, 4 statement/assertion/NOT-type. Reveal each answer by clicking.</p>'+q);
+h+=S("card","8. 60-second revision card",'<ol class="list-decimal ml-5 space-y-0.5">'+card.map(function(c){return'<li>'+c+'</li>'}).join('')+'</ol>');
+h+=S("ver","9. Verify before exam",'<div class="p-3 rounded bg-rose-100 dark:bg-rose-950"><ul class="list-disc ml-5"><li>[VERIFY] Shift file Q11 key (“no article, a” for silence between nations) is debatable: confirm against official key.</li><li>[VERIFY] Shift file Q12 “…is a Chinese” is grammatically odd; the answer “The” depends only on the clause.</li><li>[VERIFY] Q15 (allocution) is vocabulary, not articles.</li><li>[VERIFY] % of candidates correct is not in the source file.</li><li>Rules are standard English grammar, not from the file; shift data covers 18 Qs only.</li></ul></div>');
+document.getElementById("m").innerHTML=h;
+document.getElementById("toc").innerHTML=tt.map(function(t){return'<a class="underline" href="#'+t[0]+'">'+t[1]+'</a>'}).join('');
+document.getElementById("tocb").onclick=function(){document.getElementById("toc").classList.toggle("hidden");document.getElementById("toc").classList.toggle("flex")};
+document.getElementById("dk").onclick=function(){document.documentElement.classList.toggle("dark")};
+document.querySelectorAll(".rv").forEach(function(b){b.onclick=function(){b.parentNode.classList.toggle("open")}});
+document.querySelectorAll(".fb").forEach(function(b){b.onclick=function(){var f=+b.dataset.f;document.querySelectorAll(".fb").forEach(function(x){x.className="fb px-2 py-1 "+(x===b?"bg-white text-indigo-800":"bg-indigo-900")});
+document.querySelectorAll(".pr").forEach(function(e){var p=e.dataset.p;e.style.display=(f==1||(f==2&&p=="f")||(f==3&&p!="o"))?"":"none"})}});
+</script></body></html>

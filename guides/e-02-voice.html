@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>E-02 Active &amp; Passive Voice – SSSC Clerk</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config={darkMode:'class'}</script>
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+html{scroll-padding-top:4.5rem}
+td,th{padding:.4rem .6rem;border:1px solid #cbd5e1;vertical-align:top;font-size:.85rem}
+.dark td,.dark th{border-color:#475569}
+th{background:#e2e8f0;text-align:left}.dark th{background:#1e293b}
+.card{border:1px solid #cbd5e1;border-radius:.75rem;padding:1rem;margin:.75rem 0}.dark .card{border-color:#475569}
+h2{font-size:1.35rem;font-weight:700;margin:1.75rem 0 .5rem}
+code{background:#e2e8f0;padding:0 .25rem;border-radius:.2rem}.dark code{background:#334155}
+.hide{display:none!important}
+@media print{.noprint{display:none!important}.ans{display:block!important}details>*{display:block!important}}
+</style></head>
+<body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100 leading-relaxed">
+<header class="sticky top-0 z-20 bg-indigo-700 text-white noprint" style="padding-top:env(safe-area-inset-top,0px)">
+<div class="flex flex-wrap items-center gap-2 px-3 py-2 max-w-4xl mx-auto">
+<b class="mr-auto text-sm sm:text-base">E-02 · Active &amp; Passive Voice</b>
+<select id="flt" class="text-slate-900 text-xs rounded px-1 py-1"><option value="A">All</option><option value="F">🔥</option><option value="FS">🔥+⭐</option></select>
+<button id="tocb" class="text-xs bg-indigo-900 rounded px-2 py-1">Contents</button>
+<button id="thm" class="text-xs bg-indigo-900 rounded px-2 py-1">🌓</button>
+<button onclick="print()" class="text-xs bg-indigo-900 rounded px-2 py-1">Print</button></div>
+<nav id="toc" class="hidden bg-indigo-800 px-3 py-2 text-sm"><div class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-1">
+<a href="#s1">1 Snapshot</a><a href="#s2">2 Seen in shifts</a><a href="#s3">3 Concepts</a><a href="#s4">4 Fact tables</a><a href="#s5">5 Memory aids</a><a href="#s6">6 Traps</a><a href="#s7">7 Practice (40)</a><a href="#s8">8 Revision card</a><a href="#s9">9 Verify</a></div></nav></header>
+
+<main class="max-w-4xl mx-auto px-3 pb-16">
+<p class="text-xs mt-3"><b>Legend:</b> 🔥 tested in shifts / must-cover · ⭐ likely neighbour · ◻ possible. Use the filter in the top bar.</p>
+
+<h2 id="s1">1. Snapshot</h2>
+<div class="card" data-p="F"><p><b>Weight:</b> ~2 Qs per shift (44 across 22 shifts) · priority 🔥. <b>How it is asked:</b> "Convert into passive/active" (≈85%), "choose the correct passive/active sentence", and the negative-inversion "correct active usage" items (Scarcely / Seldom / No sooner). Options differ only in auxiliary or participle, so the whole game is tense matching.</p>
+<ol class="list-decimal ml-5 mt-2 text-sm">
+<li>Find the verb phrase and name its tense first.</li>
+<li>Passive = <code>be (in the SAME tense) + V3</code>.</li>
+<li>Old object becomes new subject; old subject goes after "by".</li>
+<li>Pronouns change: I→me, we→us, he→him, she→her, they→them (and back).</li>
+<li>Singular/plural of the new subject decides is/are, was/were, has/have.</li>
+<li>Keep the tense identical; never shift it (will have been ≠ will be).</li>
+<li>Drop vague agents (someone, people, nobody → "not").</li>
+<li>Reject options with a base verb or V-ing after "be" (e.g. "will be review").</li>
+<li>Reject options where the doer and receiver swap roles ("the report reviewed the committee").</li>
+<li>For inversion items: Scarcely/Hardly → <i>had … when</i>; No sooner → <i>had … than</i>; Seldom → <i>does/did + V1</i>.</li></ol></div>
+
+<h2 id="s2">2. Seen in the shifts</h2>
+<p class="text-xs">Built from the 44 shift questions. "% correct" is not given in the source file → [VERIFY]/n.a.</p>
+<div class="overflow-x-auto"><table id="seen" class="w-full"></table></div>
+
+<h2 id="s3">3. Concept notes</h2>
+<div id="notes"></div>
+
+<h2 id="s4">4. Fact tables</h2>
+<h3 class="font-semibold mt-2">4a. Auxiliary mapping (every tense)</h3>
+<div class="overflow-x-auto"><table id="aux" class="w-full"></table></div>
+<h3 class="font-semibold mt-4">4b. Prepositions other than “by”</h3>
+<div class="overflow-x-auto"><table id="prep" class="w-full"></table></div>
+<h3 class="font-semibold mt-4">4c. Pronoun forms</h3>
+<div class="overflow-x-auto" data-p="F"><table class="w-full"><tr><th>Subject (active)</th><td>I</td><td>we</td><td>he</td><td>she</td><td>they</td><td>who</td></tr><tr><th>Agent after “by”</th><td>me</td><td>us</td><td>him</td><td>her</td><td>them</td><td>whom</td></tr></table></div>
+<h3 class="font-semibold mt-4">4d. Negative-inversion forms (active) 🔥</h3>
+<div class="overflow-x-auto" data-p="F"><table class="w-full"><tr><th>Opener</th><th>Pattern</th><th>Example</th></tr>
+<tr><td>No sooner</td><td>had + S + V3 … <b>than</b> + V2</td><td>No sooner had the chairman entered than the meeting began.</td></tr>
+<tr><td>Scarcely / Hardly</td><td>had + S + V3 … <b>when/before</b> + V2</td><td>Scarcely had the guests sat when the lights went out.</td></tr>
+<tr><td>Seldom / Rarely / Never</td><td>do/does/did + S + V1</td><td>Seldom does the company face such competition.</td></tr></table></div>
+
+<h2 id="s5">5. Memory aids</h2>
+<div class="card" data-p="F"><ul class="list-disc ml-5 text-sm">
+<li><b>"BE-V3" formula:</b> only the <i>be</i> part carries the tense: is/are · was/were · will be · has/have been · had been · will have been.</li>
+<li><b>Count the "been":</b> perfect tenses always contain <i>been</i>; simple tenses never do.</li>
+<li><b>"Being" = continuous</b> (is/was being) – the only place "being" appears in an ordinary passive.</li>
+<li><b>Scarcely–When, No sooner–Than:</b> "SW" ("sweet when") vs "NT" ("no thanks").</li>
+<li><b>Confusable pair:</b> <i>was being + V3</i> (action in progress) vs <i>had been + V3</i> (completed earlier).</li>
+<li><b>Confusable pair:</b> <i>will be + V3</i> vs <i>will have been + V3</i> (the "by tomorrow/before" clue → future perfect).</li></ul></div>
+
+<h2 id="s6">6. Trap alerts</h2>
+<div class="overflow-x-auto"><table id="traps" class="w-full"></table></div>
+<details class="card" data-p="O"><summary class="cursor-pointer font-semibold">Skip unless time is left</summary>
+<p class="text-sm mt-2">Passive of causatives (<i>have/get sth done</i>), cognate-object verbs, passive of <i>need/want</i> + gerund ("The car needs washing"), and "it is said that…" vs "He is said to…" with perfect infinitives ("He is said to have been…").</p></details>
+
+<h2 id="s7">7. Practice set – 40 MCQs</h2>
+<p class="text-xs">Tap "Show answer". E = easy, M = moderate, H = hard · F = factual, C = conceptual, S = statement/NOT. <span id="sc"></span></p>
+<div id="mcq"></div>
+
+<h2 id="s8">8. 60-second revision card</h2>
+<div class="card" data-p="F"><ol id="rev" class="list-decimal ml-5 text-sm"></ol></div>
+
+<h2 id="s9">9. Verify before exam</h2>
+<div class="card border-amber-500 bg-amber-50 dark:bg-slate-800 text-sm"><ul class="list-disc ml-5">
+<li>[VERIFY] Per-question “% of candidates correct” is not in the source file.</li>
+<li>[VERIFY] Shift Q29 key (“have been being implemented”) is non-standard; most grammarians avoid this form (rewrite as “…have been implemented/are being implemented”). Treat as a one-off, choose the option that keeps “have been + being”-style tense only if it is the only perfect-continuous option.</li>
+<li>[VERIFY] Several source answers/solutions were cut off in the file (Q18, 19, 23, 25, 27, 29, 30, 34, 36, 39); the options were checked against standard rules.</li>
+<li>[VERIFY] Shift Q13 (sentence rearrangement) and Q6 (adjective/adverb) are not voice questions; they were noted but not expanded.</li></ul></div>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const tbl=(id,head,rows,p)=>{$(id).innerHTML='<tr>'+head.map(h=>'<th>'+h+'</th>').join('')+'</tr>'+rows.map(r=>'<tr data-p="'+(r.p||p||'F')+'">'+r.c.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')};
+const R=(p,...c)=>({p,c});
+tbl('#seen',['Concept','What was asked','Correct answer','Shifts','% correct','Trap'],[
+R('F','Future perfect passive','Will have completed/finalized/approved/finished/made','will have been + V3','S5 (×2), S11, S16 (×2), S22','n.a.','will be (drops "have"); will have completed (no been)'),
+R('F','Past perfect passive/active','had discovered/submitted/followed/identified/finished/reached/informed','had been + V3; active had + V3','S2, S4, S6 (×2), S17 (×2), S20, S21','n.a.','was + V3; "had been identified experts" (wrong object)'),
+R('F','Simple future passive','will review/approve/award','will be + V3','S1, S8, S9, S14','n.a.','is/are + V3; missing "be"'),
+R('F','Simple past/present passive & active','approved, reviewed and edited, awarded, evaluates','was/is + V3','S2, S3, S8, S9, S15','n.a.','has been; swapping subject/object'),
+R('F','Continuous (present and past)','were being analyzed → were analyzing; are investigating; are conducting; was being considered; were being distributed','am/is/are/was/were being + V3','S7, S12, S13, S15, S20','n.a.','"being considering"; present is instead of was'),
+R('F','Present perfect continuous','has been implementing','have been being implemented (key as given)','S14','n.a.','has been being (agreement)'),
+R('F','Modals','must have assessed; may have overlooked; must have repaired','modal + have been + V3','S1, S10, S21','n.a.','"may have been overlooking"; must be repaired'),
+R('F','Infinitive / reporting verbs','are expected to submit; are expected to review; People expect X to announce','is/are expected to be + V3; X is expected to …','S4, S13, S19','n.a.','"to be submitted by their findings"'),
+R('F','Imperative / request','Please help me','You are requested to help me','S18','n.a.','You are being / have been requested'),
+R('F','Question','By whom were these employees appointed?','Who appointed these employees?','S19','n.a.','Who had appointed (tense shift)'),
+R('F','Two objects','award sth to X','The scholarship was awarded to the student by …','S9, S15','n.a.','University ↔ scholarship swapped'),
+R('F','Negative inversion (active)','Scarcely had…when; Seldom does…; No sooner had…than','had/does + subject; when/than','S10, S11, S12','n.a.','than/when swap; no inversion'),
+R('F','Pure active choice / participle','The researchers conducted…; After examining…','Option with doer as subject','S3, S18','n.a.','Dangling participle with passive main clause'),
+R('F','Negative agent','Nobody had informed','had not been informed','S21','n.a.','were not informed (tense lost)')
+]);
+const notes=[
+["Why the passive exists","Use passive when the doer is unknown/unimportant or the receiver is the focus. Mechanism: object → subject, verb → <code>be + V3</code> in the original tense, subject → <code>by + agent</code>.","F"],
+["Tense is never changed","Whatever the active tense is, the passive uses <code>be</code> in that same tense. 'will have completed' → 'will have been completed'. Options that drop or add a tense layer are always wrong.","F"],
+["Intransitive verbs have no passive","Only verbs that take an object can be passivised. 'The train arrived' / 'He slept' / 'It rained' cannot be changed.","F"],
+["Stative verbs","have (possess), resemble, lack, suit, fit, cost, own, contain usually have no passive: 'She has a car' ✗ 'A car is had by her'.","S"],
+["Indefinite agents are dropped","'Someone stole it' → 'It was stolen.' 'People say…' → 'It is said…/He is said to…'. In the shifts, 'by someone' was retained in a correct key, so do not eliminate an option only for that.","F"],
+["Preposition other than by","Verbs of emotion/knowledge take fixed prepositions: surprised at, pleased with, interested in, known to/for, satisfied with, annoyed at/with.","S"],
+["Avoided passives","Future continuous (will be doing), future perfect continuous and past perfect continuous passives are normally avoided/rewritten.","S"],
+["Imperatives","Command: <code>Let + object + be + V3</code>. Request with 'please': 'You are requested to …'. Negative: 'Let not the door be opened' / 'You are advised not to…'.","F"],
+["Questions","Convert to a statement, passivise, then re-invert: 'Who wrote it?' → 'By whom was it written?'; 'Did he sign it?' → 'Was it signed by him?'.","F"],
+["Two objects","'The university awarded the student a scholarship' → 'The student was awarded a scholarship' (person as subject, preferred) or 'A scholarship was awarded to the student'.","F"],
+["Infinitive/reporting","'People expect the committee to announce…' → 'The committee is expected to announce…'. 'They expect X to review Y' → 'Y is expected to be reviewed by X'.","F"],
+["Pronoun forms","Subject forms become object forms after 'by': 'She loves him' → 'He is loved by her'.","F"],
+["10 common error patterns","1) 'will been' / missing be 2) V1/V2 after be (was approve) 3) V-ing after be (was approving) 4) 'had being' 5) being missing in continuous 6) tense shift (had been → was) 7) subject-object swap 8) wrong agreement (policies has been) 9) 'than' with scarcely/hardly, 'when' with no sooner 10) no inversion after Seldom/Scarcely/No sooner.","F"]];
+$('#notes').innerHTML=notes.map(n=>'<div class="card" data-p="'+n[2]+'"><b>'+n[0]+'</b> <span class="text-xs">'+(n[2]=='F'?'🔥':'⭐')+'</span><p class="text-sm">'+n[1]+'</p></div>').join('');
+tbl('#aux',['Tense / form','Active','Passive','Example (passive)'],[
+R('F','Simple present','V1/V1+s','am/is/are + V3','Each report is evaluated.'),
+R('F','Present continuous','is/are + V-ing','is/are being + V3','A survey is being conducted.'),
+R('F','Present perfect','has/have + V3','has/have been + V3','The plan has been approved.'),
+R('S','Present perfect continuous','has/have been + V-ing','has/have been being + V3 (rare)','Policies have been being implemented.'),
+R('F','Simple past','V2','was/were + V3','The window was broken.'),
+R('F','Past continuous','was/were + V-ing','was/were being + V3','It was being considered.'),
+R('F','Past perfect','had + V3','had been + V3','A verdict had been reached.'),
+R('O','Past perfect continuous','had been + V-ing','avoided','—'),
+R('F','Simple future','will/shall + V1','will/shall be + V3','It will be reviewed.'),
+R('O','Future continuous','will be + V-ing','avoided','—'),
+R('F','Future perfect','will have + V3','will have been + V3','It will have been finalized.'),
+R('F','Modal (can/must/should/may)','modal + V1','modal + be + V3','Rules should be obeyed.'),
+R('F','Modal perfect','modal + have + V3','modal + have been + V3','Details may have been overlooked.'),
+R('F','Infinitive (expected/known/said)','is expected to V1','is expected to be + V3','…is expected to be reviewed.')]);
+tbl('#prep',['Passive phrase','Active (verb)'],[
+R('S','surprised <b>at</b>','surprised'),R('S','pleased/satisfied <b>with</b>','pleased/satisfied'),R('S','interested <b>in</b>','interested'),R('S','known <b>to</b> (person) / known <b>for</b> (quality)','know'),R('O','covered <b>with/in</b>','covered'),R('O','married <b>to</b>','marry')]);
+tbl('#traps',['Examiner’s twist','What to do'],[
+R('F','Was being vs had been','Continuous in the active (was doing) → was being; perfect (had done) → had been.'),
+R('F','Wrong participle','Check for V1/V2/V-ing after be: "will be review/reviewing" are wrong.'),
+R('F','Forgotten agent change','Pronouns must change case; "them", "her", "me" after by.'),
+R('F','Option keeps the active sentence','A passive-asked item may list the original or a reordered active sentence as a decoy.'),
+R('F','Tense downgrade','will have been → will be; had been → was.'),
+R('F','Role swap','"The committee will be reviewed by the applications" – nonsense roles.'),
+R('F','When/than swap','Scarcely/Hardly…when; No sooner…than.'),
+R('S','Dangling participle','"Having completed the analysis, the report was submitted" is wrong.')]);
+const M=(d,t,p,q,o,a,r)=>({d,t,p,q,o:o.split('|'),a,r});
+const Q=[
+M('E','F','F',"Passive of: The manager will sign the letter.","The letter will sign by the manager.|The letter will be signed by the manager.|The letter is signed by the manager.|The letter would be signed by the manager.",1,"Simple future → will be + V3. A drops 'be'."),
+M('E','F','F',"Passive of: They had completed the work.","The work was completed by them.|The work had been completed by them.|The work has been completed by them.|The work had completed by them.",1,"Past perfect → had been + V3. A shifts to simple past."),
+M('E','F','F',"Passive of: The police are questioning the suspect.","The suspect is questioned by the police.|The suspect was being questioned by the police.|The suspect is being questioned by the police.|The suspect has been questioned by the police.",2,"Present continuous → is being + V3. B wrongly uses past."),
+M('E','F','F',"Passive of: The chef was preparing the meal.","The meal was being prepared by the chef.|The meal had been prepared by the chef.|The meal was prepared by the chef.|The meal is being prepared by the chef.",0,"Past continuous → was being + V3; B changes the tense."),
+M('E','F','F',"Passive of: The board has approved the plan.","The plan is approved by the board.|The plan was approved by the board.|The plan has been approved by the board.|The plan had been approved by the board.",2,"Present perfect → has been + V3; D is past perfect."),
+M('E','F','F',"Passive of: You should obey the rules.","The rules should obeyed by you.|The rules should be obeyed by you.|The rules should been obeyed by you.|The rules are obeyed by you.",1,"Modal + be + V3. A lacks 'be'."),
+M('E','F','F',"Active of: The report must have been checked by the auditor.","The auditor must check the report.|The auditor must have been checking the report.|The auditor must have checked the report.|The auditor had checked the report.",2,"must have been + V3 → must have + V3. B adds a continuous."),
+M('E','S','S',"Passive of: She writes letters.","Letters are written by her.|Letters is written by her.|Letters were written by her.|Letters are being written by her.",0,"Simple present plural → are + V3; B has agreement error."),
+M('E','S','S',"Passive of: Rohan broke the window.","The window broke by Rohan.|The window is broken by Rohan.|The window was break by Rohan.|The window was broken by Rohan.",3,"Simple past → was + V3."),
+M('E','C','S',"Which sentence cannot be changed into the passive voice?","She wrote a letter.|The train arrived late.|He opened the door.|They sold the house.",1,"'Arrived' is intransitive (no object). The others have objects."),
+M('E','F','F',"Choose the correct sentence.","Seldom she visits us.|Seldom does she visit us.|Seldom does she visits us.|Seldom she does visit us.",1,"Seldom → inversion with does + V1. C wrongly adds -s."),
+M('E','F','F',"Hardly had the bell rung ___ the students left.","than|then|when|as",2,"Hardly/Scarcely pair with 'when'; 'than' goes with No sooner."),
+M('E','F','F',"Passive of the command: Close the door.","The door be closed.|Let the door be closed.|The door is closed by you.|Let the door closed.",1,"Imperative → Let + object + be + V3."),
+M('E','F','F',"Passive of: She loves him.","Him is loved by she.|He is loved by her.|He is loved by she.|Him was loved by her.",1,"Object he; agent takes the object form 'her'."),
+M('M','F','F',"Passive of the request: Please open the window.","You are being requested to open the window.|You were requested to open the window.|You are requested to open the window.|You have been requested to open the window.",2,"'Please' request → You are requested to + V1; tense stays simple present."),
+M('M','F','F',"Passive of: Who wrote this novel?","Who was written this novel?|By whom was this novel written?|By whom did this novel written?|By whom this novel was written?",1,"'Who' becomes 'By whom'; verb is inverted: was + subject + V3."),
+M('M','F','F',"Passive of: Did the clerk file the petition?","Was the petition filed by the clerk?|Did the petition file by the clerk?|Was the petition been filed by the clerk?|Has the petition been filed by the clerk?",0,"Did + V1 → was + V3; D shifts to present perfect."),
+M('M','F','F',"Passive of: The principal gave the topper a medal.","A medal was given the topper by the principal.|The topper was given a medal by the principal.|The topper given a medal by the principal.|A medal gave the topper by the principal.",1,"Person object as subject: was given + direct object. C lacks 'was'."),
+M('M','F','F',"Passive of: People say that he is honest.","He says to be honest.|He is said to be honest.|He is being said honest.|It said he is honest.",1,"Reporting verb: He is said to be + complement."),
+M('M','S','S',"The news surprised me. Passive:","I was surprised by the news.|I was surprised at the news.|I was surprising at the news.|The news was surprised at me.",1,"Fixed preposition 'surprised at'; 'by' is the weaker idiom."),
+M('M','S','S',"Passive of: Everybody knows him.","He is known to everybody.|He is known by everybody.|He was known to everybody.|Him is known to everybody.",0,"'known to' (person); tense present."),
+M('M','F','F',"No sooner ___ the teacher entered than the students stood up.","has|had|did|was",1,"No sooner + had + subject + V3 … than."),
+M('M','C','S',"Which verb cannot normally be used in the passive?","She has a car (possession).|She bought a car.|She sold a car.|She painted a car.",0,"'Have' (possess) is stative; no passive."),
+M('M','F','F',"Passive of: The teacher will have taught the lesson by noon.","The lesson will be taught by the teacher by noon.|The lesson will have been taught by the teacher by noon.|The lesson had been taught by the teacher by noon.|The lesson will have taught by the teacher by noon.",1,"Future perfect → will have been + V3. A loses 'have'."),
+M('M','F','F',"Active of: The files were being sorted by the clerks.","The clerks were sorting the files.|The clerks had sorted the files.|The clerks are sorting the files.|The files were sorting the clerks.",0,"was/were being + V3 → was/were + V-ing."),
+M('M','F','F',"Passive of: Experts believe the policy to be effective.","The policy is believed to be effective by experts.|The policy believes to be effective.|The policy has been believed effective.|Experts are believed the policy effective.",0,"Object becomes subject; is believed to be."),
+M('M','S','S',"Passive of: Can the committee solve this problem?","Can this problem solved by the committee?|Can this problem be solved by the committee?|Could this problem be solved by the committee?|Can be this problem solved by the committee?",1,"Modal question → Modal + object + be + V3."),
+M('H','S','F',"Which statement about voice is NOT correct?","The passive verb is be + V3.|The tense stays the same in conversion.|The doer must always be shown with 'by'.|Intransitive verbs cannot take the passive.",2,"Indefinite or obvious agents are dropped, so C is wrong."),
+M('H','F','F',"Passive of the clause: By the time the police arrived, the thief had stolen the jewels.","…the jewels were stolen by the thief.|…the jewels had been stolen by the thief.|…the jewels has been stolen by the thief.|…the jewels had stolen by the thief.",1,"Past perfect passive: had been stolen."),
+M('H','F','F',"Which sentence is correct?","Hardly had he reached the station than the train left.|Hardly he had reached the station when the train left.|Hardly had he reached the station when the train left.|Hardly did he reached the station when the train left.",2,"Inversion + 'when'. A uses 'than'."),
+M('H','F','F',"Active of: The case had been decided by the judge before the witness was examined by the lawyer.","The judge had decided the case before the lawyer examined the witness.|The judge decided the case before the lawyer had examined the witness.|The judge had decided the case before the lawyer had examined the witness.|The judge has decided the case before the lawyer examined the witness.",0,"Each clause keeps its own tense: had been → had decided; was examined → examined."),
+M('H','S','S',"I: 'No sooner…than'. II: 'Scarcely…when'. Both are correct pairs. Choose:","Only I|Only II|Both I and II|Neither|",2,"Both pairs are standard."),
+M('H','F','F',"Passive of: Who taught you English?","By whom English was taught you?|By whom were you taught English?|Who were taught English by you?|By whom had you been taught English?",1,"By whom + was/were + subject + V3; D changes tense."),
+M('H','C','F',"Choose the correct active-voice sentence.","Having reviewed the file, the judge passed the order.|Having reviewed the file, the order was passed by the judge.|The file reviewed, the order was passed by the judge.|The file being reviewed by the judge, passed the order.",0,"Participle and main clause share the same subject (the judge); B is a dangling participle."),
+M('H','S','S',"Active of: One must respect one's elders (as passive 'Elders must be respected'). The correct passive of the sentence is:","Elders should be respected by one.|Elders must be respected.|Elders must respect.|One's elders must be respected by them.",1,"Indefinite agent 'one' is dropped; modal 'must' kept."),
+M('H','F','F',"Passive of: She may have forgotten the key.","The key may have been forgotten by her.|The key may be forgotten by her.|The key may have forgotten her.|The key might be forgotten by her.",0,"may have + V3 → may have been + V3."),
+M('H','F','F',"Passive of: Why did you break the glass?","Why the glass was broken by you?|Why was the glass broken by you?|Why did the glass break by you?|Why has the glass been broken by you?",1,"Simple past question → was + V3, with question word first."),
+M('H','F','S',"Passive of: Is the court hearing the case?","Is the case being heard by the court?|Was the case being heard by the court?|Is the case heard by the court?|Has the case been heard by the court?",0,"Present continuous question → is/are + subject + being + V3.")
+];
+let done=0;
+$('#mcq').innerHTML=Q.map((q,i)=>{const o=q.o.filter(x=>x);return '<div class="card" data-p="'+q.p+'"><div class="text-xs mb-1"><b>Q'+(i+1)+'</b> · '+q.d+' · '+q.t+' · '+(q.p=='F'?'🔥':q.p=='S'?'⭐':'◻')+'</div><p class="font-medium">'+q.q+'</p><div class="mt-1 text-sm">'+o.map((x,j)=>'<label class="block py-0.5"><input type="radio" name="q'+i+'" class="mr-1">'+'ABCD'[j]+') '+x+'</label>').join('')+'</div><button class="noprint mt-2 text-xs bg-indigo-600 text-white rounded px-2 py-1" onclick="this.nextElementSibling.classList.toggle(\'hidden\')">Show answer</button><div class="ans hidden mt-2 text-sm bg-slate-100 dark:bg-slate-800 rounded p-2"><b>Answer: '+'ABCD'[q.a]+'</b> – '+q.r+'</div></div>'}).join('');
+const rev=["Passive = be (same tense) + V3.","Simple future: will be + V3.","Future perfect: will have been + V3.","Past perfect: had been + V3.","Present perfect: has/have been + V3.","Present continuous: am/is/are being + V3.","Past continuous: was/were being + V3.","Modal: modal + be + V3; modal perfect: modal + have been + V3.","Infinitive: is/are expected to be + V3.","Imperative: Let + object + be + V3.","Request 'Please …' → You are requested to …","Question: re-invert after changing (By whom was…?).","Two objects: person subject preferred (was awarded).","Intransitive verbs → no passive.","Stative (have, resemble, lack, suit, fit, cost) → usually no passive.","Drop indefinite agents (someone, people, nobody → not).","Pronouns: I→me, he→him, she→her, they→them.","Surprised at, pleased with, interested in, known to/for.","No sooner had…than; Scarcely/Hardly had…when.","Seldom does/did + V1 (inversion).","Future/perfect continuous passives are avoided."];
+$('#rev').innerHTML=rev.map(x=>'<li>'+x+'</li>').join('');
+$('#tocb').onclick=()=>$('#toc').classList.toggle('hidden');
+$('#toc').onclick=()=>$('#toc').classList.add('hidden');
+$('#thm').onclick=()=>document.documentElement.classList.toggle('dark');
+if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.classList.add('dark');
+$('#flt').onchange=e=>{const v=e.target.value;document.querySelectorAll('[data-p]').forEach(el=>{const p=el.dataset.p;el.classList.toggle('hide',v=='F'?p!='F':v=='FS'?p=='O':false)})};
+</script></body></html>

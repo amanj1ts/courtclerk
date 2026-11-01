@@ -251,7 +251,7 @@ window.SSSC_GUIDES = [
     id: 'e-01', section: 'English Objective', code: 'E-01',
     nav: 'Narration (Direct & Indirect)',
     title: 'Narration: Direct & Indirect Speech',
-    file: 'guides/e-01-narration.html', ready: false,
+    file: 'guides/e-01-narration.html', ready: true,
     tag: 'English',
     search: 'english grammar narration direct indirect speech reporting'
   },
@@ -259,7 +259,7 @@ window.SSSC_GUIDES = [
     id: 'e-02', section: 'English Objective', code: 'E-02',
     nav: 'Active & Passive Voice',
     title: 'Active & Passive Voice',
-    file: 'guides/e-02-voice.html', ready: false,
+    file: 'guides/e-02-voice.html', ready: true,
     tag: 'English',
     search: 'english grammar active passive voice'
   },
@@ -267,7 +267,7 @@ window.SSSC_GUIDES = [
     id: 'e-03', section: 'English Objective', code: 'E-03',
     nav: 'Para-jumbles',
     title: 'Para-jumbles & Sentence Arrangement',
-    file: 'guides/e-03-para-jumbles.html', ready: false,
+    file: 'guides/e-03-para-jumbles.html', ready: true,
     tag: 'English',
     search: 'english grammar para jumbles sentence arrangement'
   },
@@ -275,7 +275,7 @@ window.SSSC_GUIDES = [
     id: 'e-04', section: 'English Objective', code: 'E-04',
     nav: 'Articles',
     title: 'Articles: A, An, The',
-    file: 'guides/e-04-articles.html', ready: false,
+    file: 'guides/e-04-articles.html', ready: true,
     tag: 'English',
     search: 'english grammar articles a an the'
   },
