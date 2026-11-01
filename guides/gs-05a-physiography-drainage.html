@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>GS-05a India: Physiography and Drainage</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config={darkMode:'class'}</script>
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{background:#f8fafc;color:#0f172a;font-family:system-ui,sans-serif}
+.dark body{background:#0f172a;color:#e2e8f0}
+table{border-collapse:collapse;width:100%;font-size:.8rem}th,td{border:1px solid #cbd5e1;padding:.3rem .45rem;text-align:left;vertical-align:top}
+.dark th,.dark td{border-color:#334155}th{background:#e2e8f0}.dark th{background:#1e293b}
+.card{background:#fff;border:1px solid #cbd5e1;border-radius:.6rem;padding:.8rem;margin:.8rem 0}.dark .card{background:#1e293b;border-color:#334155}
+[data-f=f] [data-p=s],[data-f=f] [data-p=o],[data-f=fs] [data-p=o]{display:none}
+.ans{display:none}.ans.on{display:block}
+@media print{header,#toc,.noprint{display:none!important}.ans{display:block!important}details>*{display:block}}
+</style></head>
+<body class="text-sm" data-f="all">
+<header class="sticky top-0 z-20 bg-slate-900 text-white flex flex-wrap items-center gap-2 px-3 py-2 noprint" style="padding-top:calc(.5rem + env(safe-area-inset-top,0px))">
+<b class="mr-auto">GS-05a · Physiography &amp; Drainage</b>
+<button class="px-2 py-1 bg-slate-700 rounded" onclick="document.getElementById('toc').classList.toggle('hidden')">☰ Contents</button>
+<span class="flex gap-1"><button class="px-2 py-1 bg-slate-700 rounded" onclick="F('all')">All</button><button class="px-2 py-1 bg-slate-700 rounded" onclick="F('f')">🔥</button><button class="px-2 py-1 bg-slate-700 rounded" onclick="F('fs')">🔥+⭐</button></span>
+<button class="px-2 py-1 bg-slate-700 rounded" onclick="document.documentElement.classList.toggle('dark')">🌓</button></header>
+<nav id="toc" class="hidden card mx-3"><ol class="list-decimal ml-5 space-y-1"><li><a href="#s1">Snapshot</a></li><li><a href="#s2">Seen in the shifts</a></li><li><a href="#s3">Concept notes</a></li><li><a href="#s4">Fact tables</a></li><li><a href="#s5">Memory aids</a></li><li><a href="#s6">Trap alerts</a></li><li><a href="#s7">Practice set</a></li><li><a href="#s8">60-second card</a></li><li><a href="#s9">Verify box</a></li></ol></nav>
+<main class="max-w-4xl mx-auto p-3" id="app"></main>
+<script>
+const F=f=>document.body.dataset.f=f;
+const B={f:'🔥',s:'⭐',o:'◻'};
+const tbl=(h,rows)=>`<div class="overflow-x-auto"><table><tr><th>★</th>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr data-p="${r[0]}"><td>${B[r[0]]}</td>${r.slice(1).map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table></div>`;
+const sec=(id,t,b)=>`<section id="${id}"><h2 class="text-lg font-bold mt-6 border-b-2 border-indigo-500">${t}</h2>${b}</section>`;
+const ul=a=>`<ul class="list-disc ml-5 space-y-1">${a.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+
+const seen=[
+['f','Plateau rock type (pairing)','Peninsular plateau pairs with…','Ancient crystalline rocks','S1 (73%)','Himalayas are young folded, not “stable crystalline”'],
+['f','Source of plain sediments','Rivers from which two regions built Great Plains','Himalayas + Peninsular Plateau','S1 (66%)','Aravali/Vindhya or Ghats options'],
+['f','Assam plain','NE extension of Great Plain formed by','Brahmaputra','S1 (90%), S5 (91%)','Barak/Teesta/Subansiri distractors'],
+['f','Ganga plain drainage','River NOT draining Ganga plain','Godavari','S1 (77%)','Gandak, Kosi, Ghaghara are Ganga tributaries'],
+['f','Nilgiri / Doddabetta','Doddabetta highest point of','Nilgiri Hills','S1 (63%)','Aravalli, Vindhya, Satpura'],
+['f','Himalaya as barrier','Barrier India–Central Asia','Himalayas','S2 (77%)','Easy'],
+['f','Desert location','Thar lies to NW of','Aravali','S2 (78%)','Vindhya/Satpura'],
+['f','Desert history','Desert believed under sea in','Mesozoic Era','S2 (16%)','Paleozoic/Cenozoic; only 16% right'],
+['f','Luni','River of Thar; its end','Luni; drains to Rann of Kachchh (seasonal)','S2 (68%), S17 (77%)','Chambal/Mahi; “reaches Arabian Sea” is wrong [VERIFY key]'],
+['f','Thar climate','Marusthali / Thar feature','Low rainfall, arid; hot days, cold nights','S4 84%, S8 66%, S12 75%','“Entirely in Gujarat and Rajasthan” wrong statement'],
+['f','Peninsula origin','Broken from which landmass','Gondwanaland','S3 (65%)','Pangaea/Laurasia'],
+['f','Andaman vs Lakshadweep','Origin','A&N = elevated submarine mountains; Lakshadweep = coral','S3 63%, S11 57%, S13 59%, S16 60%, S17 70%','Keys of S3 not extracted; Lakshadweep = coral on submerged base'],
+['f','E–W flowing river','Peninsular river flowing W to E','Krishna','S3 (60%)','Tapi/Narmada flow west'],
+['f','Central Highlands','Division N of Narmada with Malwa','Central Highlands','S3 (57%)','Barren plateau, Deccan'],
+['f','Narmada','Rises Amarkantak, flows west','Narmada','S4 73%, S6 76%, S10 76%','Godavari/Krishna/Kaveri'],
+['f','Mawsynram / Khasi','Highest rainfall; Cherrapunji hills','Meghalaya; Khasi Hills','S4 80%, S8 50%','Garo, Jaintia'],
+['f','Indira Point','Southernmost point (Great Nicobar)','Indira Point','S6 (90%)','Kanyakumari = southernmost mainland'],
+['f','Coastal plains compare','East vs west','East broader, deltaic; west narrower, estuaries','S6 (66%)','Swapped option'],
+['f','West-flowing river','Empties in Arabian Sea','Tapti','S7 (83%)','Krishna/Mahanadi/Kaveri east'],
+['f','Purvanchal','Hill range included','Mishmi Hills','S7 79%','Himadri, Zaskar, Ladakh'],
+['f','Estuaries','Largest W-coast estuaries','Narmada and Tapi','S7 (72%)','Godavari-Krishna'],
+['f','Konkan','Between Daman and Goa; northern W coast','Konkan','S8 54%, S18 69%, S15 46%','Malabar'],
+['f','Karnataka coast','Goa–Mangalore','Karnataka (Kannada) coast','S11 (19%)','Malabar chosen wrongly; Q90 statement “eastern narrower” = INCORRECT'],
+['f','Malabar','Kayals','Kayals (backwaters)','S10 (51%)','Deltas, dunes'],
+['f','Coromandel rain','Why rain in NE monsoon','Winds pick moisture over Bay of Bengal','S18 70%, S20 61%','Convection / Aravalli'],
+['f','Barren Island','Only active volcano','Barren Island (Andaman)','S9 67%, S16 76%','Narcondam dormant'],
+['f','10° Channel','Separates Andaman from Nicobar','Ten Degree Channel','S18 (79%)','9° = Minicoy–Lakshadweep'],
+['f','Karakoram','Northernmost system; glaciation','Karakoram','S9 67%, S18 70%','Zaskar, Ladakh'],
+['f','Western boundary of plateau','Which range','Gir','S9 (39%)','Delhi Ridge = NW; Rajmahal = E; Cardamom = S'],
+['f','Bhabar','Narrow belt, streams vanish','Bhabar','S15 (34%)','Terai = where they re-emerge'],
+['f','Bhangar / Khadar','Basis; older alluvium','Age of deposits; Bhangar older','S16 82%, S21 70%','Khadar is flooded, lower; Q52 “Khadar higher, never flooded” = INCORRECT (72%)'],
+['f','Brahmaputra plains','Correct statement','Alluvium by river from Chemayungdung glacier','S11 (69%)','Ganga valley / Bikaner options'],
+['f','Ravi','Tributary between Pir Panjal and Dhauladhar','Ravi','S12 (21%)','Beas / Chenab'],
+['f','Indus upper course','Flows between','Zaskar and Ladakh ranges','S13 (36%)','Pir Panjal options'],
+['f','Ganga south tributary','Southern tributary','Son and Damodar','S13 (44%)','Pennar-Tapi are peninsular'],
+['f','Bhagirathi','Headstream glacier','Gangotri','S22 (66%)','Yamunotri/Pindari'],
+['f','Kerala location','Between Arabian Sea and Western Ghats','Kerala','S12 (59%)','Karnataka/Goa'],
+['f','East-flowing deltas','Why deltas; why south rivers flow east','Gentle gradient + sediment; slight eastward tilt','S21 88%, S17 73%','Himalayan glacier option'],
+['f','Eastern Ghats','Discontinuous (cut by Mahanadi etc.)','Eastern Ghats','S22 (48%)','Western Ghats continuous'],
+['f','Lakes','Not on Eastern coastal plain','Vembanad (Kerala)','S20 (58%)','Kolleru, Pulicat, Chilika are east'],
+['f','Himalayan vs peninsular rivers','Best difference','Himalayan perennial; peninsular mostly seasonal','S5 (93%)','Short/long swapped'],
+['f','Hard unseen-in-source','Chetlat=Lakshadweep (S2 6%); Kamrunag=Himachal (S3 15%); Burhner-Banjar-Sher=Narmada (S20 16%); Niyamgiri=Odisha + Pachaimalai=TN (S14 21%); Devdi=Gujarat (S4 12%); Nevasa on Godavari tributary (S3 29%)','see left','—','Not in attached books: [VERIFY]']
+];
+
+const notes=ul([
+'<span data-p="f">🔥</span> <b>Six divisions:</b> Northern/NE Mountains, Northern Plain, Peninsular Plateau, Indian Desert, Coastal Plains, Islands. Himalayas = young fold mountains (Indian + Eurasian plate collision); Peninsular block = oldest, stable since Cambrian, crystalline igneous/metamorphic rock.',
+'<span data-p="f">🔥</span> <b>Why peninsular rivers flow east:</b> block tilted NW→SE; west flank subsided. Narmada and Tapi flow west in rift valleys (trough faults), so no deltas.',
+'<span data-p="f">🔥</span> <b>Why east rivers make deltas / west make estuaries:</b> long gentle gradient with heavy sediment vs short steep Ghats rivers.',
+'<span data-p="f">🔥</span> <b>Plain zones (N→S from Shiwalik):</b> Bhabar (pebbles, streams vanish) → Terai (swamp, streams re-emerge) → Bhangar (older, kankar) → Khadar (new flood deposit, more fertile).',
+'<span data-p="s">⭐</span> <b>Himalayan rivers:</b> antecedent, perennial (snow+rain), gorges, meanders, deltas. Western coast: emergent in south (Kerala), submerged in north; east coast emergent, broad.',
+'<span data-p="s">⭐</span> <b>Water divides:</b> Delhi Ridge, Aravalli, Sahyadri separate Arabian Sea and Bay of Bengal drainage (23% vs 77%). Ambala sits on Indus–Ganga divide; Western Ghats divide peninsular rivers.',
+'<span data-p="f">🔥</span> <b>Island origin:</b> Andaman &amp; Nicobar (Bay of Bengal, ~572 islands) = elevated submarine mountains, some volcanic. Lakshadweep (Arabian Sea) = coral, Minicoy largest.']);
+
+const facts={
+'Himalayas and ranges':[['Range','Rock / feature','Key facts'],[
+['f','Great Himalaya (Himadri)','Granite, gneiss; avg 6,100 m','Everest, Kanchenjunga 8,586 m, Nanda Devi; Siachen, Gangotri glaciers'],
+['f','Lesser Himalaya (Himachal)','Sedimentary + metamorphic; 3,500–4,500 m','Pir Panjal, Dhauladhar; Shimla, Mussoorie; valleys Kashmir, Kullu, Kangra'],
+['f','Shiwaliks (Outer)','Sands, gravel; 900–1,100 m','Duns (Dehradun); seasonal “chos”; youngest'],
+['f','Trans-Himalaya','Karakoram, Ladakh, Zaskar, Kailash','Karakoram = “backbone of high Asia”, northernmost, glaciated (Siachen, Baltoro)'],
+['f','Purvanchal','Patkai Bum, Naga, Manipur, Mizo hills','Mishmi hills; Saramati (Naga); Blue Mt/Phawngpui (Mizo, highest)'],
+['f','NE plateau','Garo, Khasi, Jaintia (Meghalaya)','Cherrapunji, Mawsynram (Khasi Hills); Nokrek = highest Garo; Malda Gap'],
+['s','Passes','Zoji La, Banihal, Khardung La (J&K/Ladakh); Shipki La, Bara Lacha La (HP); Niti, Lipu Lekh (Uttarakhand); Nathu La, Jelep La (Sikkim)','Diphu Pass (Arunachal)'],
+['s','Northernmost / extent','Indira Col 37°6′N (Karakoram); 6°8′N–37°6′N; 68°7′E–97°25′E','Tropic of Cancer: 8 states; IST 82°30′E (Mirzapur)']]],
+'Plains, plateau, desert':[['Feature','Fact','Trap'],[
+['f','Punjab plains','Doabs; Jhelum, Chenab, Ravi, Beas, Sutlej','Haryana-Delhi = Indus–Ganga divide'],
+['f','Brahmaputra plains','Assam; Majuli = largest inhabited riverine island','Turns south at Dhubri'],
+['f','Deccan Plateau','Between Western and Eastern Ghats, Satpura north','Includes Maharashtra, Karnataka, Telangana plateaus'],
+['f','Central Highlands','Aravalli W, Vindhya S, Malwa, Bundelkhand, Baghelkhand','Rivers Chambal, Sindh, Betwa, Ken'],
+['f','Peninsular limits','Delhi Ridge NW, Gir W, Rajmahal E, Cardamom S','Gir ≠ Aravalli'],
+['f','Western Ghats','Avg 1,500 m, continuous; Anamudi 2,695 m (Anaimalai) highest peninsular; Doddabetta 2,637 m (Nilgiri) highest of TN','Sahyadri (Maharashtra)'],
+['f','Eastern Ghats','Discontinuous; Mahendragiri (Odisha) highest; Nallamala, Javadi, Shevaroy, Pachamalai','Meet Western at Nilgiris'],
+['s','Aravalli','Oldest fold mountains; Sabarmati, Luni, Banas; Guru Shikhar highest [VERIFY]','Mt Abu Rajasthan [VERIFY]'],
+['f','Indian Desert (Marusthali)','NW of Aravali; <150 mm rain; barchans, longitudinal dunes; Luni largest, ephemeral','Akal Wood Fossil Park, Jaisalmer = Mesozoic sea'],
+['o','Satpura / Vindhya','Satpura block mountains; Narmada rift between Satpura (S) and Vindhya (N)','Amarkantak at their meeting']]],
+'Coasts and islands':[['Region','Fact','Trap'],[
+['f','Western plain','Kachchh, Kathiawar (Gujarat) → Konkan (Daman–Goa) → Kannada (Goa–Mangalore) → Malabar (Kerala)','No deltas; Kayals in Malabar'],
+['f','Eastern plain','Northern Circars (north) + Coromandel (south); Mahanadi, Godavari, Krishna, Kaveri deltas','Chilika south of Mahanadi delta'],
+['f','Andaman &amp; Nicobar','Barren Island active; Narcondam dormant; Saddle Peak (N Andaman) highest; Mt Thuiller 642 m Great Nicobar','Indira Point near Indonesia; Sumatra nearest'],
+['f','Channels','10° = Andaman|Nicobar; 9° = Minicoy|Lakshadweep; 8° = Minicoy|Maldives; 6° = Indira Pt|Indonesia','Duncan Pass: S &amp; Little Andaman'],
+['s','Lakshadweep','Coral, Minicoy largest, named 1973; Eastern seaboard has storm beaches','Off Kerala'],
+['s','Coast length','Mainland 6,100 km; with islands 7,517 km; Gujarat longest state coast','']]],
+'Rivers: origin, tributaries, mouth':[['River','Origin','Main tributaries','Mouth / note'],[
+['f','Indus','Bokhar Chu glacier (Kailash, Tibet)','Shyok, Gilgit, Kabul; left: Jhelum, Chenab, Ravi, Beas, Sutlej','Arabian Sea E of Karachi; Leh on banks'],
+['f','Jhelum','Verinag (foot of Pir Panjal)','Kishanganga','Wular Lake; joins Chenab near Jhang'],
+['f','Chenab','Chandra + Bhaga (Bara Lacha)','Marusudar biggest','Largest Indus tributary; Salal, Baglihar'],
+['f','Ravi','Kullu hills W of Rohtang','Budhil','Between Pir Panjal and Dhauladhar; Ranjit Sagar'],
+['f','Beas','Beas Kund near Rohtang','Parbati','Joins Sutlej near Harike; Pong'],
+['f','Sutlej','Rakas Tal (Tibet)','Beas, Spiti','Enters via Shipki La; Bhakra'],
+['f','Ganga','Bhagirathi (Gangotri) + Alaknanda → Devprayag','Left: Ramganga, Gomti, Ghaghara, Gandak, Kosi, Mahananda; Right: Yamuna, Son, Damodar','Bay of Bengal near Sagar Island; 2,525 km; Farakka = delta head'],
+['f','Yamuna','Yamunotri','Chambal, Sind, Betwa, Ken; Tons largest','Joins Ganga at Prayag; longest tributary'],
+['f','Brahmaputra','Chemayungdung glacier (Tibet; Tsangpo)','Left: Dibang, Lohit; Right: Subansiri, Manas, Teesta','Dihang at Namcha Barwa; Dhubri; Jamuna→Padma→Meghna'],
+['f','Narmada','Amarkantak','Tawa','Arabian Sea S of Bharuch; Dhuandhar'],
+['f','Tapi','Betul (MP), Satpura','—','Arabian Sea; Surat'],
+['f','Mahanadi','Raipur dist. (Chhattisgarh)','Sheonath, Tel, Ib','Bay of Bengal; Hirakud'],
+['f','Godavari','Trimbak, Nashik','Pranhita, Indravati (L); Manjra (R)','“Dakshin Ganga”; largest peninsular'],
+['f','Krishna','Mahabaleshwar','Bhima, Koyna (L); Tungabhadra (R)','Bay of Bengal'],
+['f','Kaveri','Brahmagiri (Karnataka)','Hemavati (L); Kabani, Bhavani (R)','Shivasamudram; Mettur'],
+['s','Luni / Sabarmati / Mahi','Pushkar; Aravalli; Vindhya (Dhar)','—','Rann of Kachchh; Gulf of Khambhat; Arabian Sea'],
+['s','Kerala rivers','Periyar longest, Bharathapuzha 2nd','Pamba → Vembanad','West-flowing']]],
+'Lakes, dams, falls':[['Item','Fact'],[
+['f','Wular (J&K)','Largest freshwater lake; Jhelum'],['f','Chilika (Odisha)','Largest brackish lagoon'],['f','Vembanad (Kerala)','Longest lake; Pamba'],
+['f','Kamrunag','Himachal Pradesh [VERIFY]'],['f','Sambhar','Rajasthan, saline [VERIFY; Didwana, Kuchaman, Sargol listed]'],
+['s','Others','Cholamu (Sikkim) highest; GB Pant Sagar (Rihand, UP) largest artificial; Loktak Manipur; Dal J&K; Pulicat AP+TN; Kolleru AP; Kanwar Bihar oxbow'],
+['s','Dams','Bhakra (Sutlej, HP), Pong (Beas), Ranjit Sagar (Ravi), Baglihar (Chenab), Hirakud (Mahanadi), Sardar Sarovar (Narmada, Gujarat), Indira Sagar (Narmada, MP), Gandhi Sagar (Chambal), Koyna, Jayakwadi (Godavari), Almatti (Krishna), Tungabhadra, KRS and Mettur (Kaveri), Srisailam and Nagarjuna Sagar (Krishna), Idukki (Periyar), Maithon (Barakar)'],
+['s','Waterfalls','Shivasamudram (Kaveri, 2nd biggest), Gersoppa/Jog (Sharavati), Dhuandhar (Narmada). Heights [VERIFY]'],
+['o','Ramsar sites','Not in source list: [VERIFY]; source names Chilika, Wular, Keoladeo, Sundarbans as major wetlands']]]
+};
+
+const aids=ul([
+'<b>Himalayas N→S:</b> Himadri → Himachal → Shiwalik (<b>H-H-S</b>, high to low, old to new).',
+'<b>West-flowing (few):</b> Narmada, Tapi, Mahi, Sabarmati, Luni, Periyar. Everything else big = east.',
+'<b>Delhi Ridge, Gir, Rajmahal, Cardamom</b> = NW, W, E, S limits of the plateau.',
+'<b>Channels 10-9-8:</b> 10 splits A|N; 9 Minicoy|Lakshadweep; 8 Minicoy|Maldives; 6 Indira Pt|Indonesia.',
+'<b>Coast order N→S (west):</b> Kachchh, Kathiawar, <b>Konkan</b> (Daman–Goa), <b>Kannada</b> (Goa–Mangalore), <b>Malabar</b>.',
+'<b>Confusable:</b> Bhabar (vanish) vs Terai (re-emerge); Bhangar (older, higher) vs Khadar (new, flooded); Wular (freshwater) vs Chilika (brackish).']);
+const traps=ul([
+'<b>Pairing:</b> examiner swaps characteristics (Himalayas “ancient crystalline”, Northern plains “basalt”). Peninsula = crystalline; Deccan lava in the NW only.',
+'<b>“Which tributary lies between…”:</b> Ravi = Pir Panjal–Dhauladhar; Indus main = Zaskar–Ladakh; Narmada = Satpura–Vindhya.',
+'<b>East vs west flowing:</b> Narmada and Tapi are the west-flowing “exceptions” in the Deccan; Krishna is W→E.',
+'<b>Malabar vs Kannada vs Konkan:</b> Goa–Mangalore is NOT Malabar.',
+'<b>Khadar/Bhangar swap</b> and <b>Doddabetta vs Anamudi</b>: Anamudi is highest of the peninsula; Doddabetta is Nilgiri/TN.',
+'<b>Lakshadweep (coral) vs Andaman (submarine mountains/volcanic)</b>; Barren Island is in the <b>Andamans</b>, not the Arabian Sea.']);
+
+// [p, level, q, opts, ans, reason]
+const Q=[
+['f','E','Highest peak of the Peninsular plateau is',['Doddabetta','Anamudi','Mahendragiri','Saddle Peak'],1,'Anamudi (2,695 m, Anaimalai). Doddabetta (2,637 m) is only the Nilgiri/Tamil Nadu high point.'],
+['f','E','The outermost Himalayan range is',['Himadri','Himachal','Shiwalik','Karakoram'],2,'Shiwaliks (900–1,100 m). Himachal is the middle range.'],
+['f','M','A narrow porous belt at the Shiwalik foot where streams vanish is',['Terai','Bhabar','Bhangar','Khadar'],1,'Bhabar holds boulders. Terai is where streams re-emerge (wet, swampy).'],
+['f','M','Older alluvium with kankar nodules in the Northern Plain is called',['Khadar','Bhabar','Bhangar','Regur'],2,'Bhangar is older. Khadar is new flood deposit, renewed yearly. Regur is black soil.'],
+['f','E','Majuli, the largest inhabited riverine island, is on the',['Ganga','Brahmaputra','Indus','Godavari'],1,'Brahmaputra in Assam. It is an Assam plain feature, not Ganga.'],
+['f','M','Which Indus tributary flows between the Pir Panjal and Dhauladhar ranges?',['Jhelum','Ravi','Beas','Sutlej'],1,'Ravi (Kullu hills→Chamba). Beas cuts gorges in Dhauladhar but rises near Rohtang and joins Sutlej.'],
+['f','H','The Beas joins the Sutlej near',['Mithankot','Harike','Jhang','Verinag'],1,'Harike (Punjab). Mithankot is where Panjnad meets Indus; Jhang is where Jhelum meets Chenab.'],
+['s','M','The Jhelum rises at',['Verinag','Bokhar Chu','Beas Kund','Rakas Tal'],0,'Verinag, foot of Pir Panjal, then Wular Lake. Bokhar Chu is the Indus source.'],
+['f','E','The Luni, largest river of the Thar, drains into the',['Gulf of Khambhat','Arabian Sea at Karachi','Rann of Kachchh','Yamuna'],2,'Luni is ephemeral and ends in the Rann of Kachchh. Sabarmati reaches Khambhat.'],
+['f','E','The Narmada flows west through a rift valley between',['Aravalli and Vindhya','Satpura and Vindhya','Western and Eastern Ghats','Sahyadri and Nilgiri'],1,'Rift between Satpura (S) and Vindhya (N); no delta. Closest wrong: Aravalli is further NW.'],
+['f','M','Which river is NOT west-flowing?',['Tapi','Narmada','Sabarmati','Pennar'],3,'Pennar (Eastern Ghat/Nandi hills) goes to the Bay of Bengal. Others reach the Arabian Sea.'],
+['f','M','The Krishna rises at',['Trimbak','Mahabaleshwar','Amarkantak','Brahmagiri'],1,'Mahabaleshwar (Sahyadri). Trimbak=Godavari, Amarkantak=Narmada/Son, Brahmagiri=Kaveri.'],
+['s','H','Which is a RIGHT-bank tributary of the Godavari?',['Pranhita','Indravati','Manjra','Purna'],2,'Manjra (with Pravara, Maner). Pranhita, Indravati, Purna are left bank.'],
+['s','M','Shivasamudram Falls, second biggest in India, are on the',['Krishna','Kaveri','Sharavati','Narmada'],1,'Kaveri (Karnataka). Jog/Gersoppa is on Sharavati; Dhuandhar is on Narmada.'],
+['s','M','Gersoppa (Jog) Falls are on the river',['Sharavati','Kaveri','Periyar','Tungabhadra'],0,'Sharavati (Karnataka). Kaveri has Shivasamudram.'],
+['f','E','Longest lake of India is',['Wular','Chilika','Vembanad','Loktak'],2,'Vembanad (Kerala). Wular is the largest freshwater; Chilika the largest brackish lagoon.'],
+['f','E','Largest freshwater lake of India is',['Dal','Wular','Kolleru','Pulicat'],1,'Wular (J&K, Jhelum). Dal is smaller; Pulicat is brackish.'],
+['s','M','Pulicat Lake lies in',['Odisha','Kerala','Andhra Pradesh and Tamil Nadu','Gujarat'],2,'AP and TN (brackish). Chilika is in Odisha.'],
+['f','E','India’s only active volcano, Barren Island, is in the',['Lakshadweep','Andaman group','Nicobar group','Gulf of Mannar'],1,'Andaman Sea (Andaman group). Narcondam nearby is dormant.'],
+['f','M','The Eight Degree Channel separates',['Andaman and Nicobar','Minicoy and Maldives','Minicoy and Lakshadweep','Great Nicobar and Sumatra'],1,'Minicoy|Maldives. 9° separates Minicoy from Lakshadweep.'],
+['f','H','The coast between Goa and Mangalore is the',['Konkan','Malabar','Kannada','Coromandel'],2,'Kannada/Karnataka coast. Konkan = Daman–Goa; Malabar = Kerala.'],
+['f','M','Which hill range is NOT part of Purvanchal?',['Naga','Mizo','Patkai Bum','Zaskar'],3,'Zaskar is Trans-Himalaya (Ladakh). Others are eastern hills.'],
+['f','M','Which statement is correct?',['Eastern Ghats are higher and more continuous','Western Ghats are higher and more continuous','Eastern Ghats rise to Anamudi','Western Ghats are cut by the Mahanadi'],1,'Western Ghats avg 1,500 m, continuous. Eastern are low, broken by rivers.'],
+['f','H','The highest peak of the Eastern Ghats is',['Mahendragiri','Doddabetta','Anamudi','Nokrek'],0,'Mahendragiri (Odisha). Nokrek is Garo hills.'],
+['s','E','Alaknanda and Bhagirathi meet at',['Rudraprayag','Devprayag','Karnaprayag','Vishnuprayag'],1,'Devprayag, after which it is Ganga. Rudraprayag = Mandakini meets Alaknanda.'],
+['f','M','Cherrapunji and Mawsynram lie in which hills?',['Garo','Jaintia','Khasi','Naga'],2,'Khasi Hills (Meghalaya). Jaintia is its eastern neighbour.']
+];
+const L={E:'Easy',M:'Moderate',H:'Hard'};
+const qh=Q.map((q,i)=>`<div class="card" data-p="${q[0]}"><b>${B[q[0]]} Q${i+1} · ${L[q[1]]}.</b> ${q[2]}<div class="mt-1 space-y-0.5">${q[3].map((o,j)=>`<div>(${'ABCD'[j]}) ${o}</div>`).join('')}</div><button class="noprint mt-2 px-2 py-1 bg-indigo-600 text-white rounded" onclick="this.nextElementSibling.classList.toggle('on')">Show answer</button><div class="ans mt-1 p-2 bg-emerald-100 dark:bg-emerald-900 rounded"><b>Ans: ${'ABCD'[q[4]]}.</b> ${q[5]}</div></div>`).join('');
+
+const card=ul(['Himalaya N→S: Himadri, Himachal, Shiwalik','Karakoram = northernmost, glaciated; Indira Col 37°6′N','Purvanchal: Patkai, Naga, Manipur, Mizo; Mishmi','Khasi Hills = Cherrapunji/Mawsynram','Bhabar (vanish) → Terai (re-emerge); Bhangar older; Khadar new','Peninsula = oldest, crystalline; from Gondwanaland','Limits: Delhi Ridge NW, Gir W, Rajmahal E, Cardamom S','Anamudi 2,695 m highest peninsular; Doddabetta = Nilgiri; Mahendragiri = Eastern Ghats','Luni: ephemeral, Rann of Kachchh','Konkan Daman–Goa; Kannada Goa–Mangalore; Malabar Kerala','Barren Island active, Andaman; 10° channel A|N; Indira Point south','Lakshadweep = coral; A&N = submarine mountains','Indus: Bokhar Chu; Jhelum Verinag; Ravi between Pir Panjal and Dhauladhar; Beas→Sutlej at Harike','Ganga: Devprayag; left Gandak, Kosi, Ghaghara; right Son, Damodar','Brahmaputra: Chemayungdung, Dihang, Dhubri','Narmada Amarkantak, Satpura–Vindhya rift; Tapi Betul','Godavari Trimbak; Krishna Mahabaleshwar; Kaveri Brahmagiri','Wular largest fresh; Chilika largest brackish; Vembanad longest','East rivers: deltas; west: estuaries (Narmada, Tapi)']);
+
+const verify=ul(['Guru Shikhar (Aravalli high point, Mt Abu) and Sambhar Lake: not in attached books.','Kamrunag Lake (Himachal), Chetlat (Lakshadweep), Devdi (Gujarat), Niyamgiri (Odisha), Burhner/Banjar/Sher (Narmada), Nevasa (Godavari tributary): asked in shifts but missing from sources.','Waterfall heights and Ramsar site lists: not in sources.','Shift keys unextracted: Luni end (Q91), A&N vs Lakshadweep (Q14), peninsular south rocks (Q33, answer metamorphic is likely), Himalayas E–W in Darjeeling/Sikkim (Q43 as keyed).','Dam/river details follow the UDAAN tables as printed.']);
+
+const A=document.getElementById('app');
+let h=`<p class="mb-1">Legend: 🔥 tested or must-cover · ⭐ likely neighbour · ◻ possible. Use the top filter.</p>`;
+h+=sec('s1','1. Snapshot',`<div class="card">${ul(['Weight: about 5 geography questions per shift across GS-05a and 05b; priority 🔥.','Past shifts asked: pairings (division→feature), plain zones, river origin/location, coasts, islands, lakes.','Hard questions (under 30% correct) were obscure places: Chetlat, Kamrunag, Devdi.','Approach: (1) learn six divisions, (2) Himalaya ranges and plain zones, (3) Ghats and peaks, (4) coast/channel order, (5) river origin + tributary side, (6) lakes superlatives.','Skip rare places only after the core is solid; 1/4 negative marking means eliminate before guessing.'])}</div>`);
+h+=sec('s2','2. Seen in the shifts',tbl(['Concept','What was asked','Answer','Shifts / % correct','Trap'],seen));
+h+=sec('s3','3. Concept notes',`<div class="card">${notes}</div>`);
+h+=sec('s4','4. Fact tables',Object.entries(facts).map(([t,[hd,rows]])=>`<h3 class="font-semibold mt-3">${t}</h3>${tbl(hd,rows)}`).join('')+`<details class="card"><summary class="font-semibold cursor-pointer">Skip unless time is left</summary>${ul(['Drainage types: consequent, subsequent, obsequent, resequent, antecedent, superimposed.','Patterns: dendritic, trellis, radial, centripetal, barbed, annular.','Glacier details (Biafo, Hispar, Zemu, Milam); Kosi barbed tributaries; Falkenmark index.'])}</details>`);
+h+=sec('s5','5. Memory aids',`<div class="card">${aids}</div>`);
+h+=sec('s6','6. Trap alerts',`<div class="card">${traps}</div>`);
+h+=sec('s7','7. Practice set (26 MCQs)',qh);
+h+=sec('s8','8. 60-second revision card',`<div class="card">${card}</div>`);
+h+=sec('s9','9. Verify before exam',`<div class="card border-amber-500">${verify}</div>`);
+A.innerHTML=h;
+</script></body></html>

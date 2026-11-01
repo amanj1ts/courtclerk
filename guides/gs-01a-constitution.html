@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GS-01a Polity: Constitution, FR, DPSP, Duties, Citizenship</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config={darkMode:'class'}</script>
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:4.5rem}
+td,th{padding:.35rem .5rem;border:1px solid rgba(128,128,128,.35);vertical-align:top;font-size:.85rem}th{background:rgba(128,128,128,.15);text-align:left}
+@media print{#bar,#toc,.noprint{display:none!important}.ans{display:block!important}[data-p]{display:block!important}tr[data-p]{display:table-row!important}}</style></head>
+<body class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans">
+<div id="bar" class="sticky top-0 z-20 bg-indigo-700 text-white px-3 py-2 flex flex-wrap items-center gap-2 text-sm" style="padding-top:calc(.5rem + env(safe-area-inset-top,0px))">
+<b class="mr-auto">GS-01a Polity</b>
+<button onclick="document.getElementById('toc').classList.toggle('hidden')" class="bg-indigo-900 rounded px-2 py-1">Contents</button>
+<span class="flex gap-1"><button class="fb bg-white text-indigo-800 rounded px-2 py-1" data-f="0">All</button><button class="fb bg-indigo-900 rounded px-2 py-1" data-f="1">🔥</button><button class="fb bg-indigo-900 rounded px-2 py-1" data-f="2">🔥+⭐</button></span>
+<button onclick="document.documentElement.classList.toggle('dark')" class="bg-indigo-900 rounded px-2 py-1">🌓</button></div>
+<nav id="toc" class="hidden bg-slate-100 dark:bg-slate-800 p-3 text-sm"></nav>
+<main class="max-w-3xl mx-auto p-3 space-y-5" id="m"></main>
+<script>
+const B={'🔥':'bg-red-100 text-red-800','⭐':'bg-yellow-100 text-yellow-800','◻':'bg-gray-200 text-gray-700'};
+const bd=b=>`<span class="text-xs rounded px-1 ${B[b]}">${b}</span>`;
+const SEEN=[
+["Amendment: 44th","Right to property removed from FR (3 shifts)","44th Amendment, 1978 (now Art 300A, legal right)","S1, S12, S22","79 / 65 / 96","Options 42nd, 61st, 86th"],
+["Amendment: 42nd","‘Mini Constitution’","42nd (1976)","S2","94","Confused with 44th"],
+["Amendment: 42nd","Education moved State→Concurrent List","42nd","S18","46","Options 44th/86th/101st"],
+["Amendment: 61st","Voting age 21→18 (also Art 326)","61st (1988/89)","S3, S6, S9","77 / 25 / 76","Art 326 vs 328/330 swap"],
+["Amendment: 86th","Art 21A; 11th duty","86th (2002)","S5, S16","63 / 96","Art 21A vs 23/22/15"],
+["Amendment: 52nd","Tenth Schedule, anti-defection","52nd (1985)","S3, S20","75 / ?","61st/86th distractors"],
+["Amendment: 43rd","Restored judicial review of SC/HC","43rd","S18","29","Not 42nd"],
+["Art 5-11","Art 8: Indian origin abroad","Art 8","S10","34","Art 6/7/9 neighbours"],
+["Citizenship Act s5","Registration needs residence","7 years","S5","40","5 yrs is CAA 2019 groups"],
+["Citizenship loss","Termination mode; law by Parliament","s9 voluntary foreign citizenship; Parliament (Art 11)","S10, S15","81 / 93","Marriage abroad ≠ loss"],
+["Part II / III / IV-A","Part number to subject","II Citizenship; III FR; IV-A Duties","S2, S7, S20","85 / 86 / 92","Part V-A, Part I"],
+["Art 18","Foreign present/office needs President’s consent","Art 18","S4","57","Art 14/15/21"],
+["Art 19","Six freedoms; Art 19(1)(a) violation","6; banning newspaper for criticism","S2, S21","74 / 71","Reasonable restriction ≠ violation"],
+["Art 29-30","Cultural/educational rights","Religious and linguistic minorities","S21","76","‘Only religious’"],
+["Art 32 / 226","Heart and soul; HC writs wider","Art 32 (Ambedkar); Art 226","S21, S6","94 / 89","Art 32 vs 226 vs 227"],
+["FR basics","‘Justiciable’; Art 13","Enforceable through courts","S14","88","Advisory"],
+["Art 15","Special provision for backward classes","Art 15","S19","63","Art 13/17/18"],
+["DPSP source","Inspired by","Irish Constitution","S6","87","British/US"],
+["DPSP Articles","Art 36-51; 39A; 40; 41; 48; 48A","as listed","S3, S4, S12, S15, S20, S22","83 / 75 / 72 / 51 / 61 / 38","Gandhian vs Socialist class"],
+["Art 47 class","Prohibit intoxicants","Gandhian","S13","38","Socialist/Liberal"],
+["Duties","Part IV-A, 11th duty, Swaran Singh Cttee, Art 51A","Part IV-A; 86th; Indira Gandhi PM; Art 51A","S20, S5, S22, S11","92 / 63 / 64 / 89","Rajiv/Morarji"],
+["Schedules","6th Tribal areas; 10th defection; 12th municipalities","6th; 10th; 12th","S1, S12, S8","73 / 80 / 90","11th vs 12th"],
+["Territory","7th Amdt 1956; J&K Reorg Act 2019 made Ladakh UT; UTs with assembly","7th; J&K Reorg Act; Delhi, Puducherry, J&K","S12, S13, S15","76 / 58 / 89","Chandigarh/Ladakh have none"],
+["Governor (neighbour)","Art 153 Governor; Art 161 pardon; can’t pardon court martial","153; 161","S2, S4","71 / 70","153 vs 154; 161 vs 72 vs 361"]];
+const SEC=[
+["Citizenship (Part II, Art 5-11)",[
+["🔥","Art 5","Citizens at commencement: born in India or 5 yrs resident"],["🔥","Art 6","Migrants from Pakistan"],["🔥","Art 7","Migrants to Pakistan who returned"],["🔥","Art 8","Persons of Indian origin living abroad"],["🔥","Art 9","Ends citizenship on voluntary foreign citizenship"],["🔥","Art 10 / 11","10 continuance; 11 Parliament regulates citizenship by law"],
+["🔥","Act 1955: 5 ways to acquire","Birth s3; Descent s4; Registration s5; Naturalization s6; Incorporation of territory s7"],["🔥","Registration s5","Residence 7 years before applying; oath of allegiance"],["🔥","Naturalization s6","12 yrs (11 of last 14) [VERIFY]; Eighth Schedule language; renounce other citizenship"],
+["🔥","3 ways to lose","Renunciation s8; Termination s9; Deprivation s10 (fraud, disloyalty, 2-yr jail, 7 yrs abroad)"],["⭐","Birth rules","1950-87 any birth; after 1 Jul 1987 one parent citizen; after 3 Dec 2004 both, or one + other not illegal migrant"],["⭐","Single citizenship","Borrowed from Britain; USA has dual; President can be naturalised citizen in India"],["⭐","CAA 2019","Hindu, Sikh, Buddhist, Jain, Parsi, Christian from Afghanistan/Bangladesh/Pakistan, entered by 31 Dec 2014; 5 yrs instead of 11 [VERIFY]"],["◻","OCI","PIO merged into OCI 9 Jan 2015; lifelong visa-free"]]],
+["Union and territory (Art 1-4)",[
+["🔥","Art 1","‘Union of States’; indestructible union of destructible states"],["⭐","Art 2 / 3 / 4","2 admit new states; 3 form states, change areas/names; 4 such laws are not Art 368 amendments"],["🔥","7th Amdt 1956","Abolished A/B/C/D states: 14 states + 6 UTs; common High Court; Zonal Councils (SR Act 1956)"],["🔥","2019","J&K Reorganisation Act: UT of J&K (with legislature) and UT of Ladakh (no legislature)"],["⭐","UTs with assembly","Delhi (Art 239AA), Puducherry (239A), J&K"],["⭐","Cession of territory","Needs constitutional amendment (Berubari, 9th Amdt 1960)"],["◻","Name changes","Orissa→Odisha 2011; Uttaranchal→Uttarakhand 2006"]]],
+["Preamble and features",[
+["🔥","Preamble","Part of Constitution (Kesavananda 1973); Berubari 1960 said not"],["🔥","42nd Amdt","Added Socialist, Secular, Integrity (only amendment of Preamble)"],["⭐","Keywords","Sovereign, Socialist, Secular, Democratic, Republic; Justice, Liberty, Equality, Fraternity"],["⭐","Adopted","26 Nov 1949; in force 26 Jan 1950; 395 Arts, 22 Parts, 8 Schedules originally"],["🔥","Basic structure","Kesavananda Bharati 1973: Parliament cannot alter it"],["⭐","Federal vs unitary","Union of States, strong Centre, single citizenship, emergency, Governor appointed by Centre"],["⭐","Parliamentary system","Nominal President (Art 74), real PM (Art 75), collective responsibility to Lok Sabha"]]],
+["Fundamental Rights (Part III, Art 12-35)",[
+["🔥","Six FRs","Equality 14-18; Freedom 19-22; Exploitation 23-24; Religion 25-28; Cultural-Educational 29-30; Remedies 32"],["🔥","Property","Art 31 deleted by 44th; Art 300A in Part XII"],["🔥","Art 12 / 13","12 defines State; 13 laws against FR are void (judicial review)"],["🔥","Art 14","Equality before law (British, negative); equal protection (US, positive)"],["🔥","Art 15","No discrimination on religion, race, caste, sex, birthplace; 15(4) backward classes, 15(5) education, 15(6) EWS"],["⭐","Art 16","Public employment; Indra Sawhney: 27% OBC, creamy layer, 50% cap"],["🔥","Art 17 / 18","17 abolishes untouchability; 18 abolishes titles (military/academic exempt)"],["🔥","Art 19","Six freedoms: speech, assembly, association, movement, residence, profession; property deleted"],["⭐","Art 19(2)","Grounds: sovereignty, security, friendly relations, public order, decency, contempt, defamation, incitement"],["🔥","Art 20","Ex post facto, double jeopardy, self-incrimination"],["🔥","Art 21 / 21A","Life and liberty (Japan: procedure established by law); 21A free education 6-14 (86th)"],["⭐","Art 22","Arrest safeguards; preventive detention, Advisory Board beyond 3 months"],["🔥","Art 23 / 24","23 trafficking, forced labour; 24 no child work below 14 in hazardous jobs"],["⭐","Art 25 / 26","25 individual conscience; 26 denominations manage religious affairs; 27 no tax for religion; 28 religious instruction"],["🔥","Art 29 / 30","29 conserve language, script, culture; 30 minorities set up institutions"],["🔥","Art 32 / 226","32 SC (itself an FR); 226 HC, also ‘any other purpose’; five writs"],["⭐","Art 33 / 34 / 35","33 armed forces; 34 martial law; 35 Parliament makes laws"],["🔥","Citizens only","Art 15, 16, 19, 29, 30. Art 14, 20-28 for all (not enemy aliens)"],["⭐","Exceptions","31A, 31B (9th Schedule, 1st Amdt; Coelho 2007), 31C"],["🔥","Emergency","Art 358: Art 19 auto-suspended, war/external aggression only. Art 359: other FRs; Art 20 and 21 never (44th)"],["⭐","Writs","Habeas corpus (body), mandamus (command), prohibition, certiorari, quo warranto (by what authority)"]]],
+["DPSP (Part IV, Art 36-51)",[
+["🔥","Source","Irish; non-justiciable; Art 37 fundamental to governance"],["🔥","Art 39A","Equal justice, free legal aid (42nd)"],["🔥","Art 40","Village panchayats (Gandhian)"],["🔥","Art 41","Work, education, public assistance"],["🔥","Art 43 / 43B","43 living wage, cottage industries; 43B cooperatives (97th)"],["🔥","Art 44","Uniform Civil Code (Liberal-intellectual)"],["🔥","Art 45","Early childhood care up to 6 (86th)"],["🔥","Art 47","Nutrition, health; ban intoxicants (Gandhian)"],["🔥","Art 48 / 48A","48 modern scientific agriculture, cow protection; 48A environment, forests, wildlife (42nd)"],["🔥","Art 49 / 50 / 51","49 monuments; 50 separate judiciary from executive; 51 international peace"],["⭐","42nd added","39(f), 39A, 43A, 48A; 44th added 38(2); 97th 43B"]]],
+["Fundamental Duties (Art 51A)",[
+["🔥","Origin","Swaran Singh Committee 1976 (Indira Gandhi PM); 42nd Amdt; Soviet source"],["🔥","Number","10 originally, 11th by 86th (parents provide education 6-14)"],["⭐","Nature","Part IV-A; citizens only; non-justiciable; taxes and voting not listed"]]],
+["Amendments and Schedules",[
+["🔥","1st 1951","Ninth Schedule; extra limits on Art 19(1)"],["🔥","7th 1956","Reorganisation of states"],["🔥","42nd 1976","Mini Constitution; Preamble words; duties; 5 subjects to Concurrent List"],["🔥","44th 1978","Property removed; ‘armed rebellion’"],["🔥","52nd 1985","Tenth Schedule"],["🔥","61st 1989","Voting age 18"],["🔥","86th 2002","Art 21A, Art 45, 51A(k)"],["⭐","73rd / 74th 1992","Panchayats (11th Sch, 29 items); Municipalities (12th Sch, 18 items)"],["⭐","97th 2011","Cooperatives"],["⭐","Schedules","1 States/UTs; 2 salaries; 3 oaths; 4 Rajya Sabha seats; 5 Scheduled Areas; 6 tribal areas of Assam, Meghalaya, Tripura, Mizoram; 7 lists; 8 languages (22); 9 land laws; 10 defection; 11; 12"]]],
+["Sources borrowed",[
+["🔥","India GoI Act 1935","Federal scheme, Governor, emergency, PSC"],["🔥","Britain","Parliamentary government, rule of law, single citizenship, writs"],["🔥","USA","FR, judicial review, impeachment, Vice-President"],["🔥","Ireland","DPSP, President election, RS nomination"],["🔥","Canada","Strong Centre, residuary to Centre"],["⭐","Others","Australia: Concurrent List, joint sitting; Weimar: FR suspension; USSR: duties; France: republic, LEF; S. Africa: amendment; Japan: procedure established by law"]]]];
+const FVR=[["Right to Property","Right to Equality","Right against Exploitation","Right to Freedom of Religion"]];
+const TRAPS=["153 Governor exists; 154 vests executive power; 161 Governor pardon (not death sentence, not court martial); 72 President pardon; 361 immunity.","‘NOT a fundamental right’: property (Art 300A), voting (Art 326), UCC, free legal aid are outside Part III.","42nd vs 44th: 42nd adds Socialist/Secular, duties, Mini Constitution; 44th removes property and protects Art 20, 21.","61st = voting age 18; 86th = Art 21A; 73rd = panchayats; 74th = municipalities; 97th = cooperatives.","Registration 7 years vs naturalization 12 years vs CAA 2019 5 years.","Art 8 Indian origin abroad vs Art 6 Pakistan migrants vs Art 9 termination.","Art 32 is for SC and only for FR; Art 226 HC also for ordinary rights.","Art 25 individuals; Art 26 denominations; Art 29 any section of citizens; Art 30 minorities only.","Art 47 intoxicants is Gandhian; Art 44 UCC is liberal; Art 39A socialist.","11th Schedule panchayats (29) vs 12th municipalities (18).","Art 19 has six freedoms, not seven; Art 15 is for citizens, Art 14 for all persons.","Ladakh UT has no legislature; Delhi, Puducherry, J&K have."];
+const AIDS=[["42→10 duties, 86→11th. Swaran Singh recommended 8.","Duties"],["‘SSS’ = Socialist Secular Sovereign; 42nd added Socialist, Secular, Integrity.","Preamble"],["Law-by-Article ladder: 14 equal, 15 no discrimination, 16 jobs, 17 untouchability, 18 titles.","Art 14-18"],["‘Speak, Assemble, Associate, Move, Reside, Profession’ = six freedoms of Art 19.","Art 19"],["Writs: HM-PCQ = Habeas, Mandamus, Prohibition, Certiorari, Quo warranto.","Writs"],["Gandhian: 40, 43, 43B, 46, 47, 48. Liberal: 44, 45, 48A, 49, 50, 51 (as per source, 48 appears under both).","DPSP classes"]];
+const SKIP=["Full list of 38 rights under Art 21","Shankari Prasad, Golaknath, Minerva Mills chain","Dicey’s rule of law, Louis Henkin principles","Indian vs Western secularism table","Constituent Assembly minor committees and calligraphers","Radcliffe line, enclaves 111/51","Doctrines (eclipse, severability, pith and substance)"];
+const REV=["Part II = Citizenship Art 5-11; Part III FR 12-35; Part IV DPSP 36-51; IV-A duty 51A","Citizenship acts: birth, descent, registration (7 yrs), naturalization (12 yrs), incorporation","Loss: renunciation, termination (s9), deprivation","Art 8 Indian origin abroad","Six FRs; property now Art 300A (44th)","Art 14 all persons; 15,16,19,29,30 citizens only","Art 17 untouchability; 18 titles; 21A education 6-14 (86th); 24 below 14","Art 32 SC; 226 HC; Ambedkar: heart and soul of Art 32","Art 19(1): six freedoms","Art 358 only external emergency; Art 20, 21 never suspended","DPSP from Ireland; Art 39A, 40, 41, 43, 44, 45, 47, 48, 48A, 50","42nd: Mini Constitution, 3 Preamble words, duties","44th: property out; 61st: age 18; 86th: 21A; 52nd: 10th Sch; 43rd judicial review","7th Amdt 1956 reorganisation; Ladakh UT 2019","11 duties; Swaran Singh Committee; Soviet source","Preamble part of Constitution: Kesavananda 1973","Basic structure: Kesavananda 1973","Sch 6 NE tribal areas; 10 defection; 11 panchayat; 12 municipalities","Governor pardon Art 161 (not death sentence); President Art 72","Art 1 Union of States; Art 3 Parliament changes states"];
+const VER=["Naturalization residence: source says 12 years and 11 of last 14; confirm the exact rule.","CAA 2019 5-year concession and cut-off date 31 Dec 2014: confirm.","Shift key for Art 8 (Q77) and Art 161/pardon items taken from the shift file; confirm in a bare-text Constitution.","Art 48 listed under both Gandhian and Liberal in the source; exam key (Q98 intoxicants) uses Gandhian for Art 47.","Source says Constitution now has 12 Schedules; state/UT counts may have changed since 2024.","Shift Q16/Q154 anti-defection key (Q154 had ‘?’): answered 52nd from source.","Questions-per-shift for this chapter set is my approximate tally, not an official figure."];
+const Q=[
+["🔥","e","Citizenship provisions are in which Part?","Part I|Part II|Part III|Part IV",1,"Part II (Art 5-11). Part I is Union and territory."],
+["🔥","e","Who called Art 32 the heart and soul of the Constitution?","Nehru|Patel|Ambedkar|Rajendra Prasad",2,"Ambedkar. Others were Assembly leaders but did not say it."],
+["🔥","e","Fundamental Duties were added by which amendment?","42nd|44th|61st|86th",0,"42nd (1976). 86th only added the 11th duty."],
+["🔥","e","How many Fundamental Duties exist today?","8|10|11|12",2,"11 after 86th; 10 was the original count."],
+["🔥","e","DPSP were inspired by the Constitution of:","USA|Britain|Ireland|Canada",2,"Ireland. USA gave Fundamental Rights."],
+["🔥","e","The voting age was reduced to 18 by:","44th|61st|73rd|86th",1,"61st. 86th is education."],
+["🔥","e","Art 21A guarantees free education for ages:","3-6|6-14|6-18|14-18",1,"6-14. 3-6 is Art 45 (early childhood)."],
+["🔥","e","Which is NOT a fundamental right now?","Right to Equality|Right to Property|Right against Exploitation|Freedom of Religion",1,"Property was deleted by 44th; Art 300A."],
+["⭐","e","The writ meaning ‘to have the body’ is:","Mandamus|Certiorari|Habeas corpus|Quo warranto",2,"Habeas corpus. Mandamus means ‘we command’."],
+["🔥","e","Art 17 abolishes:","Titles|Untouchability|Forced labour|Child labour",1,"Untouchability. Art 18 is titles."],
+["🔥","e","Art 24 bans hazardous work for children below:","12|14|16|18",1,"14 years."],
+["🔥","e","Art 18 abolishes:","Titles|Untouchability|Trafficking|Privy purses",0,"Titles (military and academic exempt)."],
+["⭐","e","The Constitution came into force on:","15 Aug 1947|26 Nov 1949|26 Jan 1950|24 Jan 1950",2,"26 Jan 1950; 26 Nov 1949 is adoption."],
+["⭐","e","Chairman of the Drafting Committee:","Rajendra Prasad|B.R. Ambedkar|Nehru|Patel",1,"Ambedkar; Prasad chaired the Assembly."],
+["🔥","e","Art 39A provides for:","Village panchayats|Equal justice and free legal aid|UCC|Environment",1,"Added by 42nd; Art 40 is panchayats."],
+["🔥","e","Art 48A directs protection of:","Monuments|Environment, forests, wildlife|Cows|Children",1,"Environment; Art 49 is monuments."],
+["🔥","e","Art 40 deals with:","UCC|Village panchayats|Free legal aid|Intoxicants",1,"Village panchayats."],
+["🔥","e","Art 50 separates:","Centre and states|Judiciary from executive|President and PM|Houses",1,"Judiciary from executive."],
+["🔥","e","Fundamental Duties are in:","Part IV|Part IV-A|Part V-A|Part III",1,"Part IV-A, Art 51A."],
+["🔥","e","The Twelfth Schedule deals with:","Panchayats|Municipalities|Languages|Defection",1,"Municipalities (18 items); 11th is panchayats."],
+["🔥","e","The Tenth Schedule concerns:","Anti-defection|Languages|Tribal areas|Oaths",0,"Anti-defection, 52nd Amdt."],
+["🔥","m","Which freedom was deleted from Art 19 by the 44th Amdt?","Residence|Property|Profession|Movement",1,"Property; six remain."],
+["🔥","m","The right to property is now under:","Art 31|Art 300A|Art 19(1)(f)|Art 265",1,"Art 300A, Part XII. Art 265 is taxes."],
+["🔥","m","Socialist, Secular, Integrity were added by:","42nd|44th|52nd|61st",0,"42nd. 44th removed property."],
+["⭐","m","‘Equal protection of the laws’ comes from:","Britain|USA|Ireland|Japan",1,"USA; equality before law is British."],
+["⭐","m","Art 15(2) prohibits discrimination by:","State only|State and private persons|Private only|Parliament",1,"Covers shops, wells, roads against private persons too."],
+["⭐","m","Indra Sawhney set the reservation cap at:","33%|50%|60%|27%",1,"50%; 27% is OBC quota."],
+["🔥","m","Protection against ex post facto laws is under:","Art 19|Art 20|Art 21|Art 22",1,"Art 20 (also double jeopardy, self-incrimination)."],
+["🔥","m","‘Procedure established by law’ in Art 21 was borrowed from:","USA|Japan|Britain|Germany",1,"Japan; USA gave due process."],
+["🔥","m","Naturalization requires residence of about:","5 years|7 years|10 years|12 years",3,"12 years (11 of last 14) [VERIFY]; 7 is registration."],
+["🔥","m","Voluntary acquisition of foreign citizenship leads to:","Renunciation|Termination|Deprivation|Nothing",1,"Termination (s9)."],
+["⭐","m","Art 26 rights belong to:","Individuals|Religious denominations|Minorities|Citizens",1,"Denominations; Art 25 is for individuals."],
+["🔥","m","Art 30 protects the right of:","All citizens|Minorities to run educational institutions|SC/ST|Women",1,"Religious or linguistic minorities."],
+["🔥","m","Art 29 protects any section of citizens with distinct:","Religion|Language, script or culture|Caste|Region",1,"Language, script, culture."],
+["🔥","m","Governor’s power to pardon is in:","Art 72|Art 153|Art 161|Art 361",2,"Art 161. 72 is President."],
+["🔥","m","Preamble was held to be part of the Constitution in:","Berubari|Kesavananda Bharati|Golaknath|Minerva Mills",1,"Kesavananda 1973; Berubari said no."],
+["🔥","m","Basic structure doctrine arises from:","Shankari Prasad|Golaknath|Kesavananda Bharati|Coelho",2,"Kesavananda 1973."],
+["⭐","m","Art 1 calls India:","Federation of States|Union of States|Nation of States|Republic of States",1,"Union of States."],
+["⭐","m","Laws made under Arts 2 and 3 are:","Art 368 amendments|Not Art 368 amendments|Need ratification|Void",1,"Art 4 says so; simple majority."],
+["⭐","m","Art 33 allows Parliament to restrict FR of:","Judges|Armed forces|Ministers|Students",1,"Armed forces and police."],
+["⭐","m","Preventive detention beyond 3 months needs:","Governor|Advisory Board|President|Speaker",1,"Advisory Board report (Art 22)."],
+["🔥","m","Art 23 prohibits:","Titles|Trafficking and forced labour|Untouchability|Discrimination",1,"Traffic in human beings and forced labour."],
+["🔥","h","Registration (s5) needs residence of:","3 yrs|5 yrs|7 yrs|10 yrs",2,"7 years; 5 is the CAA 2019 concession [VERIFY]."],
+["🔥","h","Persons of Indian origin living abroad: Art","6|7|8|9",2,"Art 8. Art 6 Pakistan migrants; 9 termination."],
+["🔥","h","Citizenship of migrants from Pakistan: Art","5|6|7|8",1,"Art 6."],
+["🔥","h","Art 9 deals with:","Return from Pakistan|Termination on foreign citizenship|Parliament’s law|Continuance",1,"Art 9; Art 11 is Parliament; Art 10 continuance."],
+["🔥","h","Parliament regulates citizenship under Art:","10|11|8|5",1,"Art 11."],
+["🔥","h","51A(k) added by 86th requires:","Respect flag|Parents/guardians to give education 6-14|Protect environment|Scientific temper",1,"11th duty."],
+["🔥","h","Swaran Singh Committee recommended how many duties?","8|10|11|12",0,"Eight; Act added 10 [source]."],
+["🔥","h","Art 47 (intoxicants) is classed as:","Socialist|Gandhian|Liberal|Not DPSP",1,"Gandhian per exam key."],
+["🔥","h","Art 48 aims to organise agriculture on:","Commercial lines|Modern scientific lines|Export lines|Traditional lines",1,"Modern and scientific lines."],
+["⭐","h","Art 43B was added by:","42nd|73rd|97th|44th",2,"97th (cooperatives)."],
+["⭐","h","NOT a ground of restriction under Art 19(2):","Public order|Public health|Decency|Contempt of court",1,"Public health is not listed."],
+["⭐","h","Art 31C protects laws implementing:","39(b), (c)|39A|43|45",0,"Not challengeable under Arts 14 and 19."],
+["⭐","h","Ninth Schedule was added by:","1st Amdt|7th Amdt|42nd|44th",0,"1st (1951); Coelho 2007 allows review."],
+["🔥","h","Art 19 rights are suspended automatically in:","Armed rebellion|External emergency|Financial emergency|President’s Rule",1,"War or external aggression (Art 358)."],
+["🔥","h","Which amendment shifted Education to the Concurrent List?","42nd|44th|86th|101st",0,"42nd; also 4 other subjects."],
+["🔥","h","Judicial review of SC/HC was restored by:","42nd|43rd|44th|86th",1,"43rd."],
+["🔥","h","Incorrect pairing:","7th-reorganisation|61st-age 18|44th-Fundamental duties|86th-Art 21A",2,"Duties are 42nd; 44th is property."],
+["🔥","h","UT with an elected assembly:","Puducherry|Chandigarh|Ladakh|Lakshadweep",0,"Puducherry; also Delhi and J&K."]];
+const $=(h,t,c)=>{const e=document.createElement(h);e.className=c||'';e.innerHTML=t;return e};
+const M=document.getElementById('m'),toc=document.getElementById('toc');let n=0;
+function sec(title){const id='s'+(++n);const s=$('section','', 'space-y-2');s.id=id;s.appendChild($('h2',title,'text-lg font-bold text-indigo-700 dark:text-indigo-300 border-b'));M.appendChild(s);toc.appendChild($('a',n+'. '+title,'block py-1 underline')).href='#'+id;return s}
+const tbl=(h,rows,p)=>`<div class="overflow-x-auto"><table class="w-full"><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr ${p?`data-p="${r[0]}"`:''}>${r.map(c=>`<td>${p&&c==r[0]?bd(c):c}</td>`).join('')}</tr>`).join('')}</table></div>`;
+let s=sec('Snapshot');
+s.innerHTML+=`<p class="text-sm">Legend: ${bd('🔥')} seen in shifts or must-cover · ${bd('⭐')} likely neighbour · ${bd('◻')} possible. Use the top filter.</p><p class="text-sm"><b>Weight:</b> Polity is about 8 Qs per shift across GS-01a/b/c; this file’s topics were roughly 3-4 per shift (my tally). Mostly one-line facts: article number, amendment number, Part number, who/which country. 31% of shift questions were hard, so neighbours matter.</p><ol class="list-decimal ml-5 text-sm space-y-1"><li>Learn Part numbers: II citizenship, III FR, IV DPSP, IV-A duties.</li><li>Learn the amendment table (42, 44, 52, 61, 86).</li><li>Citizenship: 5 ways in, 3 ways out, years 7 and 12.</li><li>FR: one line per article 12-35 plus who it covers.</li><li>DPSP: the 10 tested articles with class.</li><li>Duties: 42nd, 11, Swaran Singh.</li><li>Sources of the Constitution country table.</li><li>Schedules 6, 10, 11, 12.</li><li>Territory: Art 1-4, 1956, 2019.</li><li>Negative marking: skip when two options remain equally likely.</li></ol>`;
+s=sec('Seen in the shifts');s.innerHTML+=`<div data-p="🔥">${tbl(['Concept','What was asked','Answer','Shifts','% correct','Trap'],SEEN)}</div><p class="text-xs">Note: Q (Art 154) and Art 168 items sit in other chapters and are omitted.</p>`;
+s=sec('Concept notes');
+const notes=[["🔥","Why FRs vs DPSP differ","FRs are justiciable, restrain the State and give political democracy; DPSPs are non-justiciable, direct the State and aim at social and economic democracy (Irish source). Minerva Mills: harmony between the two is part of basic structure. Today FRs prevail but Parliament may amend FRs for DPSP without touching basic structure."],["🔥","Why Art 32 and 226 differ","Art 32 is itself a fundamental right, so SC cannot refuse; it covers FR only. Art 226 is discretionary but wider: FR plus any other legal purpose."],["🔥","Why the Preamble matters","It is the summary and philosophy of the Constitution; non-enforceable; cannot override Articles; amendable within basic structure."],["⭐","Why India is quasi-federal","Two governments and written constitution, but Parliament can alter states (Art 3), emergency converts to unitary, single citizenship, and Governor is Centre’s agent."],["⭐","Art 14 two ideas","‘Equality before law’ (British, negative) and ‘equal protection’ (US, positive); reasonable classification allowed, class legislation not."],["⭐","Art 25 vs 26","Individual right to profess, practise, propagate versus collective right of denominations to manage religious affairs (needs common faith, organisation, distinct name)."]];
+notes.forEach(x=>s.appendChild($('div',`${bd(x[0])} <b>${x[1]}</b><br><span class="text-sm">${x[2]}</span>`,'p-2 rounded bg-slate-100 dark:bg-slate-800')).dataset.p=x[0]);
+s.innerHTML+=`<table class="w-full"><tr><th>Point</th><th>FR</th><th>DPSP</th><th>Duties</th></tr><tr><td>Articles</td><td>12-35</td><td>36-51</td><td>51A</td></tr><tr><td>Court</td><td>Justiciable</td><td>Non-justiciable</td><td>Non-justiciable</td></tr><tr><td>Aim</td><td>Political democracy</td><td>Social-economic democracy</td><td>Responsible citizens</td></tr><tr><td>Source</td><td>USA</td><td>Ireland</td><td>USSR</td></tr></table>`;
+// re-apply dataset after innerHTML rewrite is avoided since notes are re-parsed; rebuild
+s.querySelectorAll('div.p-2').forEach((d,i)=>d.dataset.p=notes[i][0]);
+SEC.forEach(g=>{const t=sec('Facts: '+g[0]);t.insertAdjacentHTML('beforeend',tbl(['','Item','Fact'],g[1],true))});
+s=sec('Memory aids');AIDS.forEach(a=>s.appendChild($('p',`<b>${a[1]}:</b> ${a[0]}`,'text-sm')));
+s.insertAdjacentHTML('beforeend',tbl(['Confusable pair','Difference'],[["42nd vs 44th","Mini Constitution/duties vs property removed"],["Art 72 vs 161","President vs Governor pardon"],["Registration vs naturalization","7 yrs vs 12 yrs"],["Art 21 vs 21A","Life/liberty vs free education 6-14"],["11th vs 12th Schedule","Panchayats 29 vs municipalities 18"],["Art 358 vs 359","Art 19 auto, external only vs other FRs by order"]]));
+s=sec('Trap alerts');s.appendChild($('ul',TRAPS.map(t=>`<li>${t}</li>`).join(''),'list-disc ml-5 text-sm space-y-1'));
+s.insertAdjacentHTML('beforeend',`<details class="bg-slate-100 dark:bg-slate-800 p-2 rounded text-sm"><summary class="font-semibold">Skip unless time is left</summary><ul class="list-disc ml-5">${SKIP.map(x=>`<li>${x}</li>`).join('')}</ul></details>`);
+s=sec('Practice set: 60 MCQs');const LV={e:'Easy',m:'Moderate',h:'Hard'};
+Q.forEach((q,i)=>{const o=q[3].split('|');const d=$('div',`<div class="text-xs">${bd(q[0])} ${LV[q[1]]} · Q${i+1}</div><div class="font-medium">${q[2]}</div>${o.map((x,j)=>`<div class="text-sm ml-2">${'ABCD'[j]}) ${x}</div>`).join('')}<button class="noprint text-xs bg-indigo-600 text-white rounded px-2 py-1 mt-1" onclick="this.nextElementSibling.classList.toggle('hidden')">Answer</button><div class="ans hidden text-sm mt-1 p-2 rounded bg-green-100 dark:bg-green-900"><b>${'ABCD'[q[4]]}</b>. ${q[5]}</div>`,'p-2 border rounded');d.dataset.p=q[0];s.appendChild(d)});
+s=sec('60-second revision card');s.appendChild($('ol',REV.map(x=>`<li>${x}</li>`).join(''),'list-decimal ml-5 text-sm space-y-1'));
+s=sec('Verify before exam');s.appendChild($('ul',VER.map(x=>`<li>[VERIFY] ${x}</li>`).join(''),'list-disc ml-5 text-sm bg-yellow-50 dark:bg-yellow-900 p-3 rounded space-y-1'));
+if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.classList.add('dark');
+document.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{const f=+b.dataset.f;document.querySelectorAll('.fb').forEach(x=>x.className='fb bg-indigo-900 rounded px-2 py-1');b.className='fb bg-white text-indigo-800 rounded px-2 py-1';document.querySelectorAll('[data-p]').forEach(e=>{const p=e.dataset.p;e.style.display=(f==0||p=='🔥'||(f==2&&p=='⭐'))?'':'none'})});
+</script></body></html>

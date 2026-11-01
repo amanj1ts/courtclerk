@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SSSC Clerk 2026 · Study Command Centre</title>
+<meta name="description" content="A study command centre for the SSSC Clerk 2026 CBT: exam-calibrated guides, a collapsible library and a dashboard of the study methods that fit this paper.">
+<script>
+try {
+  var savedTheme = localStorage.getItem('sssc-theme');
+  if (!savedTheme) savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.dataset.theme = savedTheme;
+} catch (e) {}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    --sidebar-w: 288px;
+    --bg: #f5f6fa;
+    --panel: #ffffff;
+    --panel-2: #f2f4f9;
+    --text: #0f172a;
+    --muted: #5b6478;
+    --border: #e3e6ef;
+    --accent: #4f46e5;
+    --accent-2: #0891b2;
+    --accent-soft: #eef2ff;
+    --accent-text: #3730a3;
+    --green: #047857;
+    --green-soft: #ecfdf5;
+    --amber: #b45309;
+    --amber-soft: #fffbeb;
+    --red: #b91c1c;
+    --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 12px 28px -14px rgba(16, 24, 40, .16);
+    --radius: 16px;
+  }
+  html[data-theme="dark"] {
+    --bg: #0a0e1a;
+    --panel: #111827;
+    --panel-2: #1a2234;
+    --text: #e8ecf6;
+    --muted: #98a2b8;
+    --border: #243049;
+    --accent: #818cf8;
+    --accent-2: #22d3ee;
+    --accent-soft: #1e1b4b;
+    --accent-text: #c7d2fe;
+    --green: #34d399;
+    --green-soft: #062e26;
+    --amber: #fbbf24;
+    --amber-soft: #2a1f06;
+    --red: #f87171;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 18px 40px -22px rgba(0, 0, 0, .8);
+    color-scheme: dark;
+  }
+  html { scroll-padding-top: 80px; }
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  [hidden] { display: none !important; }
+  a { color: inherit; }
+  button, input { font: inherit; }
+  button { color: inherit; }
+  svg { display: block; }
+  .skip {
+    position: fixed; left: 12px; top: -60px; z-index: 100;
+    background: var(--accent); color: #fff; padding: 10px 14px;
+    border-radius: 8px; text-decoration: none; font-weight: 600;
+    transition: top .15s;
+  }
+  .skip:focus { top: 12px; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- Shell ---------- */
+  .shell { display: flex; height: 100vh; }
+  .sidebar {
+    position: fixed; inset: 0 auto 0 0; width: var(--sidebar-w);
+    background: var(--panel); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; z-index: 40;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; padding: 20px 18px 14px; }
+  .logo {
+    width: 42px; height: 42px; border-radius: 12px; flex: 0 0 auto;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed 58%, #0891b2);
+    display: grid; place-items: center; color: #fff;
+    box-shadow: 0 10px 22px -10px rgba(79, 70, 229, .9);
+  }
+  .logo svg { width: 22px; height: 22px; }
+  .brand-text h1 { margin: 0; font-size: 14.5px; line-height: 1.2; letter-spacing: -.01em; }
+  .brand-text p { margin: 3px 0 0; font-size: 11px; color: var(--muted); letter-spacing: .01em; }
+  .search { position: relative; margin: 4px 14px 12px; }
+  .search svg {
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    width: 15px; height: 15px; color: var(--muted); pointer-events: none;
+  }
+  .search input {
+    width: 100%; padding: 9px 10px 9px 34px;
+    border: 1px solid var(--border); border-radius: 10px;
+    background: var(--panel-2); color: var(--text); font-size: 12.5px; outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .search input::placeholder { color: var(--muted); }
+  .search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79, 70, 229, .14); }
+  .nav { flex: 1; overflow-y: auto; padding: 2px 10px 18px; scrollbar-width: thin; }
+  .nav::-webkit-scrollbar { width: 8px; }
+  .nav::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+  .nav-group { margin-bottom: 3px; }
+  .nav-group-btn {
+    width: 100%; display: flex; align-items: center; gap: 8px;
+    padding: 8px 9px; background: none; border: 0; border-radius: 8px;
+    cursor: pointer; text-align: left;
+  }
+  .nav-group-btn:hover { background: var(--panel-2); }
+  .nav-group-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .nav-group-btn .chev { width: 13px; height: 13px; color: var(--muted); transition: transform .18s ease; flex: 0 0 auto; }
+  .nav-group.open .nav-group-btn .chev { transform: rotate(90deg); }
+  .nav-group-title {
+    flex: 1; font-size: 10.5px; font-weight: 800; letter-spacing: .085em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .nav-count {
+    font-size: 9.5px; font-weight: 700; color: var(--muted);
+    background: var(--panel-2); border: 1px solid var(--border);
+    padding: 1px 6px; border-radius: 999px;
+  }
+  .nav-group-body { display: none; padding: 2px 0 6px; }
+  .nav-group.open .nav-group-body { display: block; }
+  .nav-link {
+    display: flex; align-items: center; gap: 9px;
+    padding: 8px 9px; margin: 1px 0; border-radius: 9px;
+    text-decoration: none; color: var(--text); font-size: 12.8px; line-height: 1.3;
+    transition: background .12s, color .12s;
+  }
+  .nav-link:hover { background: var(--panel-2); }
+  .nav-link:focus-visible { outline: 2px solid var(--accent); outline-offset: -1px; }
+  .nav-link.active {
+    background: var(--accent-soft); color: var(--accent-text); font-weight: 650;
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+  .nav-link .code {
+    flex: 0 0 auto; min-width: 34px; text-align: center;
+    font-size: 9.5px; font-weight: 800; letter-spacing: .02em;
+    color: var(--muted); background: var(--panel-2);
+    border: 1px solid var(--border); border-radius: 5px; padding: 2px 4px;
+  }
+  .nav-link.active .code { color: var(--accent-text); border-color: transparent; background: rgba(79, 70, 229, .12); }
+  .nav-label { min-width: 0; }
+  .nav-link.visited .nav-label::after {
+    content: "✓"; margin-left: 5px; font-size: 10px; font-weight: 800; color: var(--green);
+  }
+  .nav-empty { padding: 18px 12px; font-size: 12px; color: var(--muted); text-align: center; }
+  .sidebar-foot {
+    border-top: 1px solid var(--border); padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    font-size: 10.5px; color: var(--muted);
+  }
+  .live { display: inline-flex; align-items: center; gap: 6px; }
+  .live::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); box-shadow: 0 0 0 3px var(--green-soft);
+  }
+
+  /* ---------- Main / topbar ---------- */
+  .main { margin-left: var(--sidebar-w); height: 100vh; display: flex; flex-direction: column; min-width: 0; flex: 1; }
+  .topbar {
+    flex: 0 0 auto; min-height: 60px; display: flex; align-items: center; gap: 12px;
+    padding: 8px 22px; background: var(--panel); border-bottom: 1px solid var(--border);
+    position: relative; z-index: 30;
+  }
+  .icon-btn {
+    width: 34px; height: 34px; flex: 0 0 auto; display: inline-grid; place-items: center;
+    border: 1px solid var(--border); border-radius: 9px; background: var(--panel-2);
+    cursor: pointer; transition: background .15s, border-color .15s;
+  }
+  .icon-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .icon-btn svg { width: 16px; height: 16px; }
+  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  #menuBtn { display: none; }
+  .crumb { display: flex; flex-direction: column; gap: 1px; min-width: 0; flex: 1; }
+  .crumb .section {
+    font-size: 10px; font-weight: 800; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .crumb .title {
+    font-size: 14px; font-weight: 650; letter-spacing: -.01em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .topbar-actions { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+  .status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--muted); background: var(--panel-2); border: 1px solid var(--border);
+    padding: 5px 9px; border-radius: 999px;
+  }
+  .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .btn-sm {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 11px; border-radius: 9px; border: 1px solid var(--border);
+    background: var(--panel-2); color: var(--text); text-decoration: none;
+    font-size: 12px; font-weight: 650; cursor: pointer; transition: .15s;
+  }
+  .btn-sm:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-text); }
+  .btn-sm svg { width: 14px; height: 14px; }
+  .guide-actions { display: flex; align-items: center; gap: 8px; }
+
+  /* ---------- Content ---------- */
+  .content { position: relative; flex: 1; min-height: 0; background: var(--bg); }
+  .page { height: 100%; }
+  .page-scroll { overflow-y: auto; padding: 28px 30px 60px; scroll-behavior: smooth; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  .page-guide { position: relative; background: #fff; }
+  #guideFrame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #fff; }
+  .frame-loader {
+    position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    background: var(--bg); color: var(--muted); font-size: 12.5px;
+  }
+  .spinner {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 3px solid var(--border); border-top-color: var(--accent);
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; overflow: hidden; border-radius: 22px; padding: 36px;
+    color: #fff; background: linear-gradient(118deg, #1e1b4b 0%, #312e81 40%, #4338ca 70%, #0e7490 100%);
+    box-shadow: 0 30px 60px -32px rgba(49, 46, 129, .65);
+  }
+  .hero::before {
+    content: ""; position: absolute; width: 460px; height: 460px; border-radius: 50%;
+    top: -200px; right: -90px;
+    background: radial-gradient(circle, rgba(255, 255, 255, .18), transparent 66%);
+  }
+  .hero::after {
+    content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%;
+    bottom: -190px; left: 22%;
+    background: radial-gradient(circle, rgba(103, 232, 249, .18), transparent 68%);
+  }
+  .hero-grid {
+    position: relative; z-index: 1; display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, .82fr);
+    gap: 32px; align-items: start;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    color: #c7d2fe; background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .18); padding: 6px 10px; border-radius: 999px;
+  }
+  .eyebrow::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #67e8f9; }
+  .hero h1 {
+    font-size: clamp(27px, 3.1vw, 40px); line-height: 1.08;
+    letter-spacing: -.032em; margin: 16px 0 14px; max-width: 20ch;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, #a5b4fc, #67e8f9);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .lead { margin: 0 0 22px; font-size: 14px; line-height: 1.65; color: #dbe2ff; max-width: 58ch; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 10px 16px; border-radius: 10px; border: 1px solid transparent;
+    font-size: 12.8px; font-weight: 700; text-decoration: none; cursor: pointer;
+    transition: transform .15s, box-shadow .15s, background .15s;
+  }
+  .btn.primary { background: #fff; color: #312e81; }
+  .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 14px 26px -14px rgba(0, 0, 0, .55); }
+  .btn.ghost { background: rgba(255, 255, 255, .08); color: #fff; border-color: rgba(255, 255, 255, .26); }
+  .btn.ghost:hover { background: rgba(255, 255, 255, .16); }
+  .btn svg { width: 15px; height: 15px; }
+  .hero-card {
+    background: rgba(255, 255, 255, .09); border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 16px; padding: 17px 18px; backdrop-filter: blur(8px);
+  }
+  .hero-card h2 { font-size: 12.5px; margin: 0 0 3px; display: flex; justify-content: space-between; gap: 10px; }
+  .hero-card .sub { font-size: 11px; color: #c7d2fe; margin: 0 0 12px; }
+  .task {
+    display: flex; align-items: flex-start; gap: 9px; padding: 5px 0;
+    font-size: 12px; line-height: 1.45; color: #eef2ff; cursor: pointer;
+  }
+  .task input {
+    appearance: none; -webkit-appearance: none; width: 16px; height: 16px; flex: 0 0 auto;
+    margin: 1px 0 0; border-radius: 5px; border: 1.5px solid rgba(255, 255, 255, .45);
+    background: transparent; cursor: pointer; position: relative;
+  }
+  .task input:checked { background: #67e8f9; border-color: #67e8f9; }
+  .task input:checked::after {
+    content: "✓"; position: absolute; inset: 0; display: grid; place-items: center;
+    color: #0f172a; font-size: 11px; font-weight: 900;
+  }
+  .task input:checked ~ span { color: #a5b4fc; text-decoration: line-through; }
+  .task-time { font-variant-numeric: tabular-nums; font-weight: 800; font-size: 10.5px; color: #a5b4fc; margin-right: 3px; }
+  .progress-line { height: 4px; border-radius: 99px; background: rgba(255, 255, 255, .16); overflow: hidden; margin-top: 12px; }
+  .progress-line span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #a5b4fc, #67e8f9); transition: width .3s; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin-top: 16px; }
+  .stat {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 15px 17px; box-shadow: var(--shadow);
+  }
+  .stat .k { font-size: 21px; font-weight: 800; letter-spacing: -.025em; line-height: 1.1; }
+  .stat .l { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+  .stat .k em { font-style: normal; color: var(--accent); }
+
+  .section-head { margin: 34px 0 15px; }
+  .kicker {
+    font-size: 10px; font-weight: 800; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 5px;
+  }
+  .section-head h2 { margin: 0; font-size: 20px; letter-spacing: -.022em; }
+  .section-head p { margin: 6px 0 0; font-size: 12.8px; color: var(--muted); max-width: 78ch; line-height: 1.55; }
+
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 13px; }
+  .method {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 17px 18px; box-shadow: var(--shadow);
+  }
+  .method .num {
+    width: 27px; height: 27px; border-radius: 8px; margin-bottom: 10px;
+    display: grid; place-items: center; font-size: 11.5px; font-weight: 800;
+    background: var(--accent-soft); color: var(--accent-text);
+  }
+  .method h3 { margin: 0 0 5px; font-size: 14px; letter-spacing: -.01em; }
+  .method p { margin: 0 0 10px; font-size: 12.2px; line-height: 1.55; color: var(--muted); }
+  .method .do { border-top: 1px dashed var(--border); padding-top: 9px; font-size: 11.6px; line-height: 1.5; }
+  .method .do b { color: var(--accent-text); font-weight: 800; letter-spacing: .02em; }
+
+  .split { display: grid; grid-template-columns: 1.3fr .7fr; gap: 15px; align-items: start; }
+  .split.plan { grid-template-columns: 1.45fr .55fr; }
+  .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+  .checklist li { display: flex; gap: 8px; font-size: 12.2px; line-height: 1.45; }
+  .checklist li::before {
+    content: "✓"; flex: 0 0 17px; height: 17px; border-radius: 5px;
+    display: grid; place-items: center; font-size: 10px; font-weight: 900;
+    color: var(--green); background: var(--green-soft); margin-top: 1px;
+  }
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 15px;
+    padding: 20px; box-shadow: var(--shadow);
+  }
+  .card h3 { margin: 0 0 3px; font-size: 14.5px; letter-spacing: -.01em; }
+  .card .sub { margin: 0 0 13px; font-size: 11.8px; color: var(--muted); line-height: 1.45; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 11px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.2px; }
+  th {
+    text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border);
+    background: var(--panel-2); color: var(--muted);
+    font-size: 9.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; white-space: nowrap;
+  }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.45; }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:hover { background: var(--panel-2); }
+  td .muted { color: var(--muted); }
+
+  .ev-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 12.2px;
+  }
+  .ev-row:last-child { border-bottom: 0; }
+  .ev-row b { font-variant-numeric: tabular-nums; color: var(--green); font-size: 13px; }
+  .ev-row.zero b { color: var(--muted); }
+  .callout {
+    border-left: 3px solid var(--accent); background: var(--accent-soft);
+    border-radius: 0 11px 11px 0; padding: 12px 14px;
+    font-size: 11.9px; line-height: 1.55; margin-top: 13px;
+  }
+  .callout b { color: var(--accent-text); }
+  .callout.amber { border-color: var(--amber); background: var(--amber-soft); }
+  .callout.amber b { color: var(--amber); }
+
+  .timeline { position: relative; padding-left: 25px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px;
+    background: linear-gradient(var(--accent), var(--border));
+  }
+  .tl-item { position: relative; padding-bottom: 17px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -23px; top: 4px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--panel); border: 2px solid var(--accent);
+  }
+  .tl-week { font-size: 9.5px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+  .tl-item h3 { margin: 1px 0 3px; font-size: 13px; }
+  .tl-item p { margin: 0; font-size: 11.9px; color: var(--muted); line-height: 1.5; }
+
+  .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 13px; }
+  .guide-card {
+    position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 9px;
+    padding: 17px 18px; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 14px; box-shadow: var(--shadow); text-decoration: none; color: var(--text);
+    transition: transform .16s, border-color .16s, box-shadow .16s;
+  }
+  .guide-card::before {
+    content: ""; position: absolute; inset: 0 0 auto; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  }
+  .guide-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .guide-card .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .pill {
+    font-size: 9px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase;
+    padding: 3px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text);
+  }
+  .pill.hot { background: var(--amber-soft); color: var(--amber); }
+  .guide-card .code {
+    font-size: 9.5px; font-weight: 800; color: var(--muted);
+    background: var(--panel-2); border: 1px solid var(--border);
+    border-radius: 5px; padding: 2px 6px;
+  }
+  .guide-card h3 { margin: 0; font-size: 13.6px; line-height: 1.35; letter-spacing: -.01em; }
+  .guide-card p { margin: 0; flex: 1; font-size: 11.7px; line-height: 1.5; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip {
+    font-size: 9.5px; color: var(--muted); background: var(--panel-2);
+    border: 1px solid var(--border); padding: 2px 6px; border-radius: 999px;
+  }
+  .guide-card .go { display: flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 800; color: var(--accent); }
+  .guide-card .go svg { width: 13px; height: 13px; }
+  .guide-card.more {
+    border-style: dashed; background: transparent; box-shadow: none;
+    justify-content: center; align-items: flex-start;
+  }
+  .guide-card.more::before { display: none; }
+  .guide-card.more:hover { background: var(--panel); }
+  .guide-card.more .plus {
+    width: 31px; height: 31px; border-radius: 9px; display: grid; place-items: center;
+    background: var(--accent-soft); color: var(--accent-text); font-size: 18px; font-weight: 700;
+  }
+
+  .steps { display: grid; gap: 9px; counter-reset: step; }
+  .step {
+    display: flex; gap: 12px; padding: 12px 14px; background: var(--panel);
+    border: 1px solid var(--border); border-radius: 11px;
+    font-size: 12.1px; line-height: 1.5;
+  }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    flex: 0 0 23px; height: 23px; border-radius: 7px;
+    display: grid; place-items: center; font-size: 10.5px; font-weight: 800;
+    background: var(--accent-soft); color: var(--accent-text);
+  }
+  .step b { display: block; font-size: 12.6px; margin-bottom: 1px; }
+  .step span { color: var(--muted); }
+
+  .foot-note {
+    margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--border);
+    font-size: 11px; line-height: 1.6; color: var(--muted);
+  }
+  .foot-note b { color: var(--text); }
+
+  /* ---------- Blueprint ---------- */
+  .page-head { margin-bottom: 20px; }
+  .page-head h1 { margin: 0 0 8px; font-size: clamp(25px, 2.8vw, 32px); letter-spacing: -.03em; }
+  .page-head p { margin: 0; max-width: 82ch; font-size: 13px; line-height: 1.6; color: var(--muted); }
+  .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 11px; }
+  .mini {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 13px 14px; box-shadow: var(--shadow);
+  }
+  .mini .k { font-size: 17px; font-weight: 800; letter-spacing: -.02em; color: var(--accent); }
+  .mini .l { font-size: 11px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  .bar { height: 7px; min-width: 74px; border-radius: 99px; background: var(--panel-2); overflow: hidden; }
+  .bar span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  .mod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 11px; }
+  .mod { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .mod h3 {
+    margin: 0 0 8px; font-size: 10px; font-weight: 800;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  }
+  .mod ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .mod li { display: flex; align-items: center; gap: 7px; font-size: 11.6px; line-height: 1.4; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex: 0 0 auto; background: var(--border); }
+  .dot.ready { background: var(--green); }
+  .mod .status { margin-left: auto; font-size: 8.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .mod li.ready-item .status { color: var(--green); }
+
+  /* ---------- Responsive ---------- */
+  .overlay {
+    position: fixed; inset: 0; z-index: 35; background: rgba(8, 12, 24, .52);
+    opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .overlay.on { opacity: 1; pointer-events: auto; }
+  @media (min-width: 1025px) { .overlay { display: none; } }
+  @media (max-width: 1180px) {
+    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+    .hero h1 { max-width: 26ch; }
+    .split, .split.plan { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 1024px) {
+    .sidebar { transform: translateX(-100%); transition: transform .22s ease; box-shadow: 0 0 50px rgba(0, 0, 0, .25); }
+    .sidebar.open { transform: none; }
+    .main { margin-left: 0; }
+    #menuBtn { display: inline-grid; }
+    .page-scroll { padding: 24px 20px 50px; }
+  }
+  @media (max-width: 760px) {
+    .topbar { padding: 8px 14px; min-height: 56px; gap: 9px; }
+    .page-scroll { padding: 18px 15px 44px; }
+    .hero { padding: 26px 21px; border-radius: 18px; }
+    .hero .lead { font-size: 13px; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .stat { padding: 13px 14px; }
+    .stat .k { font-size: 18px; }
+    .crumb .section { display: none; }
+    .status { display: none; }
+    .section-head { margin-top: 27px; }
+    .card { padding: 16px; }
+    .btn-sm .label { display: none; }
+  }
+  @media (max-width: 420px) {
+    .hero h1 { font-size: 25px; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .btn { padding: 9px 13px; font-size: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+  @media print {
+    body { height: auto; overflow: visible; }
+    .sidebar, .topbar, .hero-actions, .hero-card, .overlay { display: none !important; }
+    .main { margin: 0; height: auto; }
+    .content { overflow: visible; }
+    .page-scroll { height: auto; overflow: visible; padding: 0; }
+    .hero { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .guide-card, .card, .method, .stat { break-inside: avoid; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="Study library">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          <path d="M8 7h8M8 11h6"></path>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>SSSC Clerk 2026</h1>
+        <p>Study Command Centre</p>
+      </div>
+    </div>
+
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path>
+      </svg>
+      <input id="navSearch" type="search" placeholder="Search guides…  ( / )" aria-label="Search guides" autocomplete="off">
+    </div>
+
+    <nav class="nav" id="nav">
+      <div class="nav-group open" data-group="overview">
+        <button class="nav-group-btn" type="button" aria-expanded="true">
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span class="nav-group-title">Overview</span>
+        </button>
+        <div class="nav-group-body">
+          <a class="nav-link" href="#/dashboard" data-route="dashboard" data-search="dashboard home study methods plan routine overview">
+            <span class="nav-label">Dashboard</span>
+          </a>
+          <a class="nav-link" href="#/blueprint" data-route="blueprint" data-search="blueprint exam pattern weightage syllabus site map structure roadmap">
+            <span class="nav-label">Exam Blueprint</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-group open" data-group="polity">
+        <button class="nav-group-btn" type="button" aria-expanded="true">
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span class="nav-group-title">Polity &amp; Judiciary</span>
+          <span class="nav-count">3</span>
+        </button>
+        <div class="nav-group-body">
+          <a class="nav-link" href="#/gs-01a" data-route="gs-01a" data-search="gs-01a 01a polity constitution preamble fundamental rights dpsp duties citizenship writs articles schedules amendments">
+            <span class="code">01a</span><span class="nav-label">Constitution &amp; Citizenship</span>
+          </a>
+          <a class="nav-link" href="#/gs-01b" data-route="gs-01b" data-search="gs-01b 01b polity judiciary courts supreme court high court legal aid nalsa lok adalat tribunals criminal laws bns bnss bsa">
+            <span class="code">01b</span><span class="nav-label">Judiciary &amp; Legal Aid</span>
+          </a>
+          <a class="nav-link" href="#/gs-01c" data-route="gs-01c" data-search="gs-01c 01c polity executive president parliament legislature governor money bill committees bodies amendments">
+            <span class="code">01c</span><span class="nav-label">Executive &amp; Parliament</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-group open" data-group="history">
+        <button class="nav-group-btn" type="button" aria-expanded="true">
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span class="nav-group-title">History</span>
+          <span class="nav-count">1</span>
+        </button>
+        <div class="nav-group-body">
+          <a class="nav-link" href="#/gs-04" data-route="gs-04" data-search="gs-04 04 history modern india national movement freedom struggle british acts 1857 inc gandhi viceroys">
+            <span class="code">04</span><span class="nav-label">Modern India &amp; National Movement</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-group open" data-group="geography">
+        <button class="nav-group-btn" type="button" aria-expanded="true">
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span class="nav-group-title">Geography</span>
+          <span class="nav-count">1</span>
+        </button>
+        <div class="nav-group-body">
+          <a class="nav-link" href="#/gs-05a" data-route="gs-05a" data-search="gs-05a 05a geography physiography drainage himalayas rivers plains plateau desert coasts islands lakes dams">
+            <span class="code">05a</span><span class="nav-label">Physiography &amp; Drainage</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-empty" id="noResults" hidden>No guide matches that search.</div>
+    </nav>
+
+    <div class="sidebar-foot">
+      <span class="live">5 guides ready</span>
+      <span>1,270 posts</span>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+
+      <div class="crumb">
+        <span class="section" id="crumbSection">Overview</span>
+        <span class="title" id="crumbTitle">Dashboard</span>
+      </div>
+
+      <div class="topbar-actions">
+        <span class="status" id="statusPill">Dashboard</span>
+        <div class="guide-actions" id="guideActions" hidden>
+          <button class="icon-btn" id="reloadBtn" type="button" title="Reload guide" aria-label="Reload guide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12a9 9 0 1 1-2.6-6.4"></path><path d="M21 3v6h-6"></path>
+            </svg>
+          </button>
+          <a class="btn-sm" id="openBtn" href="#" target="_blank" rel="noopener" title="Open guide in a new tab">
+            <span class="label">Open</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+            </svg>
+          </a>
+        </div>
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch theme" title="Switch theme"></button>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+      <div class="page page-scroll" id="page-dashboard">
+        <div class="wrap">
+
+          <noscript>
+            <div class="callout amber" style="margin-bottom:16px">
+              <b>JavaScript is off.</b> The library navigation needs it. You can still open each guide directly:
+              <a href="guides/gs-01a-constitution.html">GS-01a</a> ·
+              <a href="guides/gs-01b-judiciary.html">GS-01b</a> ·
+              <a href="guides/gs-01c-executive-parliament.html">GS-01c</a> ·
+              <a href="guides/gs-04-modern-india.html">GS-04</a> ·
+              <a href="guides/gs-05a-physiography-drainage.html">GS-05a</a>
+            </div>
+          </noscript>
+
+          <section class="hero">
+            <div class="hero-grid">
+              <div>
+                <span class="eyebrow">Punjab District Courts · Clerk Recruitment 2026</span>
+                <h1>Walk into the CBT with a <span>system</span>, not a pile of PDFs.</h1>
+                <p class="lead">Five exam-calibrated guides built from real shift data — priority badges, trap alerts, fact tables and practice sets. This dashboard tells you how to use them, in what order, and how to stop losing marks you already know.</p>
+                <div class="hero-actions">
+                  <a class="btn primary" href="#/gs-01b">
+                    Start with Judiciary
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                  </a>
+                  <a class="btn ghost" id="resumeBtn" href="#/gs-01b" hidden>Continue</a>
+                  <a class="btn ghost" href="#/blueprint">See the exam blueprint</a>
+                </div>
+              </div>
+
+              <aside class="hero-card" aria-labelledby="todayTitle">
+                <h2 id="todayTitle">Today’s 90-minute block <span id="taskCount">0 / 5</span></h2>
+                <p class="sub">Tick as you go. Resets each day.</p>
+                <label class="task"><input type="checkbox" data-task="0"><span><span class="task-time">25m</span>Active recall on one 🔥 guide</span></label>
+                <label class="task"><input type="checkbox" data-task="1"><span><span class="task-time">25m</span>25 mixed MCQs, timed</span></label>
+                <label class="task"><input type="checkbox" data-task="2"><span><span class="task-time">15m</span>Update the trap ledger</span></label>
+                <label class="task"><input type="checkbox" data-task="3"><span><span class="task-time">15m</span>Typing drill at 30+ WPM</span></label>
+                <label class="task"><input type="checkbox" data-task="4"><span><span class="task-time">10m</span>Re-read only what you missed</span></label>
+                <div class="progress-line" aria-hidden="true"><span id="taskBar"></span></div>
+              </aside>
+            </div>
+          </section>
+
+          <div class="stat-grid">
+            <div class="stat"><div class="k">100</div><div class="l">marks · 2-hour CBT</div></div>
+            <div class="stat"><div class="k">50 + 20</div><div class="l">GK MCQs + English MCQs</div></div>
+            <div class="stat"><div class="k">−<em>¼</em></div><div class="l">per wrong MCQ</div></div>
+            <div class="stat"><div class="k">33% + 40%</div><div class="l">subject and aggregate cut-offs</div></div>
+          </div>
+
+          <div class="section-head">
+            <div class="kicker">The method</div>
+            <h2>Study methods that fit this paper</h2>
+            <p>Not generic advice. Each method maps to how this CBT is actually built: 100 marks in 120 minutes, four options, negative marking, and a qualifying English section.</p>
+          </div>
+
+          <div class="method-grid">
+            <article class="method">
+              <div class="num">01</div>
+              <h3>Retrieve before you re-read</h3>
+              <p>Recognition feels like knowledge. The exam asks you to produce an answer, under time, with no page in front of you.</p>
+              <div class="do"><b>DO THIS:</b> read a section once, close the guide, write the 60-second card from memory, then check. Use “Show answer” only after committing.</div>
+            </article>
+
+            <article class="method">
+              <div class="num">02</div>
+              <h3>Start from real shift data</h3>
+              <p>Every guide opens with “Seen in the shifts” — concepts that actually appeared, with the exact trap the examiner used.</p>
+              <div class="do"><b>DO THIS:</b> cover the answer column, say each answer aloud, and mark every miss. Repeat until the table is boring.</div>
+            </article>
+
+            <article class="method">
+              <div class="num">03</div>
+              <h3>Space it: 1 → 3 → 7 → 21</h3>
+              <p>One strong pass fades by exam day. Four short touches cost less than one re-read and stick far longer.</p>
+              <div class="do"><b>DO THIS:</b> 15-minute revisits on days 1, 3, 7 and 21 — only the 60-second card plus 10 MCQs.</div>
+            </article>
+
+            <article class="method">
+              <div class="num">04</div>
+              <h3>Keep a trap ledger</h3>
+              <p>This paper recycles distractor patterns: Bhangar vs Khadar, Article 72 vs 161, Konkan vs Malabar, Gupta vs post-Gupta.</p>
+              <div class="do"><b>DO THIS:</b> one page per subject — “trap → correct rule → one example”. Read it before mocks, not every day.</div>
+            </article>
+
+            <article class="method">
+              <div class="num">05</div>
+              <h3>Triage with 🔥 → ⭐ → ◻</h3>
+              <p>About 35% of questions are easy, 34% moderate, 31% hard. Time spent on obscure ◻ facts is time stolen from 🔥 marks.</p>
+              <div class="do"><b>DO THIS:</b> make every 🔥 automatic, then ⭐. Treat ◻ as final-week filler. Never drop a high-weight subject for current affairs.</div>
+            </article>
+
+            <article class="method">
+              <div class="num">06</div>
+              <h3>Practise at exam speed</h3>
+              <p>100 marks in 120 minutes is a pacing test as much as a knowledge test. Untimed practice hides your real weakness.</p>
+              <div class="do"><b>DO THIS:</b> 50 GK in 45 min, 20 English in 20 min, 30-mark subjective in 45 min, 10 min buffer. No pauses.</div>
+            </article>
+
+            <article class="method">
+              <div class="num">07</div>
+              <h3>Guess with maths, not fear</h3>
+              <p>A ¼ penalty does not make guessing irrational. With four options, a blind guess still has positive expected value.</p>
+              <div class="do"><b>DO THIS:</b> eliminate at least one option, then answer. Never leave a blank — see the maths below.</div>
+            </article>
+
+            <article class="method">
+              <div class="num">08</div>
+              <h3>Protect the qualifiers daily</h3>
+              <p>33% in each subject, 40% aggregate, plus a pass/fail CPT. A strong GK score cannot rescue a failed English section.</p>
+              <div class="do"><b>DO THIS:</b> 15 min English drills, 15 min typing at 30+ WPM, 10 min spreadsheet. Non-negotiable, even on revision days.</div>
+            </article>
+          </div>
+          <div class="split" style="margin-top:26px">
+            <section class="card">
+              <h3>Your weekly rhythm</h3>
+              <p class="sub">A repeatable week beats a heroic one. Times are a floor, not a ceiling.</p>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>Block</th><th>Time</th><th>What to do</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><b>Morning</b><br><span class="muted">new material</span></td><td>60 min</td><td>Read one guide’s Snapshot + Concept notes. Close it. Write the 60-second card from memory.</td></tr>
+                    <tr><td><b>Midday</b><br><span class="muted">retrieval</span></td><td>20 min</td><td>Cover the answer column in “Seen in the shifts” and say each answer aloud.</td></tr>
+                    <tr><td><b>Evening</b><br><span class="muted">exam practice</span></td><td>45 min</td><td>30 MCQs timed, then review every wrong answer into the trap ledger.</td></tr>
+                    <tr><td><b>Night</b><br><span class="muted">maintenance</span></td><td>15 min</td><td>10 min 60-second cards + 5 min typing drill.</td></tr>
+                    <tr><td><b>Sunday</b><br><span class="muted">mock + review</span></td><td>2 hr + 90 min</td><td>Full mixed set. Spend more time reviewing than attempting.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <aside class="card">
+              <h3>Negative marking: the only maths you need</h3>
+              <p class="sub">Expected marks per question, with 4 options and a ¼ penalty.</p>
+              <div class="ev-row"><span>Blind guess</span><b>+0.06</b></div>
+              <div class="ev-row"><span>Eliminate 1 option</span><b>+0.17</b></div>
+              <div class="ev-row"><span>Eliminate 2 options</span><b>+0.38</b></div>
+              <div class="ev-row zero"><span>Leave it blank</span><b>0</b></div>
+              <div class="callout">
+                <b>Rule:</b> never leave a blank. Use the last seconds to eliminate one option — that roughly triples the return. Reserve “skip” for questions that would cost you three certain marks elsewhere.
+              </div>
+            </aside>
+          </div>
+
+          <div class="section-head">
+            <div class="kicker">The plan</div>
+            <h2>Six-week run plan</h2>
+            <p>Front-load the high-weight, high-predictability subjects. Keep revision in the last week — no new topics after day 35.</p>
+          </div>
+
+          <div class="split plan">
+            <section class="card">
+              <div class="timeline">
+                <div class="tl-item">
+                  <div class="tl-week">Week 1</div>
+                  <h3>Polity core</h3>
+                  <p><b>GS-01a + GS-01b.</b> Output: 60 MCQs, one trap page (FR vs DPSP, Article 32 vs 226, Article 72 vs 161).</p>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-week">Week 2</div>
+                  <h3>Systems &amp; history</h3>
+                  <p><b>GS-01c + GS-04.</b> Output: 60 MCQs, one timeline sheet from 1857 to 1947 with Acts and viceroys.</p>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-week">Week 3</div>
+                  <h3>Geography</h3>
+                  <p><b>GS-05a.</b> Output: blank-map labels for ranges, rivers and coasts; 40 MCQs; one page of superlatives.</p>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-week">Week 4</div>
+                  <h3>Economy &amp; science</h3>
+                  <p>Add the economy and science modules as they land. Output: 50 MCQs, one formula-and-fact sheet.</p>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-week">Week 5</div>
+                  <h3>Current affairs + English subjective</h3>
+                  <p>Two essays, five letters, five précis and ten Punjabi-to-English passages — all typed, all timed.</p>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-week">Week 6</div>
+                  <h3>Revision only</h3>
+                  <p>Three full mocks, the 60-second cards, and the trap ledger. No new material, no new sources.</p>
+                </div>
+              </div>
+            </section>
+
+            <aside class="card">
+              <h3>Non-negotiables</h3>
+              <p class="sub">Every week, whatever the topic.</p>
+              <ul class="checklist">
+                <li>15 min English drill, daily</li>
+                <li>15 min typing + 10 min spreadsheet, daily</li>
+                <li>Three trap-ledger entries per study day</li>
+                <li>One timed mock every Sunday, reviewed for 90 min</li>
+                <li>No new source after day 35</li>
+              </ul>
+              <div class="callout">
+                <b>If a week slips:</b> cut new topics — never cut the mock or the daily English.
+              </div>
+            </aside>
+          </div>
+
+          <div class="callout amber" style="margin-top:14px">
+            <b>Reality check:</b> the five guides available today cover Weeks 1–3. Weeks 4–6 assume the remaining modules are generated from the same prompt pack. If they are not ready, replace them with full mocks and revision — do not fill the gap with random YouTube playlists.
+          </div>
+
+          <div class="section-head">
+            <div class="kicker">The library</div>
+            <h2>Five guides, one structure</h2>
+            <p>Every guide follows the same nine-part layout: snapshot → seen in the shifts → concept notes → fact tables → memory aids → trap alerts → practice set → 60-second card → verify box.</p>
+          </div>
+
+          <div class="guide-grid" id="guideGrid"></div>
+
+          <div class="callout" style="margin-top:14px">
+            <b>Order matters:</b> start with GS-01b. For a court clerk post, judiciary is the highest-priority topic and the deepest question pool. GS-01a and GS-01c complete the polity block; GS-04 is the easiest GS topic by candidate accuracy; GS-05a is the highest-yield geography file.
+          </div>
+
+          <div class="section-head">
+            <div class="kicker">Test day</div>
+            <h2>Exam-day protocol</h2>
+          </div>
+
+          <div class="steps">
+            <div class="step"><div><b>Budget the 120 minutes.</b><span>45 min GK · 20 min English objective · 45 min subjective · 10 min buffer. Write these four numbers on the rough sheet first.</span></div></div>
+            <div class="step"><div><b>Use three passes.</b><span>Pass 1: answer certainties. Pass 2: answer after elimination. Pass 3: flagged questions only. Never let one hard question eat four minutes.</span></div></div>
+            <div class="step"><div><b>Never leave a blank.</b><span>Apply the maths: a blind guess is +0.06, one elimination is +0.17, two eliminations is +0.38. Blank is zero.</span></div></div>
+            <div class="step"><div><b>Protect both qualifiers.</b><span>33% in each subject and 40% aggregate. English subjective is evaluated only if GK clears 33%, so neither section can be sacrificed.</span></div></div>
+            <div class="step"><div><b>Type cleanly, then stop.</b><span>Target 30 WPM in the CPT. In the subjective part, leave five minutes to fix spellings, sentence boundaries and the letter format — not to rewrite content.</span></div></div>
+          </div>
+
+          <p class="foot-note">
+            <b>About the numbers:</b> the exam pattern, weightage and method guidance on this page come from the SSSC Clerk 2026 prompt pack and its 22-shift analysis (1,540 questions). Weightage is approximate and intended for planning, not prediction. Always confirm dates, eligibility and pattern against the official notice. Facts inside each guide are marked <b>[VERIFY]</b> where the source books do not support them.
+          </p>
+
+        </div>
+      </div>
+      <div class="page page-scroll" id="page-blueprint" hidden>
+        <div class="wrap">
+
+          <div class="page-head">
+            <div class="kicker">Reference</div>
+            <h1>Exam blueprint &amp; site map</h1>
+            <p>The shape of the paper, the weight of each topic, and the full module list this library is being built from. Use it to decide what to study next — not to memorise the pattern.</p>
+          </div>
+
+          <h2 class="sr-only">Paper pattern and qualifying rules</h2>
+
+          <section class="card">
+            <h3>Paper pattern</h3>
+            <p class="sub">100 marks · 2 hours · online CBT. Suggested timings are a plan, not an official rule.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Section</th><th>Format</th><th>Marks</th><th>Suggested time</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>General Knowledge</b></td><td>50 MCQs, 4 options, 1 mark each</td><td>50</td><td>45 min</td></tr>
+                  <tr><td><b>English objective</b></td><td>20 MCQs, 4 options, 1 mark each</td><td>20</td><td>20 min</td></tr>
+                  <tr><td><b>English subjective</b></td><td>Essay 150 words (10) · Letter (5) · Precis (5) · Punjabi-to-English translation (10)</td><td>30</td><td>45 min</td></tr>
+                  <tr><td><b>Total</b></td><td>Typed on computer</td><td><b>100</b></td><td><b>120 min</b></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout amber" style="margin-top:13px">
+              <b>Separate qualifier:</b> the Computer Proficiency Test is pass/fail. Spreadsheet = 10 marks (need 4) and typing at 30 WPM. Merit is decided by CBT marks only — but the CPT must be cleared.
+            </div>
+          </section>
+
+          <div class="mini-grid" style="margin-top:13px">
+            <div class="mini"><div class="k">33%</div><div class="l">minimum in <b>each</b> subject</div></div>
+            <div class="mini"><div class="k">40%</div><div class="l">minimum aggregate</div></div>
+            <div class="mini"><div class="k">GK ≥ 33%</div><div class="l">English subjective is evaluated only then</div></div>
+            <div class="mini"><div class="k">¼</div><div class="l">negative marking per wrong MCQ</div></div>
+          </div>
+
+          <div class="section-head">
+            <div class="kicker">Weightage</div>
+            <h2>Where the 50 GK marks sit</h2>
+            <p>Approximate questions per shift, from the 22-shift tagging of 1,540 questions. Bars are relative to the heaviest topic; treat them as planning weights, not a guarantee.</p>
+          </div>
+
+          <section class="card">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Topic</th><th style="width:34%">Relative weight</th><th>Qs / shift · priority</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Polity &amp; Judiciary</td><td><div class="bar"><span style="width:94%"></span></div></td><td>7–8 · 🔥</td></tr>
+                  <tr><td>Geography</td><td><div class="bar"><span style="width:69%"></span></div></td><td>5–6 · 🔥</td></tr>
+                  <tr><td>Economy</td><td><div class="bar"><span style="width:56%"></span></div></td><td>4–5 · 🔥</td></tr>
+                  <tr><td>Chemistry</td><td><div class="bar"><span style="width:44%"></span></div></td><td>3–4 · 🔥</td></tr>
+                  <tr><td>Biology</td><td><div class="bar"><span style="width:44%"></span></div></td><td>3–4 · 🔥</td></tr>
+                  <tr><td>UN &amp; international organisations</td><td><div class="bar"><span style="width:44%"></span></div></td><td>3–4 · 🔥</td></tr>
+                  <tr><td>Modern History / freedom struggle</td><td><div class="bar"><span style="width:44%"></span></div></td><td>3–4 · 🔥</td></tr>
+                  <tr><td>Ancient History</td><td><div class="bar"><span style="width:31%"></span></div></td><td>2–3 · ⭐</td></tr>
+                  <tr><td>Sports (current + static)</td><td><div class="bar"><span style="width:25%"></span></div></td><td>2 · ⭐</td></tr>
+                  <tr><td>Art, culture, music, dance</td><td><div class="bar"><span style="width:19%"></span></div></td><td>1–2 · ⭐</td></tr>
+                  <tr><td>Awards, books, days &amp; themes</td><td><div class="bar"><span style="width:19%"></span></div></td><td>1–2 · 🔥 (hard)</td></tr>
+                  <tr><td>Physics</td><td><div class="bar"><span style="width:19%"></span></div></td><td>1–2 · ⭐</td></tr>
+                  <tr><td>Defence, sci-tech, space</td><td><div class="bar"><span style="width:13%"></span></div></td><td>1 · ⭐</td></tr>
+                  <tr><td>Schemes, reports, indices, summits</td><td><div class="bar"><span style="width:19%"></span></div></td><td>1–2 · 🔥</td></tr>
+                  <tr><td>Medieval History</td><td><div class="bar"><span style="width:6%"></span></div></td><td>0–1 · ◻</td></tr>
+                  <tr><td>Appointments (persons)</td><td><div class="bar"><span style="width:6%"></span></div></td><td>0–1 · ⭐</td></tr>
+                  <tr><td>Punjab / Haryana GK</td><td><div class="bar"><span style="width:6%"></span></div></td><td>0–1 · ⭐</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <div class="split" style="margin-top:15px">
+            <section class="card">
+              <h3>English objective: 20 questions</h3>
+              <p class="sub">The most predictable section. The same item types repeat every shift, often with the same words and idioms.</p>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Item type</th><th>Per shift</th></tr></thead>
+                  <tbody>
+                    <tr><td>Fillers: prepositions, conjunctions, modals</td><td>~3.5</td></tr>
+                    <tr><td>One-word / phrase substitution</td><td>~3</td></tr>
+                    <tr><td>Error spotting / sentence rectification</td><td>~2.2</td></tr>
+                    <tr><td>Direct &amp; indirect speech</td><td>~2</td></tr>
+                    <tr><td>Synonyms &amp; antonyms in context</td><td>~2</td></tr>
+                    <tr><td>Active &amp; passive voice</td><td>~2</td></tr>
+                    <tr><td>Para-jumbles / sentence arrangement</td><td>~1.2</td></tr>
+                    <tr><td>Spelling · Idioms · Proverbs · Articles</td><td>~3.6 combined</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <aside class="card">
+              <h3>What the data says about difficulty</h3>
+              <p class="sub">Candidates’ average accuracy across the analysed shifts.</p>
+              <div class="ev-row"><span>Easy questions</span><b>~35%</b></div>
+              <div class="ev-row"><span>Moderate questions</span><b>~34%</b></div>
+              <div class="ev-row"><span>Hard questions</span><b>~31%</b></div>
+              <div class="callout">
+                <b>Implication:</b> practise with about 30% hard questions — close options, “NOT/incorrect” stems, statement pairs — or the real paper will feel harder than your mocks.
+              </div>
+              <div class="callout amber">
+                <b>Easiest:</b> Modern History (~67%), Geography (~62%), Polity (~59%). <b>Hardest:</b> Awards/Books/Days (~35%), Schemes/Reports (~45%), Physics (~46%), Culture (~49%), UN bodies (~49%).
+              </div>
+            </aside>
+          </div>
+
+          <div class="section-head">
+            <div class="kicker">Site structure</div>
+            <h2>The full module map</h2>
+            <p>Green means the guide is in the left menu today. Grey modules are planned from the same prompt pack and will appear here as they are generated.</p>
+          </div>
+
+          <div class="mod-grid">
+            <div class="mod">
+              <h3>Polity &amp; Judiciary</h3>
+              <ul>
+                <li class="ready-item"><span class="dot ready"></span>GS-01a Constitution &amp; Citizenship <span class="status">Ready</span></li>
+                <li class="ready-item"><span class="dot ready"></span>GS-01b Judiciary &amp; Legal Aid <span class="status">Ready</span></li>
+                <li class="ready-item"><span class="dot ready"></span>GS-01c Executive &amp; Parliament <span class="status">Ready</span></li>
+              </ul>
+            </div>
+            <div class="mod">
+              <h3>History</h3>
+              <ul>
+                <li><span class="dot"></span>GS-02 Ancient India <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-03 Medieval India <span class="status">Planned</span></li>
+                <li class="ready-item"><span class="dot ready"></span>GS-04 Modern India <span class="status">Ready</span></li>
+                <li><span class="dot"></span>GS-15 Punjab &amp; Haryana GK <span class="status">Planned</span></li>
+              </ul>
+            </div>
+            <div class="mod">
+              <h3>Geography</h3>
+              <ul>
+                <li class="ready-item"><span class="dot ready"></span>GS-05a Physiography &amp; Drainage <span class="status">Ready</span></li>
+                <li><span class="dot"></span>GS-05b Climate, soil, agriculture <span class="status">Planned</span></li>
+              </ul>
+            </div>
+            <div class="mod">
+              <h3>Economy</h3>
+              <ul>
+                <li><span class="dot"></span>GS-06a Basics, budget, inflation <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-06b Banking, policy, planning <span class="status">Planned</span></li>
+              </ul>
+            </div>
+            <div class="mod">
+              <h3>Science</h3>
+              <ul>
+                <li><span class="dot"></span>GS-07a/b Chemistry <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-08a/b Biology <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-09 Physics <span class="status">Planned</span></li>
+              </ul>
+            </div>
+            <div class="mod">
+              <h3>Static GK</h3>
+              <ul>
+                <li><span class="dot"></span>GS-10 UN &amp; organisations <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-11 Art, culture, festivals <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-12 Sports <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-13 Awards, books, days <span class="status">Planned</span></li>
+              </ul>
+            </div>
+            <div class="mod">
+              <h3>Current Affairs</h3>
+              <ul>
+                <li><span class="dot"></span>GS-14a Appointments &amp; who’s who <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-14b Schemes, reports, summits <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-14c Sci-tech, defence, space <span class="status">Planned</span></li>
+                <li><span class="dot"></span>GS-14d Mixed quick drill <span class="status">Planned</span></li>
+              </ul>
+            </div>
+            <div class="mod">
+              <h3>English objective</h3>
+              <ul>
+                <li><span class="dot"></span>E-01 Narration · E-02 Voice <span class="status">Planned</span></li>
+                <li><span class="dot"></span>E-03 Para-jumbles · E-04 Articles <span class="status">Planned</span></li>
+                <li><span class="dot"></span>E-05 One-word · E-06 Idioms <span class="status">Planned</span></li>
+                <li><span class="dot"></span>E-07 Synonyms · E-08 Spelling <span class="status">Planned</span></li>
+                <li><span class="dot"></span>E-09a/b Errors &amp; fillers <span class="status">Planned</span></li>
+              </ul>
+            </div>
+            <div class="mod">
+              <h3>English subjective</h3>
+              <ul>
+                <li><span class="dot"></span>E-10 Essay (150 words) <span class="status">Planned</span></li>
+                <li><span class="dot"></span>E-11 Letter writing <span class="status">Planned</span></li>
+                <li><span class="dot"></span>E-12 Precis <span class="status">Planned</span></li>
+                <li><span class="dot"></span>E-13 Punjabi → English <span class="status">Planned</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout amber" style="margin-top:16px">
+            <b>Source discipline:</b> each guide is built only from the named source books. Anything the source does not support is marked <b>[VERIFY]</b> inline and collected in a verify box at the end. Current-affairs guides should be fact-checked against the latest monthly compilation before you trust a date, rank or appointment.
+          </div>
+
+          <p class="foot-note">
+            <b>Official notice wins.</b> This page is a study-planning aid assembled from the prompt pack. Verify the pattern, qualifying marks, CPT rules and eligibility against the Punjab District Courts notification before you rely on them.
+          </p>
+
+        </div>
+      </div>
+      <div class="page page-guide" id="page-guide" hidden>
+        <div class="frame-loader" id="frameLoader" hidden>
+          <div class="spinner" aria-hidden="true"></div>
+          <span>Loading guide…</span>
+        </div>
+        <iframe id="guideFrame" title="Study guide" src="about:blank"></iframe>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  var GUIDES = {
+    'gs-01b': {
+      file: 'guides/gs-01b-judiciary.html',
+      code: 'GS-01b',
+      nav: 'Judiciary & Legal Aid',
+      title: 'Judiciary, Legal Aid, Tribunals & Criminal Laws',
+      section: 'Polity & Judiciary',
+      tag: 'Polity',
+      hot: true,
+      desc: 'Supreme Court and High Court jurisdictions, Article 32 vs 226, Lok Adalats and NALSA, tribunals, family courts, BNS/BNSS/BSA and Punjab & Haryana High Court facts.',
+      chips: ['SC & HC', 'Article 32 vs 226', 'NALSA', 'BNS / BNSS / BSA']
+    },
+    'gs-01a': {
+      file: 'guides/gs-01a-constitution.html',
+      code: 'GS-01a',
+      nav: 'Constitution & Citizenship',
+      title: 'Constitution, Fundamental Rights, DPSP & Citizenship',
+      section: 'Polity & Judiciary',
+      tag: 'Polity',
+      desc: 'Preamble, Articles 5–11, Fundamental Rights, DPSP, Fundamental Duties, writs, amendments and schedules — with article-number traps called out.',
+      chips: ['FR & DPSP', 'Citizenship', 'Writs', 'Schedules']
+    },
+    'gs-01c': {
+      file: 'guides/gs-01c-executive-parliament.html',
+      code: 'GS-01c',
+      nav: 'Executive & Parliament',
+      title: 'Executive, Parliament, Legislature & Bodies',
+      section: 'Polity & Judiciary',
+      tag: 'Polity',
+      desc: 'President and VP, PM and Council of Ministers, Governor, Parliament and state legislature, Money Bills, committees, constitutional bodies and amendments.',
+      chips: ['President & Governor', 'Money Bill', 'Committees', 'Bodies']
+    },
+    'gs-04': {
+      file: 'guides/gs-04-modern-india.html',
+      code: 'GS-04',
+      nav: 'Modern India & National Movement',
+      title: 'Modern India & the National Movement',
+      section: 'History',
+      tag: 'History',
+      desc: 'European advent, British Acts, Revolt of 1857, socio-religious reformers, INC sessions, Gandhian movements, viceroys and the road to 1947.',
+      chips: ['British Acts', '1857', 'INC', 'Gandhian era']
+    },
+    'gs-05a': {
+      file: 'guides/gs-05a-physiography-drainage.html',
+      code: 'GS-05a',
+      nav: 'Physiography & Drainage',
+      title: 'India: Physiography & Drainage',
+      section: 'Geography',
+      tag: 'Geography',
+      desc: 'Six physiographic divisions, Himalayan ranges, plain zones, plateau, desert, coasts, islands, river systems, lakes and dams.',
+      chips: ['Himalayas', 'River systems', 'Coasts & islands', 'Lakes & dams']
+    }
+  };
+
+  var ORDER = ['gs-01b', 'gs-01a', 'gs-01c', 'gs-04', 'gs-05a'];
+  var pages = { dashboard: $('#page-dashboard'), blueprint: $('#page-blueprint') };
+  var guidePage = $('#page-guide');
+  var frame = $('#guideFrame');
+  var loader = $('#frameLoader');
+  var sidebar = $('#sidebar');
+  var overlay = $('#overlay');
+  var menuBtn = $('#menuBtn');
+  var themeBtn = $('#themeBtn');
+  var search = $('#navSearch');
+  var noResults = $('#noResults');
+  var nav = $('#nav');
+  var crumbSection = $('#crumbSection');
+  var crumbTitle = $('#crumbTitle');
+  var statusPill = $('#statusPill');
+  var guideActions = $('#guideActions');
+  var openBtn = $('#openBtn');
+  var currentGuide = null;
+
+  /* ---------- Theme ---------- */
+  var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>';
+  var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>';
+
+  function paintTheme() {
+    var dark = document.documentElement.dataset.theme === 'dark';
+    themeBtn.innerHTML = dark ? SUN : MOON;
+    themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    themeBtn.title = dark ? 'Switch to light theme' : 'Switch to dark theme';
+  }
+  themeBtn.addEventListener('click', function () {
+    var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('sssc-theme', next); } catch (e) {}
+    paintTheme();
+  });
+  paintTheme();
+
+  /* ---------- Sidebar ---------- */
+  var NAV_KEY = 'sssc-nav-open';
+  function readNav() {
+    try { return JSON.parse(localStorage.getItem(NAV_KEY)); } catch (e) { return null; }
+  }
+  function saveNav() {
+    var open = $$('.nav-group.open').map(function (g) { return g.dataset.group; });
+    try { localStorage.setItem(NAV_KEY, JSON.stringify(open)); } catch (e) {}
+  }
+  function applyNav(openList) {
+    $$('.nav-group').forEach(function (g) {
+      var open = openList ? openList.indexOf(g.dataset.group) !== -1 : g.classList.contains('open');
+      g.classList.toggle('open', open);
+      var btn = g.querySelector('.nav-group-btn');
+      if (btn) btn.setAttribute('aria-expanded', String(open));
+    });
+  }
+  applyNav(readNav());
+
+  $$('.nav-group-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var group = btn.closest('.nav-group');
+      var open = group.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      saveNav();
+    });
+  });
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.classList.add('on');
+    menuBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('on');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  menuBtn.addEventListener('click', function () {
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+  });
+  overlay.addEventListener('click', closeSidebar);
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('.nav-link')) closeSidebar();
+  });
+
+  /* ---------- Search ---------- */
+  search.addEventListener('input', function () {
+    var q = search.value.trim().toLowerCase();
+    if (!q) {
+      $$('.nav-group').forEach(function (g) { g.hidden = false; });
+      $$('.nav-link').forEach(function (l) { l.hidden = false; });
+      noResults.hidden = true;
+      applyNav(readNav());
+      return;
+    }
+    var total = 0;
+    $$('.nav-group').forEach(function (g) {
+      var links = $$('.nav-link', g);
+      var visible = 0;
+      links.forEach(function (l) {
+        var hay = ((l.dataset.search || '') + ' ' + l.textContent).toLowerCase();
+        var match = hay.indexOf(q) !== -1;
+        l.hidden = !match;
+        if (match) visible++;
+      });
+      g.hidden = visible === 0;
+      if (visible > 0) {
+        g.classList.add('open');
+        var btn = g.querySelector('.nav-group-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      }
+      total += visible;
+    });
+    noResults.hidden = total > 0;
+  });
+
+  document.addEventListener('keydown', function (e) {
+    var tag = document.activeElement ? document.activeElement.tagName : '';
+    if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(tag)) {
+      e.preventDefault();
+      search.focus();
+      search.select();
+    }
+    if (e.key === 'Escape') {
+      closeSidebar();
+      if (document.activeElement === search) search.blur();
+    }
+  });
+
+  /* ---------- Visited + resume ---------- */
+  function getVisited() {
+    try { return JSON.parse(localStorage.getItem('sssc-visited')) || []; } catch (e) { return []; }
+  }
+  function paintVisited() {
+    var visited = getVisited();
+    $$('.nav-link').forEach(function (a) {
+      if (GUIDES[a.dataset.route]) a.classList.toggle('visited', visited.indexOf(a.dataset.route) !== -1);
+    });
+  }
+  function markVisited(id) {
+    var visited = getVisited();
+    if (visited.indexOf(id) === -1) {
+      visited.push(id);
+      try { localStorage.setItem('sssc-visited', JSON.stringify(visited)); } catch (e) {}
+    }
+    paintVisited();
+  }
+  paintVisited();
+
+  function paintResume() {
+    var resume = $('#resumeBtn');
+    try {
+      var last = localStorage.getItem('sssc-last-guide');
+      if (last && GUIDES[last]) {
+        resume.hidden = false;
+        resume.href = '#/' + last;
+        resume.textContent = 'Continue ' + GUIDES[last].code + ' →';
+      } else {
+        resume.hidden = true;
+      }
+    } catch (e) {}
+  }
+  paintResume();
+
+  /* ---------- Routing ---------- */
+  function setCrumb(section, title) {
+    crumbSection.textContent = section;
+    crumbTitle.textContent = title;
+  }
+  function activateNav(route) {
+    $$('.nav-link').forEach(function (a) {
+      var on = a.dataset.route === route;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  function showPage(name) {
+    currentGuide = null;
+    Object.keys(pages).forEach(function (key) { pages[key].hidden = key !== name; });
+    guidePage.hidden = true;
+    activateNav(name);
+    guideActions.hidden = true;
+    statusPill.textContent = name === 'dashboard' ? 'Dashboard' : 'Blueprint';
+    if (name === 'dashboard') {
+      setCrumb('Overview', 'Dashboard');
+      document.title = 'Dashboard · SSSC Clerk 2026';
+    } else {
+      setCrumb('Reference', 'Exam Blueprint');
+      document.title = 'Exam Blueprint · SSSC Clerk 2026';
+    }
+    pages[name].scrollTop = 0;
+    closeSidebar();
+  }
+  function showGuide(id) {
+    var g = GUIDES[id];
+    if (!g) return;
+    Object.keys(pages).forEach(function (key) { pages[key].hidden = true; });
+    guidePage.hidden = false;
+    activateNav(id);
+    setCrumb(g.section, g.code + ' · ' + g.nav);
+    document.title = g.code + ' ' + g.nav + ' · SSSC Clerk 2026';
+    statusPill.textContent = 'Guide';
+    guideActions.hidden = false;
+    openBtn.href = g.file;
+    if (currentGuide !== id) {
+      currentGuide = id;
+      loader.hidden = false;
+      frame.src = g.file;
+      frame.title = g.code + ' — ' + g.title;
+    }
+    try { localStorage.setItem('sssc-last-guide', id); } catch (e) {}
+    markVisited(id);
+    paintResume();
+    closeSidebar();
+  }
+  function route() {
+    var raw = (location.hash || '').replace(/^#\/?/, '').replace(/\/$/, '');
+    if (raw === 'blueprint') { showPage('blueprint'); return; }
+    if (GUIDES[raw]) { showGuide(raw); return; }
+    showPage('dashboard');
+  }
+  window.addEventListener('hashchange', route);
+
+  frame.addEventListener('load', function () {
+    if (!guidePage.hidden) loader.hidden = true;
+  });
+  $('#reloadBtn').addEventListener('click', function () {
+    if (!currentGuide) return;
+    loader.hidden = false;
+    frame.src = GUIDES[currentGuide].file + '?reload=' + Date.now();
+  });
+
+  /* ---------- Guide cards ---------- */
+  var guideCards = ORDER.map(function (id) {
+    var g = GUIDES[id];
+    return '<a class="guide-card" href="#/' + id + '" aria-label="Open ' + g.code + ' guide: ' + g.title + '">' +
+      '<div class="top"><span class="pill' + (g.hot ? ' hot' : '') + '">' + (g.hot ? 'Start here' : g.tag) + '</span><span class="code">' + g.code + '</span></div>' +
+      '<h3>' + g.title + '</h3>' +
+      '<p>' + g.desc + '</p>' +
+      '<div class="chips">' + g.chips.map(function (c) { return '<span class="chip">' + c + '</span>'; }).join('') + '</div>' +
+      '<span class="go">Open guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span>' +
+      '</a>';
+  }).join('');
+  guideCards += '<a class="guide-card more" href="#/blueprint">' +
+    '<span class="plus" aria-hidden="true">+</span>' +
+    '<h3>More modules are on the way</h3>' +
+    '<p>Economy, chemistry, biology, UN bodies, current affairs, English and the subjective section — mapped out in the blueprint.</p>' +
+    '<span class="go">See the full site map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span>' +
+    '</a>';
+  $('#guideGrid').innerHTML = guideCards;
+
+  /* ---------- Daily checklist ---------- */
+  var boxes = $$('.task input');
+  var taskKey = 'sssc-tasks-' + new Date().toISOString().slice(0, 10);
+  function paintTasks() {
+    var done = [];
+    try { done = JSON.parse(localStorage.getItem(taskKey)) || []; } catch (e) {}
+    boxes.forEach(function (b, i) { b.checked = done.indexOf(i) !== -1; });
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    $('#taskCount').textContent = n + ' / ' + boxes.length;
+    $('#taskBar').style.width = (boxes.length ? (n / boxes.length) * 100 : 0) + '%';
+  }
+  boxes.forEach(function (b) {
+    b.addEventListener('change', function () {
+      var done = [];
+      boxes.forEach(function (x, i) { if (x.checked) done.push(i); });
+      try { localStorage.setItem(taskKey, JSON.stringify(done)); } catch (e) {}
+      paintTasks();
+    });
+  });
+  paintTasks();
+
+  /* ---------- Boot ---------- */
+  if (!location.hash) {
+    try { history.replaceState(null, '', '#/dashboard'); } catch (e) { location.hash = '#/dashboard'; }
+  }
+  route();
+})();
+</script>
+</body>
+</html>
