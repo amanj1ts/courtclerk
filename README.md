@@ -8,16 +8,36 @@ A self-contained study library for the Punjab District Courts clerk recruitment 
 
 - **Dashboard** — eight study methods matched to this paper, a weekly rhythm, negative-marking maths, a six-week plan, and an exam-day protocol.
 - **Exam Blueprint** — paper pattern, qualifying rules, approximate GK/English weightage, and the full module map.
-- **Five guides** in `guides/` — GS-01a, GS-01b, GS-01c, GS-04 and GS-05a, displayed in an in-page viewer.
+- **Six guides** in `guides/` — GS-01a, GS-01b, GS-01c, GS-04, GS-05a and GS-05b, displayed in an in-page viewer.
 
-The left navigation is collapsible, searchable, and remembers which groups you closed. The last guide you opened appears as a "Continue" button on the dashboard.
+The left navigation lists the **entire module map** (38 entries across nine subjects). Guides that exist are clickable; the rest are greyed out with a **Soon** tag. Groups are collapsible, the menu is searchable, and it remembers which groups you closed. The last guide you opened appears as a "Continue" button on the dashboard.
 
 ## Adding another guide
 
-1. Save the generated guide as `guides/<name>.html`.
-2. In `index.html`, add an entry to the `GUIDES` object near the bottom (file, code, nav label, title, section, tag, description, chips).
-3. Add a matching `<a class="nav-link" href="#/<id>" data-route="<id>" data-search="...">` inside the correct nav group.
-4. Add the id to the `ORDER` array so it gets a card on the dashboard.
+Everything is driven by one file: **`guides/manifest.js`**.
+
+1. Save the generated guide in `guides/` using the `file` name already written in its manifest entry (or edit that field to match your filename).
+2. Open `guides/manifest.js` and change `ready: false` to `ready: true` on that entry.
+3. Optionally fill in `desc` and `chips` — they become the dashboard card text.
+
+That is all. The left menu, the ready counter, the dashboard cards and the Exam Blueprint module map all update from the manifest automatically.
+
+Each entry looks like this:
+
+```js
+{
+  id: 'gs-05b', section: 'Geography', code: 'GS-05b',
+  nav: 'Climate, Soils & Agriculture',
+  title: 'India: Climate, Vegetation, Soils, Agriculture, Minerals & Census',
+  file: 'guides/gs-05b-climate-census.html', ready: true,
+  tag: 'Geography',
+  desc: 'One-line description for the dashboard card.',
+  chips: ['Monsoon', 'Soils & crops', 'Forests', 'Census 2011'],
+  search: 'extra keywords for the menu search'
+}
+```
+
+To add a module that is not in the map yet, copy an entry, give it a unique `id`, and set `ready: false`. It will appear in the menu and blueprint immediately.
 
 ## Notes
 
