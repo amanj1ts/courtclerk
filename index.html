@@ -618,11 +618,16 @@ try {
         <button class="nav-group-btn" type="button" aria-expanded="true">
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
           <span class="nav-group-title">Geography</span>
-          <span class="nav-count">1</span>
+          <span class="nav-count">2</span>
         </button>
         <div class="nav-group-body">
           <a class="nav-link" href="#/gs-05a" data-route="gs-05a" data-search="gs-05a 05a geography physiography drainage himalayas rivers plains plateau desert coasts islands lakes dams">
             <span class="code">05a</span><span class="nav-label">Physiography &amp; Drainage</span>
+          </a>
+        </div>
+		<div class="nav-group-body">
+          <a class="nav-link" href="#/gs-05b" data-route="gs-05b" data-search="gs-05b 05b climate soil agriculture census">
+            <span class="code">05b</span><span class="nav-label">Climate &amp; Census</span>
           </a>
         </div>
       </div>
@@ -680,6 +685,7 @@ try {
               <a href="guides/gs-01c-executive-parliament.html">GS-01c</a> ·
               <a href="guides/gs-04-modern-india.html">GS-04</a> ·
               <a href="guides/gs-05a-physiography-drainage.html">GS-05a</a>
+			   <a href="guides/gs-05b-climate-census.html">GS-05b</a>
             </div>
           </noscript>
 
@@ -1183,10 +1189,20 @@ try {
       tag: 'Geography',
       desc: 'Six physiographic divisions, Himalayan ranges, plain zones, plateau, desert, coasts, islands, river systems, lakes and dams.',
       chips: ['Himalayas', 'River systems', 'Coasts & islands', 'Lakes & dams']
+    },
+    'gs-05b': {
+      file: 'guides/gs-05b-climate-census.html',
+      code: 'GS-05b',
+      nav: 'Climate & Census',
+      title: 'India: Climate & Census',
+      section: 'Geography',
+      tag: 'Geography',
+      desc: 'climate soil agriculture census',
+      chips: ['Climate', 'soil', 'agriculture']
     }
   };
 
-  var ORDER = ['gs-01b', 'gs-01a', 'gs-01c', 'gs-04', 'gs-05a'];
+  var ORDER = ['gs-01b', 'gs-01a', 'gs-01c', 'gs-04', 'gs-05a', 'gs-05b'];
   var pages = { dashboard: $('#page-dashboard'), blueprint: $('#page-blueprint') };
   var guidePage = $('#page-guide');
   var frame = $('#guideFrame');
