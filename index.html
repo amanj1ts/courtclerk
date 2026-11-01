@@ -159,6 +159,15 @@ try {
   .nav-link.visited .nav-label::after {
     content: "✓"; margin-left: 5px; font-size: 10px; font-weight: 800; color: var(--green);
   }
+  .nav-link.planned { color: var(--muted); cursor: default; }
+  .nav-link.planned:hover { background: transparent; }
+  .nav-link.planned .code { opacity: .6; }
+  .nav-link .soon {
+    margin-left: auto; flex: 0 0 auto;
+    font-size: 8.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--muted); background: var(--panel-2);
+    border: 1px solid var(--border); border-radius: 999px; padding: 1px 5px;
+  }
   .nav-empty { padding: 18px 12px; font-size: 12px; color: var(--muted); text-align: center; }
   .sidebar-foot {
     border-top: 1px solid var(--border); padding: 12px 16px;
@@ -566,77 +575,12 @@ try {
       <input id="navSearch" type="search" placeholder="Search guides…  ( / )" aria-label="Search guides" autocomplete="off">
     </div>
 
-    <nav class="nav" id="nav">
-      <div class="nav-group open" data-group="overview">
-        <button class="nav-group-btn" type="button" aria-expanded="true">
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-          <span class="nav-group-title">Overview</span>
-        </button>
-        <div class="nav-group-body">
-          <a class="nav-link" href="#/dashboard" data-route="dashboard" data-search="dashboard home study methods plan routine overview">
-            <span class="nav-label">Dashboard</span>
-          </a>
-          <a class="nav-link" href="#/blueprint" data-route="blueprint" data-search="blueprint exam pattern weightage syllabus site map structure roadmap">
-            <span class="nav-label">Exam Blueprint</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="nav-group open" data-group="polity">
-        <button class="nav-group-btn" type="button" aria-expanded="true">
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-          <span class="nav-group-title">Polity &amp; Judiciary</span>
-          <span class="nav-count">3</span>
-        </button>
-        <div class="nav-group-body">
-          <a class="nav-link" href="#/gs-01a" data-route="gs-01a" data-search="gs-01a 01a polity constitution preamble fundamental rights dpsp duties citizenship writs articles schedules amendments">
-            <span class="code">01a</span><span class="nav-label">Constitution &amp; Citizenship</span>
-          </a>
-          <a class="nav-link" href="#/gs-01b" data-route="gs-01b" data-search="gs-01b 01b polity judiciary courts supreme court high court legal aid nalsa lok adalat tribunals criminal laws bns bnss bsa">
-            <span class="code">01b</span><span class="nav-label">Judiciary &amp; Legal Aid</span>
-          </a>
-          <a class="nav-link" href="#/gs-01c" data-route="gs-01c" data-search="gs-01c 01c polity executive president parliament legislature governor money bill committees bodies amendments">
-            <span class="code">01c</span><span class="nav-label">Executive &amp; Parliament</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="nav-group open" data-group="history">
-        <button class="nav-group-btn" type="button" aria-expanded="true">
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-          <span class="nav-group-title">History</span>
-          <span class="nav-count">1</span>
-        </button>
-        <div class="nav-group-body">
-          <a class="nav-link" href="#/gs-04" data-route="gs-04" data-search="gs-04 04 history modern india national movement freedom struggle british acts 1857 inc gandhi viceroys">
-            <span class="code">04</span><span class="nav-label">Modern India &amp; National Movement</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="nav-group open" data-group="geography">
-        <button class="nav-group-btn" type="button" aria-expanded="true">
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-          <span class="nav-group-title">Geography</span>
-          <span class="nav-count">2</span>
-        </button>
-        <div class="nav-group-body">
-          <a class="nav-link" href="#/gs-05a" data-route="gs-05a" data-search="gs-05a 05a geography physiography drainage himalayas rivers plains plateau desert coasts islands lakes dams">
-            <span class="code">05a</span><span class="nav-label">Physiography &amp; Drainage</span>
-          </a>
-        </div>
-		<div class="nav-group-body">
-          <a class="nav-link" href="#/gs-05b" data-route="gs-05b" data-search="gs-05b 05b climate soil agriculture census">
-            <span class="code">05b</span><span class="nav-label">Climate &amp; Census</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="nav-empty" id="noResults" hidden>No guide matches that search.</div>
+    <nav class="nav" id="nav" aria-label="Study guides">
+	   <div class="nav-empty">Loading guide menu…</div>
     </nav>
 
     <div class="sidebar-foot">
-      <span class="live">5 guides ready</span>
+      <span class="live" id="readyCount">Loading…</span>
       <span>1,270 posts</span>
     </div>
   </aside>
@@ -1130,7 +1074,7 @@ try {
     </main>
   </div>
 </div>
-
+<script src="guides/manifest.js"></script>
 <script>
 (function () {
   'use strict';
@@ -1138,71 +1082,84 @@ try {
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
-  var GUIDES = {
-    'gs-01b': {
-      file: 'guides/gs-01b-judiciary.html',
-      code: 'GS-01b',
-      nav: 'Judiciary & Legal Aid',
-      title: 'Judiciary, Legal Aid, Tribunals & Criminal Laws',
-      section: 'Polity & Judiciary',
-      tag: 'Polity',
-      hot: true,
-      desc: 'Supreme Court and High Court jurisdictions, Article 32 vs 226, Lok Adalats and NALSA, tribunals, family courts, BNS/BNSS/BSA and Punjab & Haryana High Court facts.',
-      chips: ['SC & HC', 'Article 32 vs 226', 'NALSA', 'BNS / BNSS / BSA']
-    },
-    'gs-01a': {
-      file: 'guides/gs-01a-constitution.html',
-      code: 'GS-01a',
-      nav: 'Constitution & Citizenship',
-      title: 'Constitution, Fundamental Rights, DPSP & Citizenship',
-      section: 'Polity & Judiciary',
-      tag: 'Polity',
-      desc: 'Preamble, Articles 5–11, Fundamental Rights, DPSP, Fundamental Duties, writs, amendments and schedules — with article-number traps called out.',
-      chips: ['FR & DPSP', 'Citizenship', 'Writs', 'Schedules']
-    },
-    'gs-01c': {
-      file: 'guides/gs-01c-executive-parliament.html',
-      code: 'GS-01c',
-      nav: 'Executive & Parliament',
-      title: 'Executive, Parliament, Legislature & Bodies',
-      section: 'Polity & Judiciary',
-      tag: 'Polity',
-      desc: 'President and VP, PM and Council of Ministers, Governor, Parliament and state legislature, Money Bills, committees, constitutional bodies and amendments.',
-      chips: ['President & Governor', 'Money Bill', 'Committees', 'Bodies']
-    },
-    'gs-04': {
-      file: 'guides/gs-04-modern-india.html',
-      code: 'GS-04',
-      nav: 'Modern India & National Movement',
-      title: 'Modern India & the National Movement',
-      section: 'History',
-      tag: 'History',
-      desc: 'European advent, British Acts, Revolt of 1857, socio-religious reformers, INC sessions, Gandhian movements, viceroys and the road to 1947.',
-      chips: ['British Acts', '1857', 'INC', 'Gandhian era']
-    },
-    'gs-05a': {
-      file: 'guides/gs-05a-physiography-drainage.html',
-      code: 'GS-05a',
-      nav: 'Physiography & Drainage',
-      title: 'India: Physiography & Drainage',
-      section: 'Geography',
-      tag: 'Geography',
-      desc: 'Six physiographic divisions, Himalayan ranges, plain zones, plateau, desert, coasts, islands, river systems, lakes and dams.',
-      chips: ['Himalayas', 'River systems', 'Coasts & islands', 'Lakes & dams']
-    },
-    'gs-05b': {
-      file: 'guides/gs-05b-climate-census.html',
-      code: 'GS-05b',
-      nav: 'Climate & Census',
-      title: 'India: Climate & Census',
-      section: 'Geography',
-      tag: 'Geography',
-      desc: 'climate soil agriculture census',
-      chips: ['Climate', 'soil', 'agriculture']
-    }
-  };
+  /* ---------- Guide registry (guides/manifest.js) ---------- */
+  var MANIFEST = (window.SSSC_GUIDES || []).filter(function (g) { return g && g.id; });
+  var GUIDES = {};
+  var SECTIONS = [];
+  MANIFEST.forEach(function (g) {
+    GUIDES[g.id] = g;
+    if (SECTIONS.indexOf(g.section) === -1) SECTIONS.push(g.section);
+  });
+  var READY = MANIFEST.filter(function (g) { return g.ready && g.file; });
+  var ORDER = READY.slice().sort(function (a, b) { return (b.hot ? 1 : 0) - (a.hot ? 1 : 0); })
+    .map(function (g) { return g.id; });
 
-  var ORDER = ['gs-01b', 'gs-01a', 'gs-01c', 'gs-04', 'gs-05a', 'gs-05b'];
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function slug(s) {
+    return String(s).toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>';
+
+  function navItem(g) {
+    var hay = [g.code, g.nav, g.title, g.section, g.desc, (g.chips || []).join(' '), g.search].filter(Boolean).join(' ');
+    if (g.ready && g.file) {
+      return '<a class="nav-link" href="#/' + esc(g.id) + '" data-route="' + esc(g.id) + '" data-search="' + esc(hay) + '">' +
+        '<span class="code">' + esc(g.code) + '</span><span class="nav-label">' + esc(g.nav) + '</span></a>';
+    }
+    return '<span class="nav-link planned" title="Planned — guide not generated yet" data-search="' + esc(hay) + '">' +
+      '<span class="code">' + esc(g.code) + '</span><span class="nav-label">' + esc(g.nav) + '</span><span class="soon">Soon</span></span>';
+  }
+
+  function navGroup(title, key, items, open) {
+    var ready = items.filter(function (g) { return g.ready && g.file; }).length;
+    return '<div class="nav-group' + (open ? ' open' : '') + '" data-group="' + esc(key) + '">' +
+      '<button class="nav-group-btn" type="button" aria-expanded="' + (open ? 'true' : 'false') + '">' + CHEV +
+      '<span class="nav-group-title">' + esc(title) + '</span>' +
+      '<span class="nav-count" title="' + ready + ' of ' + items.length + ' guides ready">' + ready + '/' + items.length + '</span>' +
+      '</button><div class="nav-group-body">' + items.map(navItem).join('') + '</div></div>';
+  }
+
+  var OVERVIEW =
+    '<div class="nav-group open" data-group="overview">' +
+    '<button class="nav-group-btn" type="button" aria-expanded="true">' + CHEV +
+    '<span class="nav-group-title">Overview</span></button><div class="nav-group-body">' +
+    '<a class="nav-link" href="#/dashboard" data-route="dashboard" data-search="dashboard home study methods plan routine overview"><span class="nav-label">Dashboard</span></a>' +
+    '<a class="nav-link" href="#/blueprint" data-route="blueprint" data-search="blueprint exam pattern weightage syllabus site map structure roadmap"><span class="nav-label">Exam Blueprint</span></a>' +
+    '</div></div>';
+
+  var sectionNav = SECTIONS.map(function (section, i) {
+    return navGroup(section, slug(section), MANIFEST.filter(function (g) { return g.section === section; }), i < 3);
+  }).join('');
+
+  var navEl = document.getElementById('nav');
+  if (navEl) {
+    navEl.innerHTML = OVERVIEW + sectionNav +
+      '<div class="nav-empty" id="noResults" hidden>No guide matches that search.</div>';
+  }
+
+  var readyCountEl = document.getElementById('readyCount');
+  if (readyCountEl) readyCountEl.textContent = READY.length + ' of ' + MANIFEST.length + ' guides ready';
+
+  /* Full module map on the blueprint page */
+  var moduleMap = document.getElementById('moduleMap');
+  if (moduleMap) {
+    moduleMap.innerHTML = SECTIONS.map(function (section) {
+      var items = MANIFEST.filter(function (g) { return g.section === section; });
+      return '<div class="mod"><h3>' + esc(section) + '</h3><ul>' + items.map(function (g) {
+        var isReady = !!(g.ready && g.file);
+        return '<li' + (isReady ? ' class="ready-item"' : '') + '>' +
+          '<span class="dot' + (isReady ? ' ready' : '') + '"></span>' +
+          esc(g.code) + ' ' + esc(g.nav) +
+          ' <span class="status">' + (isReady ? 'Ready' : 'Planned') + '</span></li>';
+      }).join('') + '</ul></div>';
+    }).join('');
+  }
+
   var pages = { dashboard: $('#page-dashboard'), blueprint: $('#page-blueprint') };
   var guidePage = $('#page-guide');
   var frame = $('#guideFrame');
@@ -1249,8 +1206,11 @@ try {
     try { localStorage.setItem(NAV_KEY, JSON.stringify(open)); } catch (e) {}
   }
   function applyNav(openList) {
+    var valid = !!openList && openList.some(function (key) {
+      return !!document.querySelector('.nav-group[data-group="' + key + '"]');
+    });
     $$('.nav-group').forEach(function (g) {
-      var open = openList ? openList.indexOf(g.dataset.group) !== -1 : g.classList.contains('open');
+      var open = valid ? openList.indexOf(g.dataset.group) !== -1 : g.classList.contains('open');
       g.classList.toggle('open', open);
       var btn = g.querySelector('.nav-group-btn');
       if (btn) btn.setAttribute('aria-expanded', String(open));
@@ -1353,7 +1313,7 @@ try {
     var resume = $('#resumeBtn');
     try {
       var last = localStorage.getItem('sssc-last-guide');
-      if (last && GUIDES[last]) {
+      if (last && GUIDES[last] && GUIDES[last].ready && GUIDES[last].file) {
         resume.hidden = false;
         resume.href = '#/' + last;
         resume.textContent = 'Continue ' + GUIDES[last].code + ' →';
@@ -1396,7 +1356,7 @@ try {
   }
   function showGuide(id) {
     var g = GUIDES[id];
-    if (!g) return;
+    if (!g || !g.ready || !g.file) return;
     Object.keys(pages).forEach(function (key) { pages[key].hidden = true; });
     guidePage.hidden = false;
     activateNav(id);
@@ -1419,7 +1379,10 @@ try {
   function route() {
     var raw = (location.hash || '').replace(/^#\/?/, '').replace(/\/$/, '');
     if (raw === 'blueprint') { showPage('blueprint'); return; }
-    if (GUIDES[raw]) { showGuide(raw); return; }
+    if (GUIDES[raw] && GUIDES[raw].ready && GUIDES[raw].file) { showGuide(raw); return; }
+    if (raw && raw !== 'dashboard') {
+      try { history.replaceState(null, '', '#/dashboard'); } catch (e) {}
+    }
     showPage('dashboard');
   }
   window.addEventListener('hashchange', route);
@@ -1436,18 +1399,22 @@ try {
   /* ---------- Guide cards ---------- */
   var guideCards = ORDER.map(function (id) {
     var g = GUIDES[id];
-    return '<a class="guide-card" href="#/' + id + '" aria-label="Open ' + g.code + ' guide: ' + g.title + '">' +
-      '<div class="top"><span class="pill' + (g.hot ? ' hot' : '') + '">' + (g.hot ? 'Start here' : g.tag) + '</span><span class="code">' + g.code + '</span></div>' +
-      '<h3>' + g.title + '</h3>' +
-      '<p>' + g.desc + '</p>' +
-      '<div class="chips">' + g.chips.map(function (c) { return '<span class="chip">' + c + '</span>'; }).join('') + '</div>' +
+    var title = g.title || g.nav;
+    var desc = g.desc || ('Study guide for ' + title + '.');
+    var chips = (g.chips && g.chips.length ? g.chips : [g.tag || g.section]).slice(0, 4);
+    return '<a class="guide-card" href="#/' + esc(id) + '" aria-label="Open ' + esc(g.code) + ' guide: ' + esc(title) + '">' +
+      '<div class="top"><span class="pill' + (g.hot ? ' hot' : '') + '">' + esc(g.hot ? 'Start here' : (g.tag || g.section)) + '</span><span class="code">' + esc(g.code) + '</span></div>' +
+      '<h3>' + esc(title) + '</h3>' +
+      '<p>' + esc(desc) + '</p>' +
+      '<div class="chips">' + chips.map(function (c) { return '<span class="chip">' + esc(c) + '</span>'; }).join('') + '</div>' +
       '<span class="go">Open guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span>' +
       '</a>';
   }).join('');
+  var remaining = MANIFEST.length - READY.length;
   guideCards += '<a class="guide-card more" href="#/blueprint">' +
     '<span class="plus" aria-hidden="true">+</span>' +
-    '<h3>More modules are on the way</h3>' +
-    '<p>Economy, chemistry, biology, UN bodies, current affairs, English and the subjective section — mapped out in the blueprint.</p>' +
+    '<h3>' + remaining + ' more module' + (remaining === 1 ? '' : 's') + ' on the way</h3>' +
+    '<p>Economy, chemistry, biology, UN bodies, current affairs, English and the subjective section — the full map is in the blueprint.</p>' +
     '<span class="go">See the full site map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span>' +
     '</a>';
   $('#guideGrid').innerHTML = guideCards;
@@ -1480,5 +1447,6 @@ try {
   route();
 })();
 </script>
+
 </body>
 </html>
