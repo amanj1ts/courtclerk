@@ -283,15 +283,23 @@ window.SSSC_GUIDES = [
     id: 'e-05', section: 'English Objective', code: 'E-05',
     nav: 'One-word Substitution',
     title: 'One-word & Phrase Substitution',
-    file: 'guides/e-05-one-word.html', ready: false,
+    file: 'guides/e-05-one-word.html', ready: true,
     tag: 'English',
     search: 'english vocabulary one word substitution phrases'
   },
   {
-    id: 'e-06', section: 'English Objective', code: 'E-06',
+    id: 'e-06a', section: 'English Objective', code: 'E-06a',
     nav: 'Idioms & Phrases',
     title: 'Idioms & Phrases',
-    file: 'guides/e-06-idioms.html', ready: false,
+    file: 'guides/e-06a-idioms-phrases.html', ready: true,
+    tag: 'English',
+    search: 'english vocabulary idioms phrases proverbs'
+  },
+  {
+    id: 'e-06b', section: 'English Objective', code: 'E-06b',
+    nav: 'Proverbs',
+    title: 'Proverbs',
+    file: 'guides/e-06b-proverbs.html', ready: true,
     tag: 'English',
     search: 'english vocabulary idioms phrases proverbs'
   },
@@ -299,7 +307,7 @@ window.SSSC_GUIDES = [
     id: 'e-07', section: 'English Objective', code: 'E-07',
     nav: 'Synonyms & Antonyms',
     title: 'Synonyms & Antonyms in Context',
-    file: 'guides/e-07-synonyms-antonyms.html', ready: false,
+    file: 'guides/e-07-synonyms-antonyms.html', ready: true,
     tag: 'English',
     search: 'english vocabulary synonyms antonyms'
   },
@@ -307,7 +315,7 @@ window.SSSC_GUIDES = [
     id: 'e-08', section: 'English Objective', code: 'E-08',
     nav: 'Spelling',
     title: 'Spelling & Confusable Words',
-    file: 'guides/e-08-spelling.html', ready: false,
+    file: 'guides/e-08-spelling.html', ready: true,
     tag: 'English',
     search: 'english spelling confusable words'
   },
