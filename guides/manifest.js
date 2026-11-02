@@ -323,7 +323,7 @@ window.SSSC_GUIDES = [
     id: 'e-09a', section: 'English Objective', code: 'E-09a',
     nav: 'Error Spotting',
     title: 'Error Spotting & Sentence Rectification',
-    file: 'guides/e-09a-error-spotting.html', ready: false,
+    file: 'guides/e-09a-error-spotting.html', ready: true,
     tag: 'English',
     search: 'english grammar error spotting sentence correction rectification'
   },
@@ -331,7 +331,7 @@ window.SSSC_GUIDES = [
     id: 'e-09b', section: 'English Objective', code: 'E-09b',
     nav: 'Fillers',
     title: 'Fillers: Prepositions, Conjunctions & Modals',
-    file: 'guides/e-09b-fillers.html', ready: false,
+    file: 'guides/e-09b-fillers.html', ready: true,
     tag: 'English',
     search: 'english grammar fillers prepositions conjunctions modals'
   },

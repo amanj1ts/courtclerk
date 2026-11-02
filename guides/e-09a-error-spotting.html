@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>E-09a Error Spotting & Sentence Rectification</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--bg:#f7f6f2;--fg:#1d2430;--mut:#5b6573;--card:#fff;--bd:#d9d6cc;--ac:#1f5f8b;--wr:#b3261e;--ok:#18794e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#12161c;--fg:#e6e9ee;--mut:#9aa5b4;--card:#1b212a;--bd:#2d3643;--ac:#6fb3e0;--wr:#ff8a80;--ok:#5fd39b}}
+:root[data-theme=dark]{--bg:#12161c;--fg:#e6e9ee;--mut:#9aa5b4;--card:#1b212a;--bd:#2d3643;--ac:#6fb3e0;--wr:#ff8a80;--ok:#5fd39b}
+html{scroll-padding-top:3.5rem}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,'Times New Roman',serif;margin:0}
+h1,h2,h3,button,.sans{font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+main{max-width:60rem;margin:0 auto;padding:1rem}
+section{margin:2rem 0}h2{font-size:1.35rem;border-bottom:2px solid var(--ac);padding-bottom:.2rem;margin-bottom:.7rem}h3{font-size:1.05rem;margin:1.1rem 0 .3rem;color:var(--ac)}
+.bar{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--bd);display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;padding:.4rem .7rem;padding-top:calc(.4rem + env(safe-area-inset-top,0px));margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+.bar b{font-size:.9rem;margin-right:auto}
+button,.chip{border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:.4rem;padding:.2rem .6rem;font-size:.8rem;cursor:pointer}
+button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:34rem}th,td{border:1px solid var(--bd);padding:.35rem .5rem;text-align:left;vertical-align:top}th{background:var(--card)}
+.w{color:var(--wr)}.r{color:var(--ok)}
+.box{border:1px solid var(--bd);border-left:4px solid var(--ac);background:var(--card);padding:.6rem .8rem;border-radius:.3rem;margin:.6rem 0}
+.trap{border-left-color:var(--wr)}
+details summary{cursor:pointer;font-weight:600}
+.q{border:1px solid var(--bd);background:var(--card);border-radius:.4rem;padding:.6rem .8rem;margin:.6rem 0}
+.o{display:block;width:100%;text-align:left;margin:.2rem 0;font-size:.9rem}
+.o.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,transparent)}.o.bad{border-color:var(--wr);background:color-mix(in srgb,var(--wr) 18%,transparent)}
+.ans{display:none;font-size:.88rem;margin-top:.4rem}.q.open .ans{display:block}
+body[data-f=f] .b-s,body[data-f=f] .b-o,body[data-f=fs] .b-o{display:none}
+@media print{.bar{display:none}.ans{display:block!important}body{background:#fff;color:#000}}
+</style></head><body data-f="all">
+<div class="bar sans"><b>E-09a Error Spotting</b>
+<span id="fl"></span><button id="th">Light/Dark</button></div>
+<main>
+<h1 style="font-size:1.7rem;margin:.5rem 0">Error Spotting &amp; Sentence Rectification</h1>
+<p class="sans" style="color:var(--mut);font-size:.85rem">Haryana Court Clerk CBT · ~2.5 Qs per shift · priority 🔥🔥 · calibrated on the 55 solved shift questions</p>
+<details class="box"><summary>Contents</summary><div class="sans" id="toc" style="display:flex;flex-direction:column;gap:.2rem;margin-top:.4rem"></div></details>
+<div class="box sans" style="font-size:.85rem"><b>Legend:</b> 🔥 seen in shifts / must-cover · ⭐ likely neighbour · ◻ possible. Use the filter in the top bar.</div>
+
+<section id="snap"><h2>1. Snapshot</h2>
+<p>About 2–3 questions per shift: tense/aspect choice, conditionals, “no sooner”, subject–verb agreement, adjective order, articles/prepositions in rectification. Many are “replace the underlined part” with 4 options.</p>
+<ol style="padding-left:1.2rem">
+<li>Find the clue word first: <i>by the time, by next year, yesterday, if, unless, neither…nor, each</i>.</li>
+<li>Find the real subject (ignore “of…”, “along with…”).</li>
+<li>Stative verb? Never continuous.</li>
+<li>“By + future point” → future perfect. “This time tomorrow” → future continuous.</li>
+<li>After if/when/by the time/as soon as: present for future.</li>
+<li>Third conditional: had + V3 in the if-clause, never “would have”.</li>
+<li>“No sooner” / “hardly” starts → inversion with <i>had</i>.</li>
+<li>Check adjective order, then adverb vs adjective.</li>
+<li>Check pronoun, preposition and spelling last.</li>
+<li>Eliminate options that break a rule; pick the one left, and skip if unsure (¼ negative).</li></ol></section>
+
+<section id="seen"><h2>2. Seen in the shifts</h2>
+<p class="sans" style="font-size:.8rem;color:var(--mut)">“% correct” is not given in the source file (—).</p>
+<div class="overflow-x-auto"><table id="seent"></table></div></section>
+
+<section id="notes"><h2>3–5. Rules, wrong → right, with the examiner’s trap</h2><div id="rules"></div></section>
+
+<section id="rb"><h2>Rule box</h2>
+<div class="box"><b>Core rules:</b> stative verbs take simple tenses · time clauses use present for future · by + future time = future perfect · if-clause never takes will/would · each/every/one of + singular verb · neither…nor / either…or: verb agrees with the nearer subject · verbs need adverbs, nouns need adjectives · adjectives follow Opinion, Size, Age, Shape, Colour, Origin, Material, Purpose.</div></section>
+<section id="eb"><h2>Exceptions box</h2>
+<div class="box trap"><ul style="padding-left:1.1rem;margin:0">
+<li><b>“A number of”</b> = plural verb; <b>“the number of”</b> = singular.</li>
+<li><b>Stative verbs can turn dynamic:</b> “She is thinking/having lunch/seeing a doctor” is fine.</li>
+<li><b>News, physics, mathematics, measles</b> look plural but take singular verbs; <b>scissors, trousers, spectacles</b> are plural.</li>
+<li><b>“Each” + “their”</b> is common in speech; the shift key still chose “his or her”.</li>
+<li><b>“Unless”</b> is already negative: no second “not”.</li>
+<li><b>Mixed conditional:</b> past if-clause, present result: “If he had studied, he would be a doctor now.”</li>
+<li><b>Subjunctive:</b> “If I were…”, “I wish I were…”.</li></ul></div></section>
+<section id="ce"><h2>10 common errors</h2><div class="box"><ol id="ce10" style="padding-left:1.2rem;margin:0"></ol></div></section>
+
+<section id="memo"><h2>Memory aids</h2>
+<div class="box"><b>OSASCOMP:</b> Opinion, Size, Age, Shape, Colour, Origin, Material, Purpose. <i>“a lovely small old round brown Italian wooden dining table”</i>.</div>
+<div class="box"><b>Confusables:</b> lay (put; laid) / lie (rest; lay) · raise (needs object) / rise (no object) · affect (verb) / effect (noun) · principal (head, main) / principle (rule) · later (time) / latter (second of two) · elder (family) / older · farther (distance) / further (extra).</div>
+<div class="box"><b>Future ladder:</b> will do → will be doing (in progress at that time) → will have done (finished before that time).</div>
+<div class="box"><b>Choose-one pairs:</b> much/many · less/fewer · between (two)/among (many) · each other (two)/one another (many).</div></section>
+
+<section id="skip"><details class="box"><summary>Skip unless time is left</summary>Past perfect continuous vs past perfect nuance (shift key for “had been studying” is debatable); subjunctive after “suggest/insist that”; fine points of the “their” singular.</details></section>
+
+<section id="prac"><h2>7. Practice set <span class="sans" style="font-size:.8rem;color:var(--mut)" id="cnt"></span></h2><div id="qs"></div></section>
+
+<section id="rev"><h2>8. 60-second revision card</h2><div class="box"><ol id="rc" style="padding-left:1.2rem;margin:0;columns:1"></ol></div></section>
+
+<section id="ver"><h2>9. Verify before exam</h2><div class="box trap"><ul style="padding-left:1.1rem;margin:0">
+<li>[VERIFY] Shift Q “Opinion–size–quality” adjective question (S17): the key puts “classic” before “elegant, small”; strict OSASCOMP would place age/quality-type words after size.</li>
+<li>[VERIFY] “was studying → had been studying” (S10) and “both managers… only one… their fault” (S21): keys are debatable.</li>
+<li>[VERIFY] % of candidates correct is absent from the source.</li>
+<li>Grammar rules here are standard, widely accepted rules, not taken from a book.</li></ul></div></section>
+</main>
+<script>
+const B={f:'🔥',s:'⭐',o:'◻'};
+const $=s=>document.querySelector(s);
+const SEEN=[
+['Stative verbs','“has been knowing”; “wasn’t known the answer”; “was knowing”','has known; didn’t know; knew','S9, S11, S19','Never use continuous or passive with know'],
+['Future perfect / continuous','“by the end of the century… will have been displacing”; “this time tomorrow”; “by this time tomorrow we drive”','will have displaced; will be working; will be driving','S5, S16, S17, S20, S21','“by” = finished; “this time” = in progress'],
+['Time clause','“by the time we will need it”; “when I call him yesterday”','need; called','S7, S15','No will after by the time/when'],
+['Past perfect','“had already went”; “had been attending… and had networked”','had gone; had attended','S2, S6, S14, S22','Parallel with “had networked”'],
+['Conditionals','“If she would have submitted”; “If she will arrive”','had submitted; arrives','S3, S8','Never will/would in the if-clause'],
+['No sooner…than','“No sooner did he leave…”','No sooner had the detective left','S3, S13','Inversion with had + V3'],
+['Subject–verb agreement','“Neither the manager nor the employees has”; “Each… their”','have (nearer subject); his or her','S19, S20','Nearer subject; each is singular'],
+['Adjective order','“two small adorable… black kittens”','two adorable small black kittens','S1, S17','Opinion before size before colour'],
+['Adverb / adjective, modifiers','“bravery decision”; “almost has completed”; “responded defensive”','brave decision; has almost completed; defensively','S14, S19, S20','Noun used as adjective; adverb placement'],
+['Prepositions, conjunctions, spelling','“accused for”; “remains through the sea”; “whether she heard”; inefficency','accused of; under; when; inefficiency','S1, S14, S16','Fixed collocations']];
+const G=[
+['Tenses & stative verbs','Examiner’s favourite: a continuous tense hidden on know/believe/like/want/need/belong/own/seem/understand.',[
+['f','Stative verbs: no -ing','She has been knowing him.','She has known him.','Stative = state, not action.'],
+['f','Past perfect = had + V3','They had already went.','They had already gone.','V2 ≠ V3.'],
+['f','Time clause: present for future','…by the time we will need it.','…by the time we need it.','No will after when/by the time/if.'],
+['f','by + future point = future perfect','…will have been displacing…','…will have displaced…','Completed before the deadline.'],
+['f','This time tomorrow = future continuous','By this time tomorrow we drive.','…we will be driving.','In progress at that time.'],
+['f','Past time word + simple past','He had left when I call him yesterday.','…when I called him yesterday.','“yesterday” = past.'],
+['s','since (point) vs for (period)','I have lived here since five years.','…for five years.','since 2020 / for 5 years.'],
+['f','General truth / what a paper does: simple present','The paper is currently detailing…','The paper details…','Academic facts = present.']]],
+['Conditionals & wishes','Examiner’s favourite: “would” inside the if-clause.',[
+['f','Type 3: if + had V3, would have V3','If she would have submitted…','If she had submitted…','Unreal past.'],
+['f','Type 1: if + present, will','If she will arrive, we start.','If she arrives, we will start.','No will in if-clause.'],
+['s','Type 2 and “if I were”','If I was you, I would go.','If I were you…','Subjunctive were.'],
+['s','Type 0: present, present','If you heat ice, it will melt.','If you heat ice, it melts.','Scientific fact.'],
+['s','Mixed','If he studied, he is a doctor now.','If he had studied, he would be a doctor now.','Past cause, present result.'],
+['s','unless is negative','Unless you don’t work, you fail.','Unless you work, you fail.','No double negative.'],
+['s','wish / as if + past','I wish I was rich. He acts as if he is king.','I wish I were rich. …as if he were king.','Unreal = past form.'],
+['s','would rather / had better + base','I would rather to go.','I would rather go.','Base verb follows.']]],
+['Inversion & linkers','Examiner’s favourite: “did” instead of “had” after No sooner.',[
+['f','No sooner had S + V3 than','No sooner did he leave than…','No sooner had he left than…','Past perfect + than.'],
+['s','Hardly/scarcely had S V3 when','Hardly had he come than…','…when…','Hardly takes when.'],
+['s','so…that / such…that','It was so good a day that…(ok) / such good that','It was such a good day that…','such + a + noun.'],
+['f','Linker logic','She worked hard so she wanted to succeed.','…because she wanted to succeed, but she refused…','Reason = because; contrast = but.']]],
+['Subject–verb agreement','Examiner’s favourite: the nearer subject in neither…nor, and “each of the”.',[
+['f','neither…nor / either…or: nearer subject','Neither the manager nor the employees has…','…have…','Plural nearer.'],
+['f','each/every + singular','Each of the students submit their…','Each of the students must submit his or her…','Each is singular.'],
+['s','a number of / the number of','A number of students is absent.','A number of students are absent.','the number = singular.'],
+['s','one of the + plural noun + singular verb','One of my friends are a doctor.','One of my friends is a doctor.','Subject = one.'],
+['s','with / along with / as well as ignored','The captain with his men were late.','…was late.','Verb follows first noun.'],
+['s','more than one + singular','More than one student have failed.','…has failed.','Singular.'],
+['s','distance/time/money as a unit','Ten miles are a long way.','Ten miles is a long way.','One unit.'],
+['s','Uncountables & plural-only','The furniture are new; the news are bad; a scissors.','The furniture is new; the news is bad; a pair of scissors.','No plural of information, advice, luggage, scenery.'],
+['s','Collective nouns','The committee have decided (as one body).','The committee has decided.','One body = singular.']]],
+['Adjectives, adverbs, comparatives','Examiner’s favourite: noun used as adjective, and adjective used for a verb.',[
+['f','OSASCOMP','two small adorable black kittens','two adorable small black kittens','Opinion → size → colour.'],
+['f','Adjective, not noun','her bravery decision','her brave decision','Noun can’t modify.'],
+['f','Adverb for verbs','responded defensive','responded defensively','Describes a verb.'],
+['f','“almost” before the main verb','She almost has completed…','She has almost completed…','After auxiliary.'],
+['s','Double comparative','more better, most unkindest','better, unkindest','One degree only.'],
+['s','less/fewer, much/many, between/among','fewer water; less books','less water; fewer books','Countable = fewer.'],
+['s','elder/older, farther/further','He is elder than me.','…older than I.','elder only in family.'],
+['s','senior/junior/superior/inferior/prior + to','senior than me; superior than','senior to; superior to','Never than.']]],
+['Prepositions, gerunds, parallelism, modifiers','Examiner’s favourite: fixed collocation after accuse, depend, focus, impact.',[
+['f','accuse of; focus on; impact on; depend on','accused for; impact at','accused of; impact on','Fixed pairs.'],
+['s','Gerund after prepositions and avoid/enjoy/finish/mind/suggest/deny/practise','He avoided to go.','He avoided going.','-ing form.'],
+['s','look forward to / be used to / object to + -ing','I look forward to meet you.','…to meeting you.','to = preposition.'],
+['s','make/let/help/see + base; prefer X to Y','He made me to cry; prefer tea than coffee','He made me cry; prefer tea to coffee','No to / no than.'],
+['s','Parallel structure','She likes swimming, to run and cycling.','…swimming, running and cycling.','Same form.'],
+['s','Dangling modifier','Walking home, the rain started.','Walking home, I felt the rain start.','Doer must follow.'],
+['o','Pronoun case / agreement','Between you and I; each… their','between you and me','Object after preposition.'],
+['o','Spelling: inefficiency, secretary, bureaucratic','inefficency','inefficiency','i before e.']]]];
+const C10=['has been knowing → has known','would have + V3 in the if-clause → had + V3','will inside a time/if clause → present tense','no sooner did → no sooner had','neither…nor with the far subject','each/one of + plural verb','nouns used as adjectives (bravery decision)','adverb/adjective swap (defensive/defensively)','wrong preposition (accused for, impact at)','wrong adjective order (small adorable)'];
+const RC=['Stative verbs: no continuous.','by + future = will have + V3.','This time tomorrow = will be + -ing.','After by the time/when/if: present.','Type 3: had + V3, would have + V3.','Type 1: if + present, will.','No sooner had … than.','Neither/nor: nearer subject.','Each/every: singular.','A number of: plural; the number of: singular.','One of the + plural + singular verb.','OSASCOMP.','accused of; depend on; focus on.','look forward to + -ing.','prefer X to Y.','Unless = if not.','I wish/as if + were.','Fewer = countable; less = uncountable.','senior/superior/prior + to.','Furniture, advice, news: uncountable/singular.'];
+const Q=[
+['“She has been knowing him for years.” Correct form?',['has known him','is knowing him','was known him','have knew him'],0,'know is stative.','“Has been knowing” is continuous.','e','f'],
+['“If he would have called, I would have come.” Rectify the if-clause.',['If he had called','If he calls','If he called','If he would call'],0,'Type 3 needs had + V3.','“If he called” is Type 2.','e','f'],
+['By the time we arrive, the film ___.',['will have started','will start','has started','starts'],0,'Finished before a future point.','“Will start” ignores the deadline.','e','f'],
+['No sooner ___ the bell rung than the students left.',['had','did','has','was'],0,'No sooner had + V3 + than.','“Did” needs the base verb.','e','f'],
+['Neither the teacher nor the students ___ present.',['were','was','is','has been'],0,'Nearer subject students (plural).','“Was” matches the far subject.','m','f'],
+['Choose the correct order: a ___ bag.',['lovely small leather','leather small lovely','small leather lovely','leather lovely small'],0,'Opinion, size, material.','Material never comes first.','e','f'],
+['“He was accused for theft.” Correct preposition?',['of','at','with','to'],0,'accuse of.','“With” goes with charge.','e','f'],
+['“Each of the players must bring their kit.” Best traditional correction?',['his or her','its','our','your'],0,'Each is singular.','“Their” is plural.','m','f'],
+['“A number of students ___ absent today.”',['are','is','was being','has'],0,'A number of = plural.','“Is” fits the number of.','m','s'],
+['“The number of accidents ___ rising.”',['is','are','were','have'],0,'Subject = number.','“Are” follows accidents.','m','s'],
+['Rectify: “This time next week, I will fly to Delhi.”',['will be flying','will have flown','flew','am flew'],0,'In progress at that time.','“Will have flown” = finished.','m','f'],
+['If I ___ you, I would apologise.',['were','was','am','be'],0,'Subjunctive.','“Was” is informal.','e','s'],
+['Rectify: “Unless you don’t study, you will fail.”',['Unless you study','Unless you not study','If you don’t studying','Unless you studied'],0,'Unless already negative.','Double negative.','m','s'],
+['“I wish I ___ taller.”',['were','am','will be','have been'],0,'Wish + past/were.','“Am” is real, not wished.','e','s'],
+['“I would rather ___ at home.”',['stay','to stay','staying','stayed'],0,'Would rather + base.','“To stay” is wrong.','e','s'],
+['“She prefers tea ___ coffee.”',['to','than','from','over than'],0,'prefer X to Y.','“Than” is a common trap.','e','s'],
+['“He avoided ___ the issue.”',['discussing','to discuss','discuss','discussed'],0,'avoid + gerund.','“To discuss” is wrong.','m','s'],
+['“We look forward to ___ you.”',['meeting','meet','have met','to meet'],0,'to is a preposition.','“Meet” is a base verb.','m','s'],
+['“Hardly had she left ___ it rained.”',['when','than','as','then'],0,'Hardly… when.','“Than” goes with no sooner.','m','s'],
+['“It was ___ a hot day that we stayed in.”',['such','so','very','too'],0,'such + a + adj + noun.','“So” cannot take “a hot day” directly.','m','s'],
+['“The committee ___ decided” (as one body).',['has','have been','were','are'],0,'Singular collective.','“Have” treats members separately.','m','s'],
+['“The furniture ___ new.”',['is','are','were being','have'],0,'Uncountable.','“Are” treats it as countable.','e','s'],
+['“Ten kilometres ___ a long walk.”',['is','are','were','have been'],0,'Distance as a unit.','“Are” counts separate kilometres.','h','s'],
+['“He is senior ___ me.”',['to','than','from','over'],0,'senior to.','“Than” is the usual trap.','e','s'],
+['“There are ___ students than seats.”',['fewer','less','lesser','little'],0,'Countable = fewer.','“Less” is for uncountables.','e','s'],
+['“Between you and ___, it is a secret.”',['me','I','myself','mine'],0,'Object after a preposition.','“I” is subjective.','h','o'],
+['“Walking to school, a dog bit him.” Why is it wrong?',['dangling modifier','tense error','wrong preposition','spelling'],0,'Dog was not walking.','Tense is fine.','h','s'],
+['Choose the correct sentence.',['She has almost finished.','She almost has finished.','She has finished almost.','Almost she has finished.'],0,'Almost precedes the main verb.','“Almost has” splits wrongly.','m','f'],
+['Which is NOT correct?',['The news are good.','The news is good.','Physics is hard.','Ten dollars is enough.'],0,'News is singular.','Others are correct.','h','s'],
+['“By next year, she ___ ten years here.”',['will have completed','will complete','is completing','completes'],0,'by + future = future perfect.','“Will complete” lacks the deadline sense.','h','f']];
+const L={e:'Easy',m:'Moderate',h:'Hard'};
+// render
+const secs=[['snap','Snapshot'],['seen','Seen in shifts'],['notes','Rules & traps'],['rb','Rule box'],['eb','Exceptions'],['ce','10 errors'],['memo','Memory aids'],['prac','Practice'],['rev','Revision'],['ver','Verify']];
+$('#toc').innerHTML=secs.map(s=>`<a href="#${s[0]}" style="color:var(--ac)">${s[1]}</a>`).join('');
+$('#seent').innerHTML='<tr><th>Concept</th><th>What was asked</th><th>Correct</th><th>Shifts</th><th>% correct</th><th>Trap</th></tr>'+SEEN.map(r=>`<tr><td>🔥 ${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>—</td><td>${r[4]}</td></tr>`).join('');
+$('#rules').innerHTML=G.map(g=>`<h3>${g[0]}</h3><div class="overflow-x-auto"><table><tr><th>Rule</th><th>Wrong</th><th>Corrected</th><th>Why</th></tr>${g[2].map(r=>`<tr class="b-${r[0]}"><td>${B[r[0]]} ${r[1]}</td><td class="w">${r[2]}</td><td class="r">${r[3]}</td><td>${r[4]}</td></tr>`).join('')}</table></div><div class="box trap">${g[1]}</div>`).join('');
+$('#ce10').innerHTML=C10.map(x=>`<li>${x}</li>`).join('');
+$('#rc').innerHTML=RC.map(x=>`<li>${x}</li>`).join('');
+$('#cnt').textContent='(30 shown)';
+$('#qs').innerHTML=Q.map((q,i)=>`<div class="q b-${q[6]}"><div><b>${i+1}.</b> ${B[q[6]]} <span class="sans" style="font-size:.7rem;color:var(--mut)">${L[q[5]]}</span> ${q[0]}</div>${q[1].map((o,j)=>`<button class="o" data-j="${j}">${'ABCD'[j]}) ${o}</button>`).join('')}<div class="ans"><b>Answer: ${'ABCD'[q[2]]}.</b> ${q[3]} <i>Why the closest wrong option fails:</i> ${q[4]}</div></div>`).join('');
+document.querySelectorAll('.q').forEach((el,i)=>el.addEventListener('click',e=>{const b=e.target.closest('.o');if(!b)return;el.classList.add('open');el.querySelectorAll('.o')[Q[i][2]].classList.add('ok');if(+b.dataset.j!==Q[i][2])b.classList.add('bad')}));
+$('#fl').innerHTML=[['all','All'],['f','🔥'],['fs','🔥+⭐']].map(x=>`<button data-f="${x[0]}" class="${x[0]=='all'?'on':''}">${x[1]}</button>`).join(' ');
+$('#fl').addEventListener('click',e=>{const f=e.target.dataset.f;if(!f)return;document.body.dataset.f=f;document.querySelectorAll('#fl button').forEach(b=>b.classList.toggle('on',b.dataset.f==f))});
+$('#th').onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).getPropertyValue('--bg').trim()=='#12161c';r.dataset.theme=d?'light':'dark'};
+</script></body></html>
