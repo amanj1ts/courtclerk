@@ -123,7 +123,7 @@ window.SSSC_GUIDES = [
     id: 'gs-06a', section: 'Economy', code: 'GS-06a',
     nav: 'Basics, Budget & Inflation',
     title: 'Economy: Basics, Budget & Inflation',
-    file: 'guides/gs-06a-economy-basics.html', ready: false,
+    file: 'guides/gs-06a-economy-basics.html', ready: true,
     tag: 'Economy',
     search: 'economy basics budget inflation gdp national income taxation fiscal policy'
   },
@@ -131,7 +131,7 @@ window.SSSC_GUIDES = [
     id: 'gs-06b', section: 'Economy', code: 'GS-06b',
     nav: 'Banking, Policy & Planning',
     title: 'Economy: Banking, Policy & Planning',
-    file: 'guides/gs-06b-banking-policy.html', ready: false,
+    file: 'guides/gs-06b-banking-policy.html', ready: true,
     tag: 'Economy',
     search: 'economy banking rbi monetary policy planning five year plans financial institutions'
   },

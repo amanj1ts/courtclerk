@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GS-06a Indian Economy: SSSC Clerk Study Guide</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#14213d;--mut:#51607a;--ac:#0b5d7a;--ln:#d5dce6;--hl:#e8f1f6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1624;--card:#18223a;--ink:#e6ecf7;--mut:#9fb0cc;--ac:#6cc4e3;--ln:#2c3a58;--hl:#1f2e4a}}
+:root[data-theme=dark]{--bg:#0f1624;--card:#18223a;--ink:#e6ecf7;--mut:#9fb0cc;--ac:#6cc4e3;--ln:#2c3a58;--hl:#1f2e4a}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 7.5rem)}
+body{background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+.ui,th,button,summary{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:1px solid var(--ln)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:30}
+h2{font-size:1.35rem;font-weight:700;margin:2rem 0 .6rem;color:var(--ac)}
+h3{font-weight:700;margin:1rem 0 .3rem}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:.8rem 1rem;margin:.6rem 0}
+.w{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:520px}
+th{background:var(--hl);text-align:left;font-size:.78rem}
+th,td{border:1px solid var(--ln);padding:.35rem .5rem;vertical-align:top}
+.btn{border:1px solid var(--ln);border-radius:6px;padding:.2rem .6rem;font-size:.8rem;background:var(--card);color:var(--ink)}
+.btn.on{background:var(--ac);color:var(--bg)}
+.q{border-left:4px solid var(--ac)}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--ln);border-radius:6px;padding:.3rem .5rem;margin:.2rem 0;background:var(--card);color:var(--ink);font-size:.9rem}
+.opt.ok{background:#1b7a46;color:#fff}.opt.no{background:#a63232;color:#fff}
+.ans{display:none;background:var(--hl);padding:.4rem .6rem;border-radius:6px;font-size:.88rem;margin-top:.3rem}
+.ans.show{display:block}
+.vf{color:#b45309;font-weight:700}
+[data-f=f] [data-b=s],[data-f=f] [data-b=o],[data-f=fs] [data-b=o]{display:none}
+details>summary{cursor:pointer;font-weight:600}
+@media print{header,.noprint{display:none}body{background:#fff;color:#000}.ans{display:block}details{display:block}}
+</style></head>
+<body data-f="all">
+<header class="ui px-3 py-2">
+ <div class="flex flex-wrap items-center gap-2">
+  <b class="text-sm">GS-06a Economy</b>
+  <span class="text-xs" style="color:var(--mut)">🔥 seen/must · ⭐ neighbour · ◻ possible</span>
+  <span class="flex gap-1 ml-auto" id="fl"></span>
+  <button class="btn" id="th">Light/Dark</button>
+ </div>
+ <details class="text-sm mt-1"><summary>Contents</summary><nav id="toc" class="flex flex-wrap gap-x-3 gap-y-1 py-1"></nav></details>
+</header>
+<main class="max-w-3xl mx-auto px-3 pb-16">
+<h1 class="text-2xl font-bold mt-4">Indian Economy: Basics, Micro, National Income, Budget, Inflation</h1>
+<p class="ui text-sm" style="color:var(--mut)">SSSC (Punjab and Haryana High Court) Clerk CBT. Facts come from the UDAAN Economy book and the 22-shift question file. Items marked <span class="vf">[VERIFY]</span> are not in those sources.</p>
+<div id="app"></div>
+</main>
+<script>
+const B={f:"🔥",s:"⭐",o:"◻"};
+const bd=k=>`<span title="${k}">${B[k]}</span>`;
+const SEC=[];
+const sec=(id,t,h)=>{SEC.push([id,t]);return `<section id="${id}"><h2>${t}</h2>${h}</section>`};
+const tbl=(hd,rows)=>`<div class="w"><table><thead><tr>${hd.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
+const row=(b,c)=>`<tr data-b="${b}"><td>${bd(b)}</td>${c.map(x=>`<td>${x}</td>`).join("")}</tr>`;
+
+/* SEEN: concept, asked, answer, shifts, %, trap, badge */
+const SEEN=[
+["ECB benefit","Primary benefit of External Commercial Borrowing","Access to international funds not available domestically","S1","79","Not subsidy, not lower tax, not jobs"],
+["Business saving","Why significant in national income","Internal funds for corporate investment","S1","57","Confused with household wealth"],
+["NK Singh Committee","Year set up to review FRBM Act 2003","2016","S1","20","2014/2018/2020 distractors; hard"],
+["Deflationary gap","Gap when AD is less than output for full employment","Deflationary gap","S2","37","Inflationary gap is the opposite"],
+["ICOR","Declining ICOR means","Higher efficiency of capital (less capital per unit of output)","S3","key not extracted; solved from book","Students read it as slower capital formation"],
+["Economic systems","Govt controls production and distribution; mixed = market + govt; centrally planned feature","Command; Mixed; Government plans","S6, S14, S21, S22","31 / 95 / 80 / 71","Command (31%) was the weak one"],
+["Fixed cost","Cost unchanged in short run at any output","Total fixed cost","S6, S15","41 / 64","Option text says total cost or variable cost"],
+["Linear isoquant","Isoquant with constant slope","Linear isoquant","S7","54","L-shaped = fixed proportions"],
+["Injection","Injection in circular flow","Investment and government expenditure (also exports)","S7","60","Savings, taxes, imports are leakages"],
+["Excluded from GDP","Item excluded from national income","Transfer payments","S7","66","Wages, profits, rent are included"],
+["GDP definition; macro","Value of final goods and services within domestic territory in a year; macro measure","Aggregate price level and total output","S8, S10, S17","87 / 84 / 70","Total wealth or exports and imports are wrong"],
+["Keynes: involuntary unemployment","Main cause","Rigidity in wage rates (key not extracted; verify)","S10","19","Population, productivity are distractors"],
+["GST 2017","Tax system introduced in 2017","Goods and Services Tax","S13","95","Easy"],
+["Policy mix","Reduce cyclical unemployment, control inflation","Targeted public spending with stable interest rates","S15","50","Broad tax cuts plus sharply lower rates is inflationary"],
+["NDP at factor cost","Definition","Sum of net value added at factor cost, domestic territory","S18","74","Market prices option is a trap"],
+["Tax cut in recession","Keynesian effect","Disposable income up, so consumption demand up","S19","72","Not direct public investment"],
+["Machines as final goods","Why counted as final","They give productive services over years","S19","53","Not “consumed immediately”"],
+["NFIA and GDP","GDP same, NFIA rises: what rises","GNP","S20","58","GDP, NDP, GVA are domestic"],
+["Market equilibrium","Necessarily follows","Consumers’ and firms’ plans match","S21","70","Excess demand or supply is wrong"],
+["Keynes: AD in short run","Rigid prices, AD up","Real output and employment rise","S22","37","Hard: option 1 and 4 are the opposite"]];
+
+const FACTS=[
+["National income",[
+["f","GDP","Market value of all final goods and services produced within domestic territory in a year, by residents or non-residents."],
+["f","GNP","GDP + Net Factor Income from Abroad (NFIA). NFIA = income earned abroad by residents − income of foreigners at home."],
+["f","NDP","GDP − depreciation. NNP = GNP − depreciation."],
+["f","NDP at FC","NDP at market price − net indirect taxes (net product + net production taxes). GDP at FC = GDP at MP − NIT."],
+["f","National income","NNP at factor cost = NDP at FC + NFIA."],
+["f","Expenditure method","GDP = C + I + G + (X − M)."],
+["f","Value added","Output − intermediate consumption. Intermediate goods are excluded to avoid double counting."],
+["f","Included","Wages, rent, interest, profit (factor incomes)."],
+["f","Excluded","Transfer payments (pensions, scholarships, prizes, gifts) are not factor incomes, so excluded."],
+["s","Second-hand goods","Standard rule: excluded, since produced earlier. <span class='vf'>[VERIFY]</span> not stated in the sources."],
+["s","Personal income","NI − undistributed profits − net interest paid by households − corporate tax + transfers. PDI = PI − personal taxes and non-tax payments."],
+["s","Real GDP, deflator","Real = nominal ÷ deflator × 100. Deflator = nominal ÷ real × 100. Deflator of 150 means prices up 50%."],
+["f","Capital goods","Machines are final goods (durable, used over years); fixed capital is reused, working capital is used up."],
+["f","Business saving","Retained profit: internal funds for corporate investment."],
+["f","Net investment","Gross investment − depreciation."],
+["f","ICOR","ΔK ÷ ΔY. Lower ICOR = more efficient. India: 3.8 (2016), 4.9 (2018), 6.9 (2019), as per the book."],
+["f","Circular flow","Injections: investment, government spending, exports. Leakages: savings, taxes, imports."],
+["s","GDP and welfare","GDP ignores distribution, non-monetary work and externalities. Alternatives: HDI, Green GDP, GNH (Bhutan), GPI."]]],
+["Keynes and macro",[
+["f","Macroeconomics","Born with Keynes, General Theory (1936), after the Great Depression. Studies aggregates: total output, price level, unemployment."],
+["f","Deflationary gap","AD below output needed for full employment. Inflationary gap = actual GDP − potential GDP."],
+["f","Recession policy","Tax cuts raise disposable income and consumption; extra government spending raises AD."],
+["f","Involuntary unemployment","Keynes: wages and prices rigid, AD short. Verify key from your notes."],
+["f","MPC","Marginal propensity to consume = ΔC ÷ ΔY. <span class='vf'>[VERIFY]</span> not in sources."],
+["s","Fiscal stance","Deficit budget = expansionary; surplus = contractionary. Counter-cyclical policy spends in recession."]]],
+["Micro",[
+["f","Systems","Market (price-driven), Command (government decides), Mixed (both; most modern economies, India)."],
+["f","Fixed vs variable","Short run: some input fixed, so fixed cost constant at all output. Long run: all costs variable."],
+["f","Isoquant","Linear isoquant = constant slope (perfect substitutes). Convex is the normal shape; L-shape = fixed proportions."],
+["f","Equilibrium","Qd = Qs; plans of buyers and sellers match. Excess demand pushes price up; excess supply pushes it down."],
+["f","Economies of scope","Lower cost of producing several products together. <span class='vf'>[VERIFY]</span> not in sources."],
+["s","Law of demand","Price up, quantity demanded down (normal goods). Giffen and Veblen goods are exceptions."],
+["s","Goods","Inferior: demand falls as income rises. Substitutes: tea–coffee. Complements: tea–sugar, bread–jam."],
+["s","Elasticity","Perfectly elastic: infinite response. Perfectly inelastic: none. Unitary: proportional. Elastic: more than proportional."],
+["s","Perfect competition","Many buyers and sellers, identical products, free entry and exit, price takers. Monopoly: one seller. Oligopoly: few."],
+["s","Scarcity, opportunity cost","Opportunity cost = value of next best alternative forgone."],
+["o","Public vs private goods","Public goods are non-rival and non-excludable (defence, roads). <span class='vf'>[VERIFY]</span> private-goods definition not in sources."]]],
+["Budget, taxes, FRBM",[
+["f","Budget","Annual Financial Statement, Article 112; prepared by Department of Economic Affairs; FY 1 April–31 March."],
+["f","Revenue vs capital","Revenue receipts create no liability (tax, non-tax). Capital receipts create liability or reduce assets (loans, disinvestment)."],
+["f","Revenue deficit","Revenue expenditure − revenue receipts."],
+["f","Fiscal deficit","Total expenditure − (revenue receipts + non-debt capital receipts) = borrowing need."],
+["f","Primary deficit","Fiscal deficit − net interest liabilities."],
+["f","FRBM Act 2003","Fiscal deficit 3% of GDP (target March 2021); debt 60% of GDP. NK Singh Committee: 2016."],
+["f","State Consolidated Fund","Art. 266. Sources: state taxes, share of central taxes, grants-in-aid, loans. A source not belonging here must be checked. <span class='vf'>[VERIFY]</span>"],
+["f","GST","From 1 July 2017; dual model; GST Council; IGST on inter-state supply; destination-based; slabs 5/12/18/28%."],
+["f","Direct taxes","Income tax, corporation tax, capital gains, wealth tax: paid directly by the taxpayer."],
+["f","Indirect taxes","Excise, customs, GST, earlier service tax, VAT: burden shifted to consumers."],
+["f","Outside GST","Basic customs duty, petrol and diesel, tobacco, alcohol, stamp duty, electricity duty (as per the book)."],
+["s","Other taxes","MAT (1987) targets “zero-tax” firms; DDT abolished in 2019–20; STT on securities."],
+["s","Tax buoyancy","% change in tax revenue ÷ % change in GDP."],
+["s","Grants-in-aid","Article 275, charged on the Consolidated Fund of India."],
+["s","Subsidies","Revenue expenditure; may be explicit (food, fertiliser) or implicit."],
+["f","ECB","Loans raised by Indian entities from non-resident lenders; benefit: funds not available domestically; RBI regulated."]]],
+["Inflation and unemployment",[
+["f","CPI vs WPI","CPI: retail prices, food and beverages 45.86%. WPI: wholesale, goods only, base 2011–12; manufactured 64.23%."],
+["f","Headline vs core","Core excludes food and energy."],
+["s","Types of inflation","Demand-pull; cost-push; imported. Speed: creeping, walking, running, galloping, hyper (above 1000%)."],
+["s","Disinflation","Fall in the rate of inflation, not in prices. Deflation = fall in the price level. Stagflation = inflation + stagnation."],
+["s","Phillips curve","Inverse link between unemployment and inflation."],
+["s","Unemployment types","Open, disguised (agriculture), seasonal, cyclical, structural, frictional, technological."],
+["s","Anti-inflation tools","Monetary: higher repo, CRR, SLR. Fiscal: higher taxes, lower spending."],
+["o","Sectors","Primary, secondary, tertiary (services). <span class='vf'>[VERIFY]</span> definitions not in these chapters. Services about 54% of GVA (book)."]]]];
+
+const TRAPS=[
+"“Which is NOT included in national income/GDP?”: answer is transfer payments (pension, scholarship); wages, rent, profit are in.",
+"GNP = GDP + NFIA, not minus. If GDP is fixed and NFIA rises, only GNP (and NNP, NI) rise.",
+"NDP at factor cost subtracts depreciation AND net indirect taxes from GDP at market prices.",
+"Injection vs leakage: investment, G, exports in; savings, taxes, imports out.",
+"Direct tax: income and corporation tax. Excise, customs, GST are indirect.",
+"Fund-source questions: check that each option is a real receipt of that fund; loans and borrowings are capital receipts.",
+"Fiscal deficit has no “revenue” inside it as expense; primary deficit removes interest.",
+"Disinflation is not deflation. Deflationary gap is not the same as deflation.",
+"Fixed cost stays constant; marginal and variable cost do not. Look for “total” in the option.",
+"Deficit financing by new money is the most inflationary (book)."];
+
+const SKIP=["Cobweb phenomenon; base effect arithmetic","Kelkar, Shome, Chelliah and Rustagi committee details","BEPS, GAAR, DTAA, Global Minimum Tax Pillars","GAFA tax vs equalisation levy rates","Ricardian equivalence, liquidity trap, helicopter money","Indifference-curve and budget-set derivations","Tax-to-GDP trend figures (12.1% in FY2008; 11.8% FY24)"];
+
+/* MCQ: [level, badge, q, [opts], ansIdx, reason] */
+const Q=[
+["e","f","GNP is equal to:",["GDP − NFIA","GDP + NFIA","GDP + depreciation","GDP + net indirect taxes"],1,"GNP adds income earned abroad by residents less income of foreigners at home. Closest wrong: option 1 reverses the sign."],
+["e","f","Which of the following is excluded from GDP calculation?",["Wages","Rent","Pension (transfer payment)","Profits"],2,"Transfer payments are not payment for production. Wages, rent, profit are factor incomes."],
+["m","f","NDP at factor cost equals:",["GDP at MP − depreciation","NDP at MP − net indirect taxes","GNP at MP − depreciation","GDP at FC + NFIA"],1,"NDP at FC removes net indirect taxes from NDP at MP. Option 1 is NDP at MP; option 3 is NNP."],
+["m","f","GDP stays unchanged while NFIA rises. Which aggregate rises directly?",["NDP","GVA","GNP","GDP at factor cost"],2,"GNP = GDP + NFIA. The others are measured within domestic territory."],
+["e","f","Intermediate goods are excluded from GDP to avoid:",["Inflation","Double counting","Depreciation","Taxation"],1,"Only final value or value added is counted. Option 4 is unrelated."],
+["m","c","Machines are treated as final goods because they:",["Are consumed at once","Provide productive services over years","Are exported","Are used as raw material"],1,"They are capital goods, durable. Raw material use would make them intermediate."],
+["e","f","In the circular flow, an injection is:",["Savings","Taxes","Imports","Investment"],3,"Investment, G and exports add to flow; savings, taxes, imports are leakages."],
+["m","c","Business saving is important because it:",["Measures household wealth","Is internal funds for corporate investment","Equals government spending","Measures export value"],1,"Retained profit finances firms’ own investment. Option 0 mixes up households."],
+["e","f","A lower ICOR indicates:",["Lower capital efficiency","Higher efficiency of capital","Slower growth","Costlier investment per unit of output"],1,"ICOR = ΔK/ΔY; less capital per unit of output. Option 3 describes a rising ICOR."],
+["m","f","India’s ICOR rose from 3.8 (2016) to 6.9 (2019). This shows:",["Better efficiency","Less efficient capital use","Lower investment","Falling GDP"],1,"Higher ICOR = more capital needed per unit of output."],
+["h","c","A deflationary gap arises when:",["AD exceeds full-employment output","AD is below output needed for full employment","Imports exceed exports","The budget is in surplus"],1,"Weak demand leaves resources idle. Option 0 describes an inflationary gap."],
+["m","c","Keynesian theory: tax cuts in a recession work by:",["Raising public investment directly","Raising disposable income and consumption","Cutting government debt","Reducing imports"],1,"More disposable income raises consumption demand, so AD."],
+["h","c","Keynes explained involuntary unemployment mainly by:",["Population growth","Rigid wages (verify key)","Productivity rise","Trade expansion"],1,"Wages do not fall to clear the labour market. Answer key not extracted in the shift file; check notes."],
+["h","c","Under Keynes, with rigid prices in the short run, higher AD mostly raises:",["Involuntary unemployment","Real output and employment","Productive capacity decline","Idle resources"],1,"Slack means output responds before prices."],
+["e","f","Which cost stays constant in the short run whatever the output?",["Total variable cost","Marginal cost","Total fixed cost","Average variable cost"],2,"Fixed inputs mean fixed cost; others vary with output."],
+["m","c","A linear isoquant has:",["Convex shape","Constant slope","L shape","Concave shape"],1,"Constant rate of substitution: perfect substitutes. L-shape is fixed proportions."],
+["m","c","In market equilibrium:",["Demand exceeds supply","Supply exceeds demand","Plans of buyers and sellers match","Price is zero"],2,"Qd = Qs at equilibrium price."],
+["e","f","Which economy has government control over production and distribution?",["Market","Command","Traditional","Mixed"],1,"Command or planned. Mixed has both."],
+["e","f","Mixed economy combines:",["Barter and money","Market forces and government intervention","Only planning","Only prices"],1,"India is a mixed economy."],
+["m","f","A good whose demand rises when its price rises (low-income staple):",["Normal good","Giffen good","Substitute","Complement"],1,"Giffen goods have upward-sloping demand."],
+["e","f","Tea and sugar are:",["Substitutes","Complements","Inferior goods","Giffen goods"],1,"Used together. Tea and coffee are substitutes."],
+["m","f","The Union Budget is mandated as the Annual Financial Statement by Article:",["110","112","266","275"],1,"Art. 112. Art. 275 is grants-in-aid."],
+["m","f","Revenue deficit equals:",["Total expenditure − total receipts","Revenue expenditure − revenue receipts","Fiscal deficit − interest","Capital expenditure − capital receipts"],1,"Shortfall of current income against current spending."],
+["m","f","Fiscal deficit equals total expenditure minus:",["Revenue receipts","Revenue receipts and non-debt capital receipts","Tax revenue","Borrowings"],1,"It measures borrowing need. Option 0 omits non-debt capital receipts."],
+["h","f","Primary deficit equals:",["Fiscal deficit − net interest liabilities","Fiscal deficit + interest","Revenue deficit − grants","Revenue deficit − interest"],0,"Shows borrowing for non-interest spending."],
+["h","f","The NK Singh Committee to review the FRBM Act was set up in:",["2014","2016","2018","2020"],1,"2016 (shift key). Only 20% got it right."],
+["e","f","GST was introduced on:",["1 April 2016","1 July 2017","1 April 2018","1 Jan 2017"],1,"1 July 2017; dual GST with GST Council."],
+["e","f","Which of these is a direct tax?",["Customs duty","Excise duty","GST","Corporation tax"],3,"Paid directly by the taxpayer; others are indirect."],
+["m","f","Core inflation excludes:",["Food and energy","Housing","Services","Clothing"],0,"Food and fuel are volatile."],
+["m","c","Disinflation means:",["Prices falling","Inflation rate falling","Prices stable","Hyperinflation"],1,"Prices still rise, only slower. Falling prices = deflation."],
+["h","f","The main benefit of ECB for Indian companies is:",["Government subsidy","Lower taxes","Access to international funds not available domestically","Guaranteed jobs"],2,"ECB = loans from non-resident lenders, RBI regulated."],
+["m","f","The WPI measures price change at:",["Retail level","Wholesale level, goods only","Services level","Import level"],1,"CPI is retail; WPI covers goods, not services."],
+["m","n","NOT a type of unemployment:",["Frictional","Structural","Cyclical","Creeping"],3,"Creeping is a type of inflation by speed."],
+["m","n","Which is NOT an injection in the circular flow?",["Investment","Government spending","Exports","Imports"],3,"Imports are leakage."]];
+const LV={e:"Easy",m:"Moderate",h:"Hard"};
+
+let h="";
+h+=sec("snap","1. Snapshot",`<div class="card"><p><b>Weight:</b> about 4.3 economy questions per shift across GS-06a/b; candidates averaged ~55%.<br><b>How asked:</b> mostly one-line definitions (GDP, GNP, mixed economy, GST) plus a few twisted “NOT” and Keynesian items. Hard items (NK Singh year) were solved by under 25%.</p><ol class="list-decimal ml-5 text-sm"><li>Memorise the aggregate chain: GDP → GNP → NNP → NI.</li><li>Learn the excluded list: transfer payments, intermediate goods.</li><li>Know injections vs leakages cold.</li><li>Fixed cost = constant in short run.</li><li>Three deficits: revenue, fiscal, primary.</li><li>Direct (income, corporation) vs indirect (GST, excise, customs).</li><li>Keynes: AD, rigid wages, tax cuts raise consumption.</li><li>Command, market, mixed: spot the keyword.</li><li>Read every option: negative marking is 1/4.</li><li>Skip a question if two options both look right and you have no reason.</li></ol></div>`);
+h+=sec("seen","2. Seen in the shifts",`<p class="text-sm">Only questions from these chapters. Percentages are the share of ~70 candidates answering correctly.</p>`+tbl(["","Concept","What was asked","Answer","Shifts","% correct","Trap"],SEEN.map(r=>row("f",r))));
+h+=sec("facts","3–4. Concept notes and fact tables",FACTS.map(g=>`<h3>${g[0]}</h3>`+tbl(["","Topic","Fact"],g[1].map(r=>row(r[0],[`<b>${r[1]}</b>`,r[2]])))).join(""));
+h+=sec("aids","5. Memory aids",`<div class="card text-sm"><b>Aggregate chain:</b> GDP →(+NFIA)→ GNP →(−Dep)→ NNP at MP →(−Net indirect tax)→ NI.<br><b>Leakage = SIT… “Save, Import, Tax” out; “I, G, X” in.</b><br><b>Deficits:</b> Revenue (current) ⊂ Fiscal (total borrowing) − Interest = Primary.<br><b>Confusable pairs:</b> GDP/GNP; deflation/disinflation; deflationary/inflationary gap; CPI/WPI; fixed/variable; NDP/NNP.</div>`);
+h+=sec("traps","6. Trap alerts",`<ul class="list-disc ml-5 text-sm">${TRAPS.map(t=>`<li>${t}</li>`).join("")}</ul><details class="card"><summary>Skip unless time is left</summary><ul class="list-disc ml-5 text-sm">${SKIP.map(t=>`<li>${t}</li>`).join("")}</ul></details>`);
+h+=sec("mcq","7. Practice set (32 MCQs)",`<p class="text-sm">Tap an option to reveal the answer. Mix: easy/moderate/hard.</p>`+Q.map((q,i)=>`<div class="card q" data-b="${q[1]=="n"?"s":q[1]}"><div class="text-sm ui">Q${i+1} · ${LV[q[0]]} · ${bd(q[1]=="n"?"s":q[1])}</div><p>${q[2]}</p>${q[3].map((o,j)=>`<button class="opt" data-q="${i}" data-j="${j}">${"ABCD"[j]}. ${o}</button>`).join("")}<div class="ans" id="a${i}"><b>Answer: ${"ABCD"[q[4]]}.</b> ${q[5]}</div></div>`).join(""));
+h+=sec("rev","8. 60-second revision card",`<ol class="list-decimal ml-5 text-sm card"><li>GNP = GDP + NFIA</li><li>NNP = GNP − depreciation</li><li>NI = NNP at factor cost</li><li>NDP at FC = NDP at MP − net indirect taxes</li><li>GDP = C + I + G + (X − M)</li><li>Transfer payments: excluded</li><li>Intermediate goods: excluded (double counting)</li><li>Injections: I, G, X; leakages: S, T, M</li><li>Business saving: internal funds for investment</li><li>ICOR = ΔK/ΔY; lower = efficient</li><li>Deflationary gap: AD below full-employment output</li><li>Tax cut in recession: disposable income and consumption up</li><li>Fixed cost: constant in short run</li><li>Linear isoquant: constant slope</li><li>Command: govt controls; Mixed: both</li><li>Revenue deficit = Rev exp − Rev receipts</li><li>Fiscal deficit = total exp − (rev + non-debt capital)</li><li>Primary deficit = fiscal − interest</li><li>FRBM: 3% fiscal deficit; NK Singh: 2016</li><li>GST: 1 July 2017; income and corporation tax direct</li><li>ECB: access to international funds</li></ol>`);
+h+=sec("ver","9. Verify before exam",`<div class="card" style="border-color:#b45309"><ul class="list-disc ml-5 text-sm"><li><span class="vf">[VERIFY]</span> Key for “involuntary unemployment” (wage rigidity) was not extracted; confirm.</li><li><span class="vf">[VERIFY]</span> Marginal propensity to consume, economies of scope, private goods, sectors: not in the sources.</li><li><span class="vf">[VERIFY]</span> State Consolidated Fund (Art. 266): which item is NOT a source; the sources do not cover it.</li><li><span class="vf">[VERIFY]</span> Second-hand goods excluded from GDP: standard rule, not in the book.</li><li>ICOR shift key was not extracted; solved from the book.</li><li>The book lists CPI base as 2012 in one table and 2011–12 in another; confirm.</li></ul></div>`);
+document.getElementById("app").innerHTML=h;
+document.getElementById("toc").innerHTML=SEC.map(s=>`<a class="underline" href="#${s[0]}">${s[1]}</a>`).join("");
+const fl=document.getElementById("fl");
+[["all","All"],["f","🔥"],["fs","🔥+⭐"]].forEach(([k,t])=>{const b=document.createElement("button");b.className="btn"+(k=="all"?" on":"");b.textContent=t;b.onclick=()=>{document.body.dataset.f=k;[...fl.children].forEach(x=>x.classList.toggle("on",x==b))};fl.appendChild(b)});
+document.addEventListener("click",e=>{const o=e.target.closest(".opt");if(!o)return;const i=+o.dataset.q,j=+o.dataset.j;document.querySelectorAll(`[data-q="${i}"]`).forEach(x=>x.classList.remove("ok","no"));document.querySelector(`[data-q="${i}"][data-j="${Q[i][4]}"]`).classList.add("ok");if(j!=Q[i][4])o.classList.add("no");document.getElementById("a"+i).classList.add("show")});
+document.getElementById("th").onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).getPropertyValue("--bg").trim()=="#0f1624";r.dataset.theme=d?"light":"dark"};
+</script></body></html>
