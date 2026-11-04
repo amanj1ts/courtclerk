@@ -173,7 +173,7 @@ window.SSSC_GUIDES = [
     id: 'gs-09', section: 'Science', code: 'GS-09',
     nav: 'Physics',
     title: 'Physics',
-    file: 'guides/gs-09-physics.html', ready: false,
+    file: 'guides/gs-09-physics.html', ready: true,
     tag: 'Science',
     search: 'science physics motion force energy light sound electricity magnetism'
   },
