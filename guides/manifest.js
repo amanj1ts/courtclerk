@@ -183,7 +183,7 @@ window.SSSC_GUIDES = [
     id: 'gs-10', section: 'Static GK', code: 'GS-10',
     nav: 'UN & International Organisations',
     title: 'UN & International Organisations',
-    file: 'guides/gs-10-un-organisations.html', ready: false,
+    file: 'guides/gs-10-un-organisations.html', ready: true,
     tag: 'Static GK',
     search: 'static gk un united nations international organisations world bank imf who'
   },
